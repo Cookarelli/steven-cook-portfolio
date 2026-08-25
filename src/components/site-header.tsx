@@ -1,0 +1,2 @@
+const links = ["Work", "Expertise", "Experience", "About", "Contact"];
+export function SiteHeader() { return <header className="site-header"><div className="header-inner"><a className="brand" href="#top" aria-label="Steven Cook home"><span className="brand-mark">SC</span><span>STEVEN COOK</span></a><nav className="desktop-nav" aria-label="Primary navigation">{links.map((link) => <a href={`#${link.toLowerCase()}`} key={link}>{link}</a>)}</nav><a className="header-cta" href="#contact">Let&apos;s talk</a></div></header>; }
