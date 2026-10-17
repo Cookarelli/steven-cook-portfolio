@@ -1,47 +1,47 @@
 import type { Metadata } from "next";
 import "./globals.css";
-import { getSiteUrl } from "@/lib/site-url";
+import "./optimize-local.css";
 
-const siteUrl = getSiteUrl();
+const siteUrl = new URL("https://optimizelocalai.com");
 
 export const metadata: Metadata = {
   metadataBase: siteUrl,
-  title: "Steven Cook | Digital Marketing, SEO, Product & AI",
-  description: "Steven Cook is a digital marketing and SEO leader with nearly two decades of experience spanning search, paid media, digital strategy, web development, mobile products, SaaS and AI automation.",
-  keywords: ["Steven Cook", "Digital Marketing", "SEO", "Search Engine Optimization", "Digital Strategy", "Paid Media", "Product Development", "AI Automation", "Web Development", "Rockford Illinois", "Orange County digital marketing"],
-  alternates: siteUrl ? { canonical: "/" } : undefined,
+  title: { default: "Optimize Local | Custom Business Apps, Loyalty & Booking", template: "%s | Optimize Local" },
+  description: "Affordable custom business apps, websites, customer loyalty programs, online booking, and practical automation for local businesses in Rockford, Illinois and beyond.",
+  keywords: ["Optimize Local", "business apps", "custom web apps", "customer loyalty programs", "small business booking", "Rockford app development", "business automation", "local business websites"],
+  alternates: { canonical: "/" },
   openGraph: {
-    title: "Steven Cook | Digital Marketing, SEO, Product & AI",
-    description: "Steven Cook is a digital marketing and SEO leader with nearly two decades of experience spanning search, paid media, digital strategy, web development, mobile products, SaaS and AI automation.",
     type: "website",
-    siteName: "Steven Cook",
-    locale: "en_US",
     url: siteUrl,
+    siteName: "Optimize Local",
+    title: "Optimize Local | Big business tools. Local business prices.",
+    description: "Custom apps, loyalty programs, booking, and automation for local businesses. Packages start at $500.",
+    locale: "en_US",
   },
   twitter: {
-    card: "summary",
-    title: "Steven Cook | Digital Marketing, SEO, Product & AI",
-    description: "Steven Cook is a digital marketing and SEO leader with nearly two decades of experience spanning search, paid media, digital strategy, web development, mobile products, SaaS and AI automation.",
+    card: "summary_large_image",
+    title: "Optimize Local | Apps & Loyalty for Local Business",
+    description: "Custom apps, booking, loyalty, and smart automation built around your business.",
   },
 };
 
-export default function RootLayout({ children }: LayoutProps<"/">) {
-  const personSchema = {
-    "@context": "https://schema.org",
-    "@type": "Person",
-    name: "Steven Cook",
-    email: "optimizelocalai@gmail.com",
-    sameAs: ["https://www.linkedin.com/in/stevenallencook"],
-    address: { "@type": "PostalAddress", addressLocality: "Rockford", addressRegion: "IL", addressCountry: "US" },
-    jobTitle: "Digital Marketing, SEO, Product & AI Professional",
-    founder: { "@type": "Organization", name: "Optimize Local" },
-    knowsAbout: ["Digital Marketing", "Search Engine Optimization", "Paid Media", "Digital Strategy", "Analytics", "Product Development", "Web Development", "Mobile Applications", "AI Automation"],
-    alumniOf: [
-      { "@type": "Organization", name: "Rareview" },
-      { "@type": "Organization", name: "Spireon" },
-      { "@type": "Organization", name: "Stellar Social" },
-      { "@type": "Organization", name: "Poker Affiliate Listings" },
-    ],
-  };
-  return <html lang="en"><body><script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(personSchema) }} />{children}</body></html>;
+const businessSchema = {
+  "@context": "https://schema.org",
+  "@type": "ProfessionalService",
+  name: "Optimize Local",
+  url: "https://optimizelocalai.com",
+  email: "optimizelocalai@gmail.com",
+  description: "Custom business apps, websites, customer loyalty, booking and automation for local businesses.",
+  founder: { "@type": "Person", name: "Steve Cook" },
+  address: { "@type": "PostalAddress", addressLocality: "Rockford", addressRegion: "IL", addressCountry: "US" },
+  areaServed: ["Rockford, Illinois", "Northern Illinois", "United States"],
+  makesOffer: [
+    { "@type": "Offer", name: "QuickStart", price: "500", priceCurrency: "USD", description: "Starting project price; final scope quoted." },
+    { "@type": "Offer", name: "Business App", price: "1500", priceCurrency: "USD", description: "Starting project price; final scope quoted." },
+    { "@type": "Offer", name: "App + Loyalty", price: "2500", priceCurrency: "USD", description: "Starting project price; final scope quoted." },
+  ],
+};
+
+export default function RootLayout({ children }: Readonly<{ children: React.ReactNode }>) {
+  return <html lang="en"><body><script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(businessSchema) }} />{children}</body></html>;
 }
