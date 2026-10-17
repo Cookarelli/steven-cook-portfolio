@@ -81,7 +81,7 @@ export default function Home() {
               <ConsultationButton className="ol-button ol-button-primary" />
               <a className="ol-button ol-button-outline" href="#pricing">See the packages <span aria-hidden="true">↓</span></a>
             </div>
-            <p className="ol-hero-note"><span aria-hidden="true">✓</span> Free 20-minute consultation <span aria-hidden="true">·</span> No pressure, no obligation</p>
+            <p className="ol-hero-note"><span aria-hidden="true">✓</span> Free 20-minute consultation <span aria-hidden="true">·</span> Monday–Friday, 10 AM–5 PM Central</p>
           </div>
           <div className="ol-art-wrap" aria-label="Illustration of a custom business app experience">
             <div className="ol-art-glow" />
@@ -159,8 +159,8 @@ export default function Home() {
       </div></section>
 
       <section className="ol-contact-wrap" id="contact"><div className="ol-container ol-contact-grid">
-        <div><p className="ol-eyebrow">LET'S GET STARTED</p><h2>Tell me what your business <em>needs next.</em></h2><p>We'll start with a free 20-minute conversation. Tell me what you have in mind, even if it's still just a rough idea.</p>
-          {bookingReady ? <ConsultationButton className="ol-button ol-button-primary" /> : <div className="ol-booking-pending"><strong>Request a call</strong><span>Send an inquiry and we'll arrange a 20-minute time that works.</span></div>}
+        <div><p className="ol-eyebrow">LET'S GET STARTED</p><h2>Tell me what your business <em>needs next.</em></h2><p>Book a free 20-minute consultation, Monday through Friday, between 10 AM and 5 PM Central (America/Chicago). Tell me what you have in mind, even if it's still just a rough idea.</p>
+          {bookingReady ? <ConsultationButton className="ol-button ol-button-primary" /> : <div className="ol-booking-pending"><strong>Request a call</strong><span>Send an inquiry and we'll arrange a 20-minute call, Monday–Friday, 10 AM–5 PM Central.</span></div>}
           <p className="ol-email-line">Prefer email? <a href="mailto:optimizelocalai@gmail.com">optimizelocalai@gmail.com ↗</a></p>
         </div>
         <ContactForm />

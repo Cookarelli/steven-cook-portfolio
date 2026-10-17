@@ -16,13 +16,19 @@ This is the custom apps and small-business services site built from the Steven C
 2. Click Create > Appointment schedule.
 3. Name it "Optimize Local - Free Business App Consultation".
 4. Set duration to **Custom > 20 minutes**.
-5. Choose your actual available days/hours, meeting method (Google Meet recommended), buffer and minimum notice.
+5. Set weekly availability to **Monday through Friday, 10:00 AM–5:00 PM America/Chicago**. This timezone automatically observes CST/CDT daylight saving changes. Meetings last 20 minutes, with the last possible start at 4:40 PM when no buffer is used. Choose a meeting method (Google Meet recommended), buffer, and minimum notice. Do not enable Saturdays or Sundays.
 6. Save. Under Booking pages, copy the link for this exact schedule.
 7. In Vercel's project Environment Variables, set NEXT_PUBLIC_GOOGLE_BOOKING_URL to that https://calendar.app.google/... (or https://calendar.google.com/...) public booking page link.
 8. Redeploy the project so the new link is included in the build.
 9. From a logged-out browser, click Book your free 20-minute call, and make a test booking. Confirm it appears on the correct calendar and confirmation email is delivered.
 
 The ChatGPT-connected Google Calendar account is a different owner and has only reader access to the Optimize Local calendar. Appointment schedules cannot be created by that access.
+
+## Confirmed consultation availability
+- Monday through Friday, 10 AM to 5 PM Central (America/Chicago)
+- Session duration: 20 minutes
+- Saturdays and Sundays: unavailable
+- The Google booking page must enforce these hours and calendar conflicts; displaying hours on the website does not configure Google's appointment schedule.
 
 ## Contact form limitation
 The contact form prepares a structured email addressed to optimizelocalai@gmail.com and opens the visitor's mail client; the visitor must press Send. This avoids silently failing submissions without a configured backend. For a fully in-page lead capture form, connect a real mail provider or verified form endpoint and test successful delivery before changing the button label to "Send inquiry".
