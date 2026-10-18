@@ -196,7 +196,7 @@ export default function Home() {
         <ContactForm />
       </div></section>
 
-      <footer className="ol-footer"><div className="ol-container ol-footer-main"><a href="#top" className="ol-footer-logo">OPTIMIZE <strong>LOCAL.</strong></a><p>Easier days, happier customers, and more room to grow.</p><a href="mailto:optimizelocalai@gmail.com">Get in touch ↗</a></div><div className="ol-container ol-footer-bottom"><span>© {new Date().getFullYear()} Optimize Local · Rockford, Illinois</span><span><a href="#services">Services</a> · <a href="#pricing">Pricing</a> · <a href="#work">Work</a></span></div></footer>
+      <footer className="ol-footer"><div className="ol-container ol-footer-main"><a href="#top" className="ol-footer-logo">OPTIMIZE <strong>LOCAL.</strong></a><p>Easier days, happier customers, and more room to grow.</p><a href="mailto:optimizelocalai@gmail.com">Get in touch ↗</a></div><div className="ol-container ol-footer-bottom"><span>© {new Date().getFullYear()} Optimize Local · Rockford, Illinois</span><span><a href="#services">Services</a> · <a href="#pricing">Pricing</a> · <a href="#work">Work</a> · <a href="https://connect.optimizelocalai.com" target="_blank" rel="noopener noreferrer">Connect</a></span></div></footer>
     </main>
   );
 }
