@@ -11,14 +11,20 @@ This is the custom apps and small-business services site built from the Steven C
 - Previous full professional portfolio preserved at /portfolio
 - Responsive styles, SEO metadata, structured data, and sitemap
 
-## Google Calendar (required to enable instant online booking)
+## Google Calendar (public booking link configured in code)
+- Confirmed booking link supplied by project owner: https://calendar.app.google/FcGwkANYvFkbsy349
+- This URL is included in the site as the fallback for `NEXT_PUBLIC_GOOGLE_BOOKING_URL`, so booking buttons work without an environment variable.
+- Verify that the linked schedule is the **Optimize Local 20-minute consultation**, held **Monday through Friday, 10 AM–5 PM Central**, with Google Meet and the desired intake questions.
+- If the linked booking page still shows an earlier OptAImal strategy schedule or older 9 AM–4 PM availability, edit the booking schedule in the Optimize Local Google account. The site cannot change Google's booking availability.
+
+## Google Calendar (how to manage or replace the schedule)
 1. Sign into https://calendar.google.com as optimizelocalai@gmail.com, NOT the separate personal Calendar account.
 2. Click Create > Appointment schedule.
 3. Name it "Optimize Local - Free Business App Consultation".
 4. Set duration to **Custom > 20 minutes**.
 5. Set weekly availability to **Monday through Friday, 10:00 AM–5:00 PM America/Chicago**. This timezone automatically observes CST/CDT daylight saving changes. Meetings last 20 minutes, with the last possible start at 4:40 PM when no buffer is used. Choose a meeting method (Google Meet recommended), buffer, and minimum notice. Do not enable Saturdays or Sundays.
 6. Save. Under Booking pages, copy the link for this exact schedule.
-7. In Vercel's project Environment Variables, set NEXT_PUBLIC_GOOGLE_BOOKING_URL to that https://calendar.app.google/... (or https://calendar.google.com/...) public booking page link.
+7. The supplied Google booking URL is already integrated as a code fallback. Optionally set NEXT_PUBLIC_GOOGLE_BOOKING_URL in Vercel to override it later.
 8. Redeploy the project so the new link is included in the build.
 9. From a logged-out browser, click Book your free 20-minute call, and make a test booking. Confirm it appears on the correct calendar and confirmation email is delivered.
 

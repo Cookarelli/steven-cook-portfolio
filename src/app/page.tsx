@@ -1,6 +1,6 @@
 import { ContactForm } from "@/components/contact-form";
 
-const bookingLink = process.env.NEXT_PUBLIC_GOOGLE_BOOKING_URL?.trim() || "";
+const bookingLink = process.env.NEXT_PUBLIC_GOOGLE_BOOKING_URL?.trim() || "https://calendar.app.google/FcGwkANYvFkbsy349";
 const bookingReady = /^https:\/\/(calendar\.app\.google|calendar\.google\.com)\//i.test(bookingLink);
 const callHref = bookingReady ? bookingLink : "#contact";
 const callLabel = bookingReady ? "Book your free 20-minute call" : "Request a free 20-minute call";
