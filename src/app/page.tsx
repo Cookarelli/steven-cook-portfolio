@@ -1,147 +1,202 @@
 import { ContactForm } from "@/components/contact-form";
-import { ProjectCard } from "@/components/project-card";
-import { SiteHeader } from "@/components/site-header";
-import { careerChapters, consultingEngagements, expertise, projects } from "@/data/portfolio";
 
-const Arrow = () => <span aria-hidden="true">↗</span>;
-const brands = ["UnitedHealthcare", "Fathead", "Wagly", "HairClub for Men", "Bosch / Sweetworxx", "ThedaCare"];
+const bookingLink = process.env.NEXT_PUBLIC_GOOGLE_BOOKING_URL?.trim() || "https://calendar.app.google/FcGwkANYvFkbsy349";
+const bookingReady = /^https:\/\/(calendar\.app\.google|calendar\.google\.com)\//i.test(bookingLink);
+const callHref = bookingReady ? bookingLink : "#contact";
+const callLabel = bookingReady ? "Book your free 20-minute call" : "Request a free 20-minute call";
+
+const services = [
+  { number: "01", title: "Everything in one place", description: "Keep appointments, customer requests, and important details organized instead of scattered across texts, notebooks, and spreadsheets.", tags: ["Customer details", "Job status", "Simple dashboards"] },
+  { number: "02", title: "More repeat customers", description: "Give people a reason to return. Make rewards, special offers, and checking in easy for your customers and staff.", tags: ["Points & rewards", "Return-visit offers", "Member perks"] },
+  { number: "03", title: "Fewer calls and no-shows", description: "Let customers request appointments, submit their information, and receive reminders without constant back-and-forth.", tags: ["Booking", "Intake forms", "Reminders"] },
+  { number: "04", title: "Less repetitive work", description: "Stop retyping the same information or manually sending every update. Let routine steps happen on schedule so your team can focus on customers.", tags: ["Follow-ups", "Status updates", "Task tracking"] },
+];
+
+const packages = [
+  {
+    name: "QuickStart",
+    price: "$500",
+    description: "A sharp, mobile-friendly online presence that helps people find you and reach out.",
+    features: ["Focused website or landing page", "Services and calls to action", "Contact and inquiry experience", "Basic local SEO foundation"],
+    callout: "A better first impression.",
+    featured: false,
+  },
+  {
+    name: "Business App",
+    price: "$1,500",
+    description: "A custom branded web app designed around how your customers actually use your business.",
+    features: ["Mobile-friendly branded web app", "A tailored customer experience", "Core business workflow", "Launch and handoff support"],
+    callout: "Your business, in their pocket.",
+    featured: true,
+  },
+  {
+    name: "App + Loyalty",
+    price: "$2,500",
+    description: "Add a reason to come back with a custom app and a rewards experience.",
+    features: ["Everything in the Business App", "Customer rewards and offers", "Member activity and simple reporting", "Loyalty setup and launch support"],
+    callout: "Make the next visit happen.",
+    featured: false,
+  },
+];
+
+const examples = [
+  { name: "Northside Collectibles", industry: "Retail & collectibles", description: "A customer app concept connecting inventory, in-store discovery, rewards, and card services.", status: "In development", theme: "northside", short: "NORTHSIDE", number: "01" },
+  { name: "Jaz It Up Beauty Lounge", industry: "Beauty & appointments", description: "A branded beauty experience focused on services, bookings, and a smoother customer journey.", status: "In development", theme: "jaz", short: "JAZ IT UP", number: "02" },
+  { name: "Transporter 17", industry: "Transportation & payments", description: "A customer-facing booking and payment experience with a streamlined staff workflow.", status: "In development", theme: "transport", short: "TRANSPORTER 17", number: "03" },
+  { name: "Step Outside", industry: "Consumer wellness app", description: "An original walking and outdoor habit product with streaks, progress, and daily motivation.", status: "Product project", theme: "outside", short: "STEP OUTSIDE", number: "04" },
+];
+
+function ConsultationButton({ className = "", label }: { className?: string; label?: string }) {
+  return (
+    <a className={className} href={callHref} {...(bookingReady ? { target: "_blank", rel: "noopener noreferrer" } : {})}>
+      {label || callLabel}<span aria-hidden="true"> ↗</span>
+    </a>
+  );
+}
 
 export default function Home() {
   return (
-    <main>
-      <SiteHeader />
+    <main className="ol-site" id="top">
+      <header className="ol-header">
+        <div className="ol-container ol-header-inner">
+          <a href="#top" className="ol-brand" aria-label="Optimize Local home">
+            <span className="ol-brand-symbol">O<span>.</span></span>
+            <span className="ol-brand-wordmark">OPTIMIZE <strong>LOCAL</strong><small>Practical tools for local businesses</small></span>
+          </a>
+          <nav className="ol-nav" aria-label="Main navigation">
+            <a href="#benefits">Benefits</a><a href="#ideas">Business ideas</a><a href="#pricing">Pricing</a><a href="#work">Our work</a>
+          </nav>
+          <ConsultationButton className="ol-button ol-button-small" label={bookingReady ? "Book a call" : "Let's talk"} />
+        </div>
+      </header>
 
-      <section className="hero section-shell" id="top" aria-labelledby="hero-title">
-        <div className="hero-copy">
-          <p className="eyebrow"><span className="status-dot" /> Rockford, Illinois · Digital since 2006</p>
-          <p className="hero-name">Steven Cook</p>
-          <h1 id="hero-title">Digital growth has been my job for <em>20 years.</em></h1>
-          <p className="hero-intro">SEO, digital marketing, product development, and AI-powered systems built to grow audiences, businesses, and ideas.</p>
-          <p className="hero-secondary">From early search and online communities to global brand campaigns, mobile apps, SaaS platforms, and modern AI automation.</p>
-          <div className="button-row">
-            <a className="button button-primary" href="#work">View my work <Arrow /></a>
-            <a className="button button-quiet" href="#experience">My experience <Arrow /></a>
-            <a className="text-link hero-link" href="#contact">Let&apos;s talk</a>
+      <section className="ol-hero">
+        <div className="ol-container ol-hero-grid">
+          <div className="ol-hero-copy">
+            <span className="ol-kicker"><span className="ol-kicker-dot" /> BUILT FOR LOCAL BUSINESS · ROCKFORD, IL</span>
+            <h1>Less busywork.<br /><em>More business.</em></h1>
+            <p className="ol-lead">Spend less time juggling appointments, chasing paperwork, and following up with customers. Give your business one simple place to stay organized and keep customers coming back.</p>
+            <p className="ol-support">From booking a job to rewarding a regular customer, we build practical apps that take work off your plate and make it easier for people to do business with you.</p>
+            <div className="ol-actions">
+              <ConsultationButton className="ol-button ol-button-primary" />
+              <a className="ol-button ol-button-outline" href="#pricing">See the packages <span aria-hidden="true">↓</span></a>
+            </div>
+            <p className="ol-hero-note"><span aria-hidden="true">✓</span> Free 20-minute consultation <span aria-hidden="true">·</span> Monday–Friday, 10 AM–5 PM Central</p>
           </div>
-        </div>
-        <div className="hero-system" aria-label="Steven Cook's range of digital experience">
-          {["Strategy", "Search", "Content", "Paid Media", "Analytics", "Design", "Development", "Automation", "Product", "Growth"].map((item, index) => (
-            <div key={item} style={{ "--step": index } as React.CSSProperties}><span>{String(index + 1).padStart(2, "0")}</span><strong>{item}</strong></div>
-          ))}
-        </div>
-      </section>
-
-      <section className="credibility" aria-label="Agency client brand experience">
-        <div className="section-shell credibility-inner">
-          <p>Selected brands I&apos;ve supported through agency and digital marketing work</p>
-          <ul>{brands.map((brand) => <li key={brand}>{brand}</li>)}</ul>
-          <small>Agency and client experience · not direct employment</small>
-        </div>
-      </section>
-
-      <section className="section-shell work-section" id="work" aria-labelledby="work-title">
-        <div className="section-heading work-heading">
-          <p className="eyebrow">01 / Selected work</p>
-          <h2 id="work-title">Different industries.<br /><em>Same objective.</em></h2>
-          <div>
-            <p>My work spans sports media, mobile applications, intelligent business platforms, hospitality, events, and local service companies.</p>
-            <p>The industry changes. The fundamentals don&apos;t: understand the audience, create the right experience, make it discoverable, and give people a reason to act.</p>
-          </div>
-        </div>
-        <div className="growth-chain" aria-label="Growth process">
-          {["Strategy", "Search", "Content", "Build", "Automate", "Grow"].map((item, index) => <span key={item}>{item}{index < 5 && <i aria-hidden="true">→</i>}</span>)}
-        </div>
-        <div className="project-grid">{projects.map((project, index) => <ProjectCard key={project.slug} project={project} index={index} />)}</div>
-      </section>
-
-      <section className="section-shell expertise-section" id="expertise" aria-labelledby="expertise-title">
-        <div className="section-heading">
-          <p className="eyebrow">02 / Expertise</p>
-          <h2 id="expertise-title">The full digital<br /><em>growth system.</em></h2>
-          <p>Search, acquisition, strategy, products, and automation — connected by one view of the customer and the objective.</p>
-        </div>
-        <div className="expertise-list">
-          {expertise.map((item, index) => <article className="expertise-item" key={item.title}><span className="expertise-number">0{index + 1}</span><div><h3>{item.title}</h3><p>{item.description}</p></div><ul aria-label={`${item.title} services`}>{item.services.map((service) => <li key={service}>{service}</li>)}</ul></article>)}
-        </div>
-      </section>
-
-      <section className="experience-section" id="experience" aria-labelledby="experience-title">
-        <div className="section-shell">
-          <div className="section-heading experience-heading">
-            <p className="eyebrow">03 / Experience</p>
-            <h2 id="experience-title">From search marketer to digital leader to <em>product builder.</em></h2>
-            <p>Steven&apos;s digital career began in the formative years of SEO and online communities. Over the next two decades, that foundation expanded into paid acquisition, analytics, conversion, agency leadership, global brand strategy, product development, and AI-powered business systems.</p>
-          </div>
-
-          <ol className="career-timeline">
-            {careerChapters.map((chapter, index) => (
-              <li className={`career-chapter ${chapter.company === "Poker Affiliate Listings" ? "career-origin" : ""}`} key={chapter.company}>
-                <div className="career-marker"><span>{chapter.year}</span><small>{chapter.label}</small></div>
-                <article>
-                  <div className="career-meta"><p>{chapter.role}</p><span>{chapter.dates}</span></div>
-                  <h3>{chapter.company}</h3>
-                  {chapter.location && <p className="career-location">{chapter.location}</p>}
-                  {chapter.company === "Rareview" && <p className="career-lead">Advised marketing leaders and founders on digital roadmaps, acquisition strategy, and channel mix.</p>}
-                  {chapter.company === "Poker Affiliate Listings" && <h4>SEO before SEO was a job title everywhere.</h4>}
-                  <p className="career-description">{chapter.description}</p>
-                  {chapter.metric && <p className="career-metric">{chapter.metric}</p>}
-                  {chapter.stats && <ul className="career-stats">{chapter.stats.map((stat) => <li key={stat}>{stat}</li>)}</ul>}
-                  <ul className="career-areas">{chapter.areas.map((area) => <li key={area}>{area}</li>)}</ul>
-                  {chapter.brands && <div className="career-brands"><p>Selected client and brand experience across agency and consulting work</p><ul>{chapter.brands.map((brand) => <li key={brand}>{brand}</li>)}</ul></div>}
-                  {chapter.secondary && <div className="secondary-role"><p>{chapter.secondary.role}</p><h4>{chapter.secondary.company}</h4><span>{chapter.secondary.dates}</span><small>{chapter.secondary.description}</small></div>}
-                  {index === 2 && (
-                    <details className="consulting-details">
-                      <summary>Selected consulting &amp; agency work <span aria-hidden="true">+</span></summary>
-                      <div>{consultingEngagements.map((engagement) => <article key={engagement.company}><p>{engagement.role}</p><h4>{engagement.company}</h4><span>{engagement.dates}</span><small>{engagement.detail}</small></article>)}</div>
-                    </details>
-                  )}
-                </article>
-              </li>
-            ))}
-          </ol>
-
-          <div className="early-media">
-            <span>2008 – 2009</span><div><p>Account Executive</p><h3>Cumulus Broadcasting</h3><small>Worked directly with local businesses on radio marketing, commercial production, messaging, and marketing plans.</small></div>
+          <div className="ol-art-wrap" aria-label="Illustration of a custom business app experience">
+            <div className="ol-art-glow" />
+            <div className="ol-browser">
+              <div className="ol-browser-chrome"><span /><span /><span /><div>yourbusiness.app</div></div>
+              <div className="ol-browser-body">
+                <div className="ol-app-side"><div className="ol-side-logo">YB</div><div className="ol-side-item active" /><div className="ol-side-item" /><div className="ol-side-item short" /></div>
+                <div className="ol-app-main">
+                  <div className="ol-app-topline">YOUR BUSINESS <span>● OPEN</span></div>
+                  <h2>Good to see you.</h2><p>Everything your customers need. One place.</p>
+                  <div className="ol-app-stats"><div><small>REWARDS BALANCE</small><strong>240 <span>pts</span></strong></div><div><small>YOUR NEXT VISIT</small><strong>Friday <span>2:30 PM</span></strong></div></div>
+                  <div className="ol-app-action">Explore rewards <span>↗</span></div>
+                  <div className="ol-app-bottom"><i /><i /><i /></div>
+                </div>
+              </div>
+            </div>
+            <div className="ol-floating-proof"><span className="ol-proof-icon">↗</span><div><strong>Built around your business</strong><small>Not the other way around</small></div></div>
+            <div className="ol-example-label">ILLUSTRATIVE APP PREVIEW</div>
           </div>
         </div>
       </section>
 
-      <section className="career-statement">
-        <div className="section-shell statement-inner">
-          <p className="eyebrow">The through line</p>
-          <h2>The tools changed.<br /><em>The job didn&apos;t.</em></h2>
-          <p>Understand the customer. Find the opportunity. Get attention. Measure what happens. Improve it.</p>
-          <p>SEO became omnichannel marketing. Websites became products. Automation became AI.</p>
-          <strong>The objective has always been growth.</strong>
+      <div className="ol-value-bar"><div className="ol-container ol-value-grid">
+        <span>FEWER MISSED OPPORTUNITIES.</span><span>MORE TIME BACK EVERY WEEK.</span><span>HAPPIER REPEAT CUSTOMERS.</span>
+      </div></div>
+
+      <section className="ol-section ol-container" id="services">
+        <div className="ol-section-intro"><div><p className="ol-eyebrow">A BETTER WAY TO WORK</p><h2>Your day, only<br /><em>less hectic.</em></h2></div><p>Your app should solve a problem you face every week: missed inquiries, paperwork, confusing schedules, slow payments, or customers who forget to come back.</p></div>
+        <div className="ol-service-grid">{services.map((service) => (
+          <article className="ol-service" key={service.title}>
+            <div className="ol-service-number">{service.number} <span>↗</span></div>
+            <h3>{service.title}</h3><p>{service.description}</p>
+            <div className="ol-tags">{service.tags.map((tag) => <span key={tag}>{tag}</span>)}</div>
+          </article>
+        ))}</div>
+      </section>
+
+      <section className="ol-benefits-wrap" id="benefits"><div className="ol-container ol-section">
+        <div className="ol-section-intro"><div><p className="ol-eyebrow">WHAT CHANGES FOR YOUR BUSINESS?</p><h2>Get your time back.<br /><em>Keep more of what you earn.</em></h2></div><p>Small problems add up: missed calls, double entry, no-shows, forgotten follow-ups, and one-time customers. We build the tools to make everyday work simpler.</p></div>
+        <div className="ol-benefits-grid">
+          {[
+            { icon: "◷", title: "Save hours on routine tasks", body: "Appointment requests, intake forms, reminders, and status updates can be handled in one place instead of one at a time." },
+            { icon: "☷", title: "Stay organized", body: "Keep customer details, requests, scheduled work, and next steps together so you and your staff know what comes next." },
+            { icon: "$", title: "Cut avoidable costs", body: "Reduce repeat data entry, paperwork, and time spent chasing information. Spend more of your day on paying work." },
+            { icon: "↗", title: "Win more business", body: "Make it easy to book, request a quote, reorder, or get an answer—even when you're serving another customer." },
+            { icon: "★", title: "Bring customers back", body: "Give regulars rewards, timely offers, simple rebooking, and a reason to choose you again." },
+            { icon: "✓", title: "Know what's happening", body: "Track requests, appointments, completed jobs, and customer activity without digging through messages." },
+          ].map((b) => <article className="ol-benefit" key={b.title}><span aria-hidden="true" className="ol-benefit-icon">{b.icon}</span><h3>{b.title}</h3><p>{b.body}</p></article>)}
         </div>
-      </section>
+        <p className="ol-benefits-footnote">Actual time and cost savings depend on your current workflow and which features you choose. We'll focus on the biggest opportunities first.</p>
+      </div></section>
 
-      <section className="section-shell about-section" id="about" aria-labelledby="about-title">
-        <div className="about-aside" aria-hidden="true"><span>20</span><small>YEARS ACROSS<br />SEARCH, STRATEGY<br />&amp; PRODUCTS</small></div>
-        <div className="about-copy">
-          <p className="eyebrow">04 / About Steven</p>
-          <h2 id="about-title">I&apos;ve spent most of my career figuring out how people find things, why they choose them, and what makes them <em>come back.</em></h2>
-          <p>I started in online poker affiliate marketing in the mid-2000s, where SEO was fiercely competitive and online communities could become businesses almost overnight.</p>
-          <p>Since then, I&apos;ve built a digital agency serving more than 100 clients, managed search and acquisition programs, worked throughout Southern California&apos;s agency world, led digital strategy for global brands, and advised businesses on how to grow online.</p>
-          <p>Today I&apos;m applying that experience to a new generation of products through Optimize Local — building websites, mobile apps, SaaS platforms, and AI-powered automation.</p>
-          <blockquote>I&apos;m still obsessed with the same thing I&apos;ve always been obsessed with: <strong>building something useful and figuring out how to get people to care about it.</strong></blockquote>
-          <p className="sports-note">Outside client work, I&apos;m a lifelong sports fan and longtime Liverpool supporter. American Scouser gives me a place to combine digital publishing, content, community, and the beautiful chaos of being a football supporter.</p>
+      <section className="ol-ideas-wrap" id="ideas"><div className="ol-container ol-section">
+        <div className="ol-section-intro"><div><p className="ol-eyebrow">HOW CAN AN APP HELP MY BUSINESS?</p><h2>Picture what<br /><em>your business could do.</em></h2></div><p>An app doesn't have to be complicated. It can solve one annoying problem or connect everything your customers and staff do every day. Here are a few ideas.</p></div>
+        <div className="ol-ideas-grid">
+          {[
+            {kind:"Salons & barbershops",impact:"Fill your schedule",examples:["Let clients choose services and book anytime","Send appointment reminders","Offer rewards for repeat visits"]},
+            {kind:"Contractors & home services",impact:"Keep jobs moving",examples:["Collect quote requests and job photos","Show customers progress updates","Track jobs and follow-up tasks"]},
+            {kind:"Retail stores",impact:"Give shoppers a reason to return",examples:["Show products and special offers","Add rewards and customer accounts","Let shoppers check availability or reserve items"]},
+            {kind:"Restaurants & cafés",impact:"Turn visits into regulars",examples:["Run a simple loyalty program","Share menus and weekly specials","Make ordering or pickup easier"]},
+            {kind:"Transportation services",impact:"Simplify the whole trip",examples:["Accept ride and service requests","Send confirmations and updates","Keep payment instructions and records together"]},
+            {kind:"Gyms, clubs & studios",impact:"Build a stronger community",examples:["Manage memberships and class bookings","Share schedules and announcements","Reward attendance and referrals"]},
+          ].map((idea)=><article className="ol-idea" key={idea.kind}><p className="ol-idea-category">{idea.kind}</p><h3>{idea.impact}</h3><ul>{idea.examples.map((ex)=><li key={ex}><span aria-hidden="true">✓</span>{ex}</li>)}</ul></article>)}
         </div>
+        <div className="ol-idea-cta"><div><strong>Don't see your type of business?</strong><p>Tell us what eats up your time. That's usually where the best app idea starts.</p></div><ConsultationButton className="ol-button ol-button-primary" label="Talk about my business" /></div>
+      </div></section>
+
+      <section className="ol-pricing-wrap" id="pricing"><div className="ol-container ol-section">
+        <div className="ol-section-intro ol-price-intro"><div><p className="ol-eyebrow">CLEAR STARTING POINTS</p><h2>Find your<br /><em>starting point.</em></h2></div><p>Start with the job you need done: a clear online presence, an easier customer experience, or a loyalty program that helps bring people back.</p></div>
+        <div className="ol-pricing-grid">{packages.map((pkg) => (
+          <article className={"ol-price-card" + (pkg.featured ? " ol-price-featured" : "")} key={pkg.name}>
+            <div className="ol-price-card-header"><span>{pkg.name}</span>{pkg.featured && <strong>POPULAR STARTING POINT</strong>}</div>
+            <div className="ol-price-amount">{pkg.price}<small>starting at</small></div>
+            <p className="ol-price-description">{pkg.description}</p>
+            <ul>{pkg.features.map((feature) => <li key={feature}><span aria-hidden="true">✓</span>{feature}</li>)}</ul>
+            <a href="#contact" className="ol-package-link">Discuss this package <span aria-hidden="true">↗</span></a>
+            <p className="ol-price-footer">{pkg.callout}</p>
+          </article>
+        ))}</div>
+        <p className="ol-pricing-note">Prices are starting estimates for a defined scope, not one-size-fits-all quotes. Domain, hosting, third-party subscriptions, ongoing support, payment processing, and app store publishing may cost extra. Features and integrations are confirmed during your consultation.</p>
+      </div></section>
+
+      <section className="ol-section ol-container" id="work">
+        <div className="ol-section-intro"><div><p className="ol-eyebrow">SELECTED PROJECTS</p><h2>Real businesses.<br /><em>Practical ideas.</em></h2></div><p>Real projects across retail, service businesses, transportation, and wellness. Each one starts with the same question: what's going to make this easier for the people using it?</p></div>
+        <div className="ol-project-grid">{examples.map((item) => (
+          <article className="ol-project-card" key={item.name}>
+            <div className={"ol-project-art ol-theme-" + item.theme}>
+              <div className="ol-project-browser"><div className="ol-project-browser-top"><span /><span /><span /></div><div className="ol-project-browser-inner"><small>{item.short}</small><div className="ol-project-visual-row"><i /><i /><i /></div><div className="ol-project-visual-line" /><div className="ol-project-visual-line short" /><div className="ol-project-visual-cta">Explore ↗</div></div></div>
+              <span className="ol-project-index">{item.number} / 04</span>
+            </div>
+            <div className="ol-project-info"><div className="ol-project-meta">{item.industry}<span>{item.status}</span></div><h3>{item.name}</h3><p>{item.description}</p></div>
+          </article>
+        ))}</div>
+        <p className="ol-project-note">Project previews are illustrative. Individual projects have different development and release statuses.</p>
       </section>
 
-      <section className="section-shell results-section" aria-labelledby="results-title">
-        <div><p className="eyebrow">The measure that matters</p><h2 id="results-title">Traffic is useful.<br /><em>Results are better.</em></h2></div>
-        <div className="results-copy"><p>Rankings, impressions, clicks, and engagement are valuable signals. They only matter when they contribute to an actual objective.</p><ul>{["Qualified traffic", "Customer acquisition", "Leads", "Sales", "Conversion", "Audience growth", "Retention", "Customer experience", "Operational efficiency"].map((result) => <li key={result}>{result}</li>)}</ul></div>
-      </section>
+      <section className="ol-process-wrap" id="process"><div className="ol-container ol-section">
+        <div className="ol-section-intro"><div><p className="ol-eyebrow">HOW IT WORKS</p><h2>From idea to<br /><em>something useful.</em></h2></div><p>We'll figure out what your business actually needs before you spend money on features you won't use.</p></div>
+        <div className="ol-steps"><div><span>01</span><h3>Let's talk</h3><p>A free 20-minute call about your business, your customers, and what's getting in the way.</p></div><div><span>02</span><h3>Make a plan</h3><p>We agree on the features, timeline, and a clear price before work begins.</p></div><div><span>03</span><h3>Build & launch</h3><p>We develop, test, and put your new experience in front of customers.</p></div></div>
+      </div></section>
 
-      <section className="contact-section" id="contact" aria-labelledby="contact-title">
-        <div className="section-shell contact-inner">
-          <div><p className="eyebrow">05 / Contact</p><h2 id="contact-title">Let&apos;s build something that <em>performs.</em></h2><p>If you&apos;re looking for someone who can connect marketing strategy, search, content, technology, and execution, let&apos;s talk.</p><div className="contact-links"><a href="mailto:optimizelocalai@gmail.com">optimizelocalai@gmail.com <Arrow /></a><a href="https://www.linkedin.com/in/stevenallencook" target="_blank" rel="noreferrer">LinkedIn <Arrow /></a></div></div>
-          <ContactForm />
+      <section className="ol-about-wrap" id="about"><div className="ol-container ol-about-grid">
+        <div><p className="ol-eyebrow">WHO YOU'RE WORKING WITH</p><h2>Experience matters.<br /><em>So does getting it done.</em></h2></div>
+        <div className="ol-about-copy"><p>I'm Steve Cook, founder of Optimize Local. I've spent nearly 20 years working in digital marketing, business growth, and technology. Now I help local businesses get the kinds of practical tools that used to be reserved for much larger companies.</p><p>You'll work directly with the person designing and building your solution. No mystery team. No complicated sales process. Just a clear plan and a product that earns its keep.</p><a href="/portfolio" className="ol-inline-link">More about my background <span aria-hidden="true">↗</span></a></div>
+      </div></section>
+
+      <section className="ol-contact-wrap" id="contact"><div className="ol-container ol-contact-grid">
+        <div><p className="ol-eyebrow">LET'S GET STARTED</p><h2>Tell me what your business <em>needs next.</em></h2><p>Book a free 20-minute consultation, Monday through Friday, between 10 AM and 5 PM Central (America/Chicago). Tell me what you have in mind, even if it's still just a rough idea.</p>
+          {bookingReady ? <ConsultationButton className="ol-button ol-button-primary" /> : <div className="ol-booking-pending"><strong>Request a call</strong><span>Send an inquiry and we'll arrange a 20-minute call, Monday–Friday, 10 AM–5 PM Central.</span></div>}
+          <p className="ol-email-line">Prefer email? <a href="mailto:optimizelocalai@gmail.com">optimizelocalai@gmail.com ↗</a></p>
         </div>
-      </section>
+        <ContactForm />
+      </div></section>
 
-      <footer className="site-footer section-shell"><p><strong>Steven Cook</strong><span>Digital Marketing • SEO • Product • AI</span></p><p>© {new Date().getFullYear()} Steven Cook</p></footer>
+      <footer className="ol-footer"><div className="ol-container ol-footer-main"><a href="#top" className="ol-footer-logo">OPTIMIZE <strong>LOCAL.</strong></a><p>Easier days, happier customers, and more room to grow.</p><a href="mailto:optimizelocalai@gmail.com">Get in touch ↗</a></div><div className="ol-container ol-footer-bottom"><span>© {new Date().getFullYear()} Optimize Local · Rockford, Illinois</span><span><a href="#services">Services</a> · <a href="#pricing">Pricing</a> · <a href="#work">Work</a></span></div></footer>
     </main>
   );
 }
