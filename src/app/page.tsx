@@ -6,10 +6,10 @@ const callHref = bookingReady ? bookingLink : "#contact";
 const callLabel = bookingReady ? "Book your free 20-minute call" : "Request a free 20-minute call";
 
 const services = [
-  { number: "01", title: "Custom Business Apps", description: "Give your customers a better way to book, shop, request service, or connect with your business.", tags: ["Branded web apps", "Customer accounts", "Mobile-first design"] },
-  { number: "02", title: "Loyalty & Rewards", description: "Turn one-time visits into repeat customers with simple points, offers, and rewards programs.", tags: ["Rewards", "Member offers", "QR check-ins"] },
-  { number: "03", title: "Booking & Customer Tools", description: "Make appointments, requests, and follow-ups easier for you and your customers.", tags: ["Online booking", "Client intake", "Notifications"] },
-  { number: "04", title: "Automation That Saves Time", description: "Cut out repetitive work. Keep customer inquiries, updates, and internal tasks moving.", tags: ["Lead follow-up", "Workflows", "Integrations"] },
+  { number: "01", title: "Everything in one place", description: "Keep appointments, customer requests, and important details organized instead of scattered across texts, notebooks, and spreadsheets.", tags: ["Customer details", "Job status", "Simple dashboards"] },
+  { number: "02", title: "More repeat customers", description: "Give people a reason to return. Make rewards, special offers, and checking in easy for your customers and staff.", tags: ["Points & rewards", "Return-visit offers", "Member perks"] },
+  { number: "03", title: "Fewer calls and no-shows", description: "Let customers request appointments, submit their information, and receive reminders without constant back-and-forth.", tags: ["Booking", "Intake forms", "Reminders"] },
+  { number: "04", title: "Less repetitive work", description: "Stop retyping the same information or manually sending every update. Let routine steps happen on schedule so your team can focus on customers.", tags: ["Follow-ups", "Status updates", "Task tracking"] },
 ];
 
 const packages = [
@@ -61,10 +61,10 @@ export default function Home() {
         <div className="ol-container ol-header-inner">
           <a href="#top" className="ol-brand" aria-label="Optimize Local home">
             <span className="ol-brand-symbol">O<span>.</span></span>
-            <span className="ol-brand-wordmark">OPTIMIZE <strong>LOCAL</strong><small>Digital solutions for real businesses</small></span>
+            <span className="ol-brand-wordmark">OPTIMIZE <strong>LOCAL</strong><small>Practical tools for local businesses</small></span>
           </a>
           <nav className="ol-nav" aria-label="Main navigation">
-            <a href="#services">Services</a><a href="#pricing">Pricing</a><a href="#work">Our work</a><a href="#about">About</a>
+            <a href="#benefits">Benefits</a><a href="#ideas">Business ideas</a><a href="#pricing">Pricing</a><a href="#work">Our work</a>
           </nav>
           <ConsultationButton className="ol-button ol-button-small" label={bookingReady ? "Book a call" : "Let's talk"} />
         </div>
@@ -74,9 +74,9 @@ export default function Home() {
         <div className="ol-container ol-hero-grid">
           <div className="ol-hero-copy">
             <span className="ol-kicker"><span className="ol-kicker-dot" /> BUILT FOR LOCAL BUSINESS · ROCKFORD, IL</span>
-            <h1>Big business tools.<br /><em>Local business prices.</em></h1>
-            <p className="ol-lead">Custom apps, loyalty programs, booking systems, and smart automations that make running your business easier.</p>
-            <p className="ol-support">No bloated software. No cookie-cutter packages. Just useful tools, built around your business and your customers.</p>
+            <h1>Less busywork.<br /><em>More business.</em></h1>
+            <p className="ol-lead">Spend less time juggling appointments, chasing paperwork, and following up with customers. Give your business one simple place to stay organized and keep customers coming back.</p>
+            <p className="ol-support">From booking a job to rewarding a regular customer, we build practical apps that take work off your plate and make it easier for people to do business with you.</p>
             <div className="ol-actions">
               <ConsultationButton className="ol-button ol-button-primary" />
               <a className="ol-button ol-button-outline" href="#pricing">See the packages <span aria-hidden="true">↓</span></a>
@@ -105,11 +105,11 @@ export default function Home() {
       </section>
 
       <div className="ol-value-bar"><div className="ol-container ol-value-grid">
-        <span>YOUR BRAND. YOUR EXPERIENCE.</span><span>START SMALL. GROW SMART.</span><span>MADE FOR REAL CUSTOMERS.</span>
+        <span>FEWER MISSED OPPORTUNITIES.</span><span>MORE TIME BACK EVERY WEEK.</span><span>HAPPIER REPEAT CUSTOMERS.</span>
       </div></div>
 
       <section className="ol-section ol-container" id="services">
-        <div className="ol-section-intro"><div><p className="ol-eyebrow">WHAT WE DO</p><h2>Better tools.<br /><em>Less busywork.</em></h2></div><p>Whether you need a customer app, a simple booking experience, or a smarter way to run the day-to-day, we build what moves your business forward.</p></div>
+        <div className="ol-section-intro"><div><p className="ol-eyebrow">A BETTER WAY TO WORK</p><h2>Your day, only<br /><em>less hectic.</em></h2></div><p>Your app should solve a problem you face every week: missed inquiries, paperwork, confusing schedules, slow payments, or customers who forget to come back.</p></div>
         <div className="ol-service-grid">{services.map((service) => (
           <article className="ol-service" key={service.title}>
             <div className="ol-service-number">{service.number} <span>↗</span></div>
@@ -119,8 +119,38 @@ export default function Home() {
         ))}</div>
       </section>
 
+      <section className="ol-benefits-wrap" id="benefits"><div className="ol-container ol-section">
+        <div className="ol-section-intro"><div><p className="ol-eyebrow">WHAT CHANGES FOR YOUR BUSINESS?</p><h2>Get your time back.<br /><em>Keep more of what you earn.</em></h2></div><p>Small problems add up: missed calls, double entry, no-shows, forgotten follow-ups, and one-time customers. We build the tools to make everyday work simpler.</p></div>
+        <div className="ol-benefits-grid">
+          {[
+            { icon: "◷", title: "Save hours on routine tasks", body: "Appointment requests, intake forms, reminders, and status updates can be handled in one place instead of one at a time." },
+            { icon: "☷", title: "Stay organized", body: "Keep customer details, requests, scheduled work, and next steps together so you and your staff know what comes next." },
+            { icon: "$", title: "Cut avoidable costs", body: "Reduce repeat data entry, paperwork, and time spent chasing information. Spend more of your day on paying work." },
+            { icon: "↗", title: "Win more business", body: "Make it easy to book, request a quote, reorder, or get an answer—even when you're serving another customer." },
+            { icon: "★", title: "Bring customers back", body: "Give regulars rewards, timely offers, simple rebooking, and a reason to choose you again." },
+            { icon: "✓", title: "Know what's happening", body: "Track requests, appointments, completed jobs, and customer activity without digging through messages." },
+          ].map((b) => <article className="ol-benefit" key={b.title}><span aria-hidden="true" className="ol-benefit-icon">{b.icon}</span><h3>{b.title}</h3><p>{b.body}</p></article>)}
+        </div>
+        <p className="ol-benefits-footnote">Actual time and cost savings depend on your current workflow and which features you choose. We'll focus on the biggest opportunities first.</p>
+      </div></section>
+
+      <section className="ol-ideas-wrap" id="ideas"><div className="ol-container ol-section">
+        <div className="ol-section-intro"><div><p className="ol-eyebrow">HOW CAN AN APP HELP MY BUSINESS?</p><h2>Picture what<br /><em>your business could do.</em></h2></div><p>An app doesn't have to be complicated. It can solve one annoying problem or connect everything your customers and staff do every day. Here are a few ideas.</p></div>
+        <div className="ol-ideas-grid">
+          {[
+            {kind:"Salons & barbershops",impact:"Fill your schedule",examples:["Let clients choose services and book anytime","Send appointment reminders","Offer rewards for repeat visits"]},
+            {kind:"Contractors & home services",impact:"Keep jobs moving",examples:["Collect quote requests and job photos","Show customers progress updates","Track jobs and follow-up tasks"]},
+            {kind:"Retail stores",impact:"Give shoppers a reason to return",examples:["Show products and special offers","Add rewards and customer accounts","Let shoppers check availability or reserve items"]},
+            {kind:"Restaurants & cafés",impact:"Turn visits into regulars",examples:["Run a simple loyalty program","Share menus and weekly specials","Make ordering or pickup easier"]},
+            {kind:"Transportation services",impact:"Simplify the whole trip",examples:["Accept ride and service requests","Send confirmations and updates","Keep payment instructions and records together"]},
+            {kind:"Gyms, clubs & studios",impact:"Build a stronger community",examples:["Manage memberships and class bookings","Share schedules and announcements","Reward attendance and referrals"]},
+          ].map((idea)=><article className="ol-idea" key={idea.kind}><p className="ol-idea-category">{idea.kind}</p><h3>{idea.impact}</h3><ul>{idea.examples.map((ex)=><li key={ex}><span aria-hidden="true">✓</span>{ex}</li>)}</ul></article>)}
+        </div>
+        <div className="ol-idea-cta"><div><strong>Don't see your type of business?</strong><p>Tell us what eats up your time. That's usually where the best app idea starts.</p></div><ConsultationButton className="ol-button ol-button-primary" label="Talk about my business" /></div>
+      </div></section>
+
       <section className="ol-pricing-wrap" id="pricing"><div className="ol-container ol-section">
-        <div className="ol-section-intro ol-price-intro"><div><p className="ol-eyebrow">CLEAR STARTING POINTS</p><h2>Find your<br /><em>starting point.</em></h2></div><p>Good software shouldn't require a giant budget to get started. Pick the level that fits today. We'll scope the actual build together.</p></div>
+        <div className="ol-section-intro ol-price-intro"><div><p className="ol-eyebrow">CLEAR STARTING POINTS</p><h2>Find your<br /><em>starting point.</em></h2></div><p>Start with the job you need done: a clear online presence, an easier customer experience, or a loyalty program that helps bring people back.</p></div>
         <div className="ol-pricing-grid">{packages.map((pkg) => (
           <article className={"ol-price-card" + (pkg.featured ? " ol-price-featured" : "")} key={pkg.name}>
             <div className="ol-price-card-header"><span>{pkg.name}</span>{pkg.featured && <strong>POPULAR STARTING POINT</strong>}</div>
@@ -135,7 +165,7 @@ export default function Home() {
       </div></section>
 
       <section className="ol-section ol-container" id="work">
-        <div className="ol-section-intro"><div><p className="ol-eyebrow">SELECTED PROJECTS</p><h2>Things we've<br /><em>actually built.</em></h2></div><p>Real projects across retail, service businesses, transportation, and wellness. Each one starts with the same question: what's going to make this easier for the people using it?</p></div>
+        <div className="ol-section-intro"><div><p className="ol-eyebrow">SELECTED PROJECTS</p><h2>Real businesses.<br /><em>Practical ideas.</em></h2></div><p>Real projects across retail, service businesses, transportation, and wellness. Each one starts with the same question: what's going to make this easier for the people using it?</p></div>
         <div className="ol-project-grid">{examples.map((item) => (
           <article className="ol-project-card" key={item.name}>
             <div className={"ol-project-art ol-theme-" + item.theme}>
@@ -166,7 +196,7 @@ export default function Home() {
         <ContactForm />
       </div></section>
 
-      <footer className="ol-footer"><div className="ol-container ol-footer-main"><a href="#top" className="ol-footer-logo">OPTIMIZE <strong>LOCAL.</strong></a><p>Custom apps and simple technology for better local business.</p><a href="mailto:optimizelocalai@gmail.com">Get in touch ↗</a></div><div className="ol-container ol-footer-bottom"><span>© {new Date().getFullYear()} Optimize Local · Rockford, Illinois</span><span><a href="#services">Services</a> · <a href="#pricing">Pricing</a> · <a href="#work">Work</a></span></div></footer>
+      <footer className="ol-footer"><div className="ol-container ol-footer-main"><a href="#top" className="ol-footer-logo">OPTIMIZE <strong>LOCAL.</strong></a><p>Easier days, happier customers, and more room to grow.</p><a href="mailto:optimizelocalai@gmail.com">Get in touch ↗</a></div><div className="ol-container ol-footer-bottom"><span>© {new Date().getFullYear()} Optimize Local · Rockford, Illinois</span><span><a href="#services">Services</a> · <a href="#pricing">Pricing</a> · <a href="#work">Work</a></span></div></footer>
     </main>
   );
 }

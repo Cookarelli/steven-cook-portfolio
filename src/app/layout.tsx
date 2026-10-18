@@ -6,8 +6,8 @@ const siteUrl = new URL("https://optimizelocalai.com");
 
 export const metadata: Metadata = {
   metadataBase: siteUrl,
-  title: { default: "Optimize Local | Custom Business Apps, Loyalty & Booking", template: "%s | Optimize Local" },
-  description: "Affordable custom business apps, websites, customer loyalty programs, online booking, and practical automation for local businesses in Rockford, Illinois and beyond.",
+  title: { default: "Optimize Local | Business Apps, Booking & Loyalty", template: "%s | Optimize Local" },
+  description: "Spend less time on paperwork, booking, and follow-ups. Optimize Local builds affordable business apps, loyalty programs, and customer tools for local businesses.",
   keywords: ["Optimize Local", "business apps", "custom web apps", "customer loyalty programs", "small business booking", "Rockford app development", "business automation", "local business websites"],
   alternates: { canonical: "/" },
   openGraph: {
@@ -20,8 +20,8 @@ export const metadata: Metadata = {
   },
   twitter: {
     card: "summary_large_image",
-    title: "Optimize Local | Apps & Loyalty for Local Business",
-    description: "Custom apps, booking, loyalty, and smart automation built around your business.",
+    title: "Optimize Local | Apps That Save Time for Local Business",
+    description: "Save time, stay organized, and help customers come back with practical business apps, booking, and rewards.",
   },
 };
 
