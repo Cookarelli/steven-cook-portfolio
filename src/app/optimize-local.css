@@ -21,3 +21,20 @@
 
 /* Customer outcomes and real-world use cases */
 .ol-benefits-wrap{background:#101e21}.ol-benefits-grid{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:13px}.ol-benefit{padding:30px;border:1px solid #35504d;border-radius:12px;background:#17292a}.ol-benefit-icon{display:grid;place-items:center;background:#b8ef67;color:#183320;width:39px;height:39px;border-radius:9px;font-weight:900;font-size:20px;margin-bottom:32px}.ol-benefit h3{font-size:23px;line-height:1.1;font-weight:800;margin-bottom:13px}.ol-benefit p{font-size:12px;color:#b8c7c0;line-height:1.75;margin:0}.ol-benefits-footnote{margin:20px 0 0;color:#8aa59a;font-size:11px;line-height:1.6}.ol-ideas-wrap{background:#f0f3eb;color:#1d3227}.ol-ideas-wrap .ol-eyebrow{color:#426d33}.ol-ideas-wrap h2 em{color:#477b36}.ol-ideas-wrap .ol-section-intro>p{color:#52685e}.ol-ideas-grid{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:14px}.ol-idea{padding:29px;border:1px solid #d9e2d5;border-radius:12px;background:#fff}.ol-idea-category{font-size:10px;color:#497a34;letter-spacing:.1em;font-weight:800;text-transform:uppercase;margin-bottom:21px}.ol-idea h3{font-size:23px;font-weight:850;letter-spacing:-.04em;line-height:1.13;margin-bottom:23px;min-height:50px}.ol-idea ul{list-style:none;padding:0;margin:0;display:grid;gap:15px}.ol-idea li{font-size:12px;line-height:1.55;display:flex;gap:10px;color:#486052}.ol-idea li span{color:#4a8c3f;font-weight:900}.ol-idea-cta{display:flex;align-items:center;justify-content:space-between;gap:24px;padding:29px 31px;margin-top:20px;background:#183a30;color:#fff;border-radius:12px}.ol-idea-cta strong{font-size:20px}.ol-idea-cta p{font-size:12px;line-height:1.6;color:#becdc1;margin:8px 0 0}@media(max-width:950px){.ol-benefits-grid,.ol-ideas-grid{grid-template-columns:repeat(2,minmax(0,1fr))}}@media(max-width:760px){.ol-benefits-grid,.ol-ideas-grid{grid-template-columns:1fr}.ol-idea-cta{flex-direction:column;align-items:stretch}.ol-idea-cta .ol-button{white-space:normal}.ol-idea h3{min-height:0}}
+
+/* Inquiry form delivery, privacy and confirmation pages */
+.ol-contact-honeypot{position:absolute!important;left:-10000px!important;width:1px!important;height:1px!important;overflow:hidden!important;opacity:0!important;pointer-events:none!important}
+.ol-form button:disabled{cursor:wait;opacity:.7;transform:none}
+.ol-form .ol-form-fine a{color:#b8ef67;text-decoration:underline;text-underline-offset:2px}
+.ol-form-error{border:1px solid #bf817a;background:#3b2527;padding:14px 16px;color:#fff1eb;border-radius:6px}
+.ol-form-error p{margin:0 0 7px;font-size:12px;line-height:1.65}
+.ol-form-error p:last-child{margin:0}
+.ol-form-error a{color:#b8ef67;text-decoration:underline}
+.ol-message-page{min-height:100vh;display:flex;align-items:center;background:radial-gradient(circle at 84% 15%,#17362c 0,transparent 38%),#0b1517}
+.ol-message-card{padding-block:92px;max-width:760px}
+.ol-message-card .ol-footer-logo{display:inline-block;margin-bottom:90px}
+.ol-message-card .ol-eyebrow{margin-bottom:19px}
+.ol-message-card h1{font-size:clamp(42px,6vw,74px);margin-bottom:23px;font-weight:850}
+.ol-message-card p:not(.ol-eyebrow){max-width:680px;color:#b9cbc1;font-size:15px;line-height:1.8}
+.ol-privacy-content a:not(.ol-button){color:#b8ef67}
+.ol-privacy-content .ol-button{margin-top:24px}
