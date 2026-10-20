@@ -1,0 +1,5 @@
+import Link from "next/link";
+import { Brand } from "@/components/demos/shared";
+import { DemoSales } from "@/components/demos/sales";
+import "./demos.css";
+export default function DemoLayout({ children }: { children: React.ReactNode }) { return <div className="ol-site demo-site"><a className="demo-skip" href="#demo-content">Skip to demo</a><header className="ol-header"><div className="ol-container ol-header-inner"><Brand /><Link className="demo-home-link" href="/">App services <span aria-hidden="true">↗</span></Link></div></header><div className="demo-banner"><div className="ol-container"><span className="demo-banner-dot" /><strong>Interactive demo. Use sample information.</strong><span>Explore freely. Everything stays in this browser session.</span></div></div><main className="ol-container" id="demo-content">{children}<DemoSales /></main><footer className="demo-footer ol-container"><span>© 2026 Optimize Local · Rockford, Illinois</span><Link href="/demos">Explore both demos →</Link></footer></div>; }

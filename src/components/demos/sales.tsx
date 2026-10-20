@@ -1,0 +1,2 @@
+import { consultationHref, consultationReady } from "@/lib/consultation";
+export function DemoSales() { return <section className="demo-sales"><div><p className="ol-eyebrow">YOUR BUSINESS. YOUR WAY OF WORKING.</p><h2>Want this for your business?</h2><p>Start with the task that takes too much time. We’ll talk through a simple app that fits your customers and your day.</p></div><a className="ol-button ol-button-primary" href={consultationHref} {...(consultationReady ? { target: "_blank", rel: "noopener noreferrer" } : {})}>Book your free 20-minute call ↗</a></section>; }

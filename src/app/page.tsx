@@ -1,8 +1,9 @@
 import { ContactForm } from "@/components/contact-form";
 
-const bookingLink = process.env.NEXT_PUBLIC_GOOGLE_BOOKING_URL?.trim() || "https://calendar.app.google/FcGwkANYvFkbsy349";
-const bookingReady = /^https:\/\/(calendar\.app\.google|calendar\.google\.com)\//i.test(bookingLink);
-const callHref = bookingReady ? bookingLink : "#contact";
+import { consultationHref as callHref, consultationReady as bookingReady } from "@/lib/consultation";
+import { DemoCards } from "@/components/demos/shared";
+import "./demos/demos.css";
+
 const callLabel = bookingReady ? "Book your free 20-minute call" : "Request a free 20-minute call";
 
 const services = [
@@ -64,9 +65,9 @@ export default function Home() {
             <span className="ol-brand-wordmark">OPTIMIZE <strong>LOCAL</strong><small>Practical tools for local businesses</small></span>
           </a>
           <nav className="ol-nav" aria-label="Main navigation">
-            <a href="#benefits">Benefits</a><a href="#ideas">Business ideas</a><a href="#pricing">Pricing</a><a href="#work">Our work</a>
+            <a href="#benefits">Benefits</a><a href="#ideas">Business ideas</a><a href="#pricing">Pricing</a><a href="#work">Our work</a><a href="#demos">Try the demos</a>
           </nav>
-          <ConsultationButton className="ol-button ol-button-small" label={bookingReady ? "Book a call" : "Let's talk"} />
+          <ConsultationButton className="ol-button ol-button-small" label={bookingReady ? "Book a call" : "Let’s talk"} />
         </div>
       </header>
 
@@ -128,14 +129,14 @@ export default function Home() {
             { icon: "$", title: "Cut avoidable costs", body: "Reduce repeat data entry, paperwork, and time spent chasing information. Spend more of your day on paying work." },
             { icon: "↗", title: "Win more business", body: "Make it easy to book, request a quote, reorder, or get an answer—even when you're serving another customer." },
             { icon: "★", title: "Bring customers back", body: "Give regulars rewards, timely offers, simple rebooking, and a reason to choose you again." },
-            { icon: "✓", title: "Know what's happening", body: "Track requests, appointments, completed jobs, and customer activity without digging through messages." },
+            { icon: "✓", title: "Know what’s happening", body: "Track requests, appointments, completed jobs, and customer activity without digging through messages." },
           ].map((b) => <article className="ol-benefit" key={b.title}><span aria-hidden="true" className="ol-benefit-icon">{b.icon}</span><h3>{b.title}</h3><p>{b.body}</p></article>)}
         </div>
-        <p className="ol-benefits-footnote">Actual time and cost savings depend on your current workflow and which features you choose. We'll focus on the biggest opportunities first.</p>
+        <p className="ol-benefits-footnote">Actual time and cost savings depend on your current workflow and which features you choose. We’ll focus on the biggest opportunities first.</p>
       </div></section>
 
       <section className="ol-ideas-wrap" id="ideas"><div className="ol-container ol-section">
-        <div className="ol-section-intro"><div><p className="ol-eyebrow">HOW CAN AN APP HELP MY BUSINESS?</p><h2>Picture what<br /><em>your business could do.</em></h2></div><p>An app doesn't have to be complicated. It can solve one annoying problem or connect everything your customers and staff do every day. Here are a few ideas.</p></div>
+        <div className="ol-section-intro"><div><p className="ol-eyebrow">HOW CAN AN APP HELP MY BUSINESS?</p><h2>Picture what<br /><em>your business could do.</em></h2></div><p>An app doesn’t have to be complicated. It can solve one annoying problem or connect everything your customers and staff do every day. Here are a few ideas.</p></div>
         <div className="ol-ideas-grid">
           {[
             {kind:"Salons & barbershops",impact:"Fill your schedule",examples:["Let clients choose services and book anytime","Send appointment reminders","Offer rewards for repeat visits"]},
@@ -146,8 +147,14 @@ export default function Home() {
             {kind:"Gyms, clubs & studios",impact:"Build a stronger community",examples:["Manage memberships and class bookings","Share schedules and announcements","Reward attendance and referrals"]},
           ].map((idea)=><article className="ol-idea" key={idea.kind}><p className="ol-idea-category">{idea.kind}</p><h3>{idea.impact}</h3><ul>{idea.examples.map((ex)=><li key={ex}><span aria-hidden="true">✓</span>{ex}</li>)}</ul></article>)}
         </div>
-        <div className="ol-idea-cta"><div><strong>Don't see your type of business?</strong><p>Tell us what eats up your time. That's usually where the best app idea starts.</p></div><ConsultationButton className="ol-button ol-button-primary" label="Talk about my business" /></div>
+        <div className="ol-idea-cta"><div><strong>Don’t see your type of business?</strong><p>Tell us what eats up your time. That’s usually where the best app idea starts.</p></div><ConsultationButton className="ol-button ol-button-primary" label="Talk about my business" /></div>
       </div></section>
+
+      <section className="ol-section ol-container demo-landing-section" id="demos">
+        <div className="ol-section-intro"><div><p className="ol-eyebrow">SEE IT FROM BOTH SIDES</p><h2>Try the demos.<br /><em>Picture your business.</em></h2></div><p>Request a detailing quote or a salon appointment, then switch to the owner’s view. A few taps show how an app could simplify your day.</p></div>
+        <DemoCards />
+        <p className="demo-landing-note">Interactive demos. Use sample information. Nothing is sent and no real appointments are created. <a href="/demos">Explore both demos →</a></p>
+      </section>
 
       <section className="ol-pricing-wrap" id="pricing"><div className="ol-container ol-section">
         <div className="ol-section-intro ol-price-intro"><div><p className="ol-eyebrow">CLEAR STARTING POINTS</p><h2>Find your<br /><em>starting point.</em></h2></div><p>Start with the job you need done: a clear online presence, an easier customer experience, or a loyalty program that helps bring people back.</p></div>
@@ -165,7 +172,7 @@ export default function Home() {
       </div></section>
 
       <section className="ol-section ol-container" id="work">
-        <div className="ol-section-intro"><div><p className="ol-eyebrow">SELECTED PROJECTS</p><h2>Real businesses.<br /><em>Practical ideas.</em></h2></div><p>Real projects across retail, service businesses, transportation, and wellness. Each one starts with the same question: what's going to make this easier for the people using it?</p></div>
+        <div className="ol-section-intro"><div><p className="ol-eyebrow">SELECTED PROJECTS</p><h2>Real businesses.<br /><em>Practical ideas.</em></h2></div><p>Real projects across retail, service businesses, transportation, and wellness. Each one starts with the same question: what’s going to make this easier for the people using it?</p></div>
         <div className="ol-project-grid">{examples.map((item) => (
           <article className="ol-project-card" key={item.name}>
             <div className={"ol-project-art ol-theme-" + item.theme}>
@@ -179,18 +186,18 @@ export default function Home() {
       </section>
 
       <section className="ol-process-wrap" id="process"><div className="ol-container ol-section">
-        <div className="ol-section-intro"><div><p className="ol-eyebrow">HOW IT WORKS</p><h2>From idea to<br /><em>something useful.</em></h2></div><p>We'll figure out what your business actually needs before you spend money on features you won't use.</p></div>
-        <div className="ol-steps"><div><span>01</span><h3>Let's talk</h3><p>A free 20-minute call about your business, your customers, and what's getting in the way.</p></div><div><span>02</span><h3>Make a plan</h3><p>We agree on the features, timeline, and a clear price before work begins.</p></div><div><span>03</span><h3>Build & launch</h3><p>We develop, test, and put your new experience in front of customers.</p></div></div>
+        <div className="ol-section-intro"><div><p className="ol-eyebrow">HOW IT WORKS</p><h2>From idea to<br /><em>something useful.</em></h2></div><p>We’ll figure out what your business actually needs before you spend money on features you won’t use.</p></div>
+        <div className="ol-steps"><div><span>01</span><h3>Let’s talk</h3><p>A free 20-minute call about your business, your customers, and what’s getting in the way.</p></div><div><span>02</span><h3>Make a plan</h3><p>We agree on the features, timeline, and a clear price before work begins.</p></div><div><span>03</span><h3>Build & launch</h3><p>We develop, test, and put your new experience in front of customers.</p></div></div>
       </div></section>
 
       <section className="ol-about-wrap" id="about"><div className="ol-container ol-about-grid">
-        <div><p className="ol-eyebrow">WHO YOU'RE WORKING WITH</p><h2>Experience matters.<br /><em>So does getting it done.</em></h2></div>
-        <div className="ol-about-copy"><p>I'm Steve Cook, founder of Optimize Local. I've spent nearly 20 years working in digital marketing, business growth, and technology. Now I help local businesses get the kinds of practical tools that used to be reserved for much larger companies.</p><p>You'll work directly with the person designing and building your solution. No mystery team. No complicated sales process. Just a clear plan and a product that earns its keep.</p><a href="/portfolio" className="ol-inline-link">More about my background <span aria-hidden="true">↗</span></a></div>
+        <div><p className="ol-eyebrow">WHO YOU’RE WORKING WITH</p><h2>Experience matters.<br /><em>So does getting it done.</em></h2></div>
+        <div className="ol-about-copy"><p>I’m Steve Cook, founder of Optimize Local. I’ve spent nearly 20 years working in digital marketing, business growth, and technology. Now I help local businesses get the kinds of practical tools that used to be reserved for much larger companies.</p><p>You’ll work directly with the person designing and building your solution. No mystery team. No complicated sales process. Just a clear plan and a product that earns its keep.</p><a href="/portfolio" className="ol-inline-link">More about my background <span aria-hidden="true">↗</span></a></div>
       </div></section>
 
       <section className="ol-contact-wrap" id="contact"><div className="ol-container ol-contact-grid">
-        <div><p className="ol-eyebrow">LET'S GET STARTED</p><h2>Tell me what your business <em>needs next.</em></h2><p>Book a free 20-minute consultation, Monday through Friday, between 10 AM and 5 PM Central (America/Chicago). Tell me what you have in mind, even if it's still just a rough idea.</p>
-          {bookingReady ? <ConsultationButton className="ol-button ol-button-primary" /> : <div className="ol-booking-pending"><strong>Request a call</strong><span>Send an inquiry and we'll arrange a 20-minute call, Monday–Friday, 10 AM–5 PM Central.</span></div>}
+        <div><p className="ol-eyebrow">LET’S GET STARTED</p><h2>Tell me what your business <em>needs next.</em></h2><p>Book a free 20-minute consultation, Monday through Friday, between 10 AM and 5 PM Central (America/Chicago). Tell me what you have in mind, even if it’s still just a rough idea.</p>
+          {bookingReady ? <ConsultationButton className="ol-button ol-button-primary" /> : <div className="ol-booking-pending"><strong>Request a call</strong><span>Send an inquiry and we’ll arrange a 20-minute call, Monday–Friday, 10 AM–5 PM Central.</span></div>}
           <p className="ol-email-line">Prefer email? <a href="mailto:optimizelocalai@gmail.com">optimizelocalai@gmail.com ↗</a></p>
         </div>
         <ContactForm />

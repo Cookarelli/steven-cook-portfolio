@@ -1,0 +1,3 @@
+import { DemoCards } from "@/components/demos/shared";
+export const metadata = { title: "Try the demos", description: "Try a detailing quote request and salon appointment request, then explore the owner’s view.", alternates: { canonical: "/demos" } };
+export default function DemosPage() { return <><section className="demo-directory"><p className="ol-eyebrow">SMALL TASKS. BIG DIFFERENCE.</p><h1>Less imagining.<br /><em>More trying it out.</em></h1><p>See what a simpler workday could feel like. Step into a customer’s shoes, then switch to the owner’s view. No signup needed.</p><DemoCards /><div className="demo-directory-note"><span>✓ No account needed</span><span>✓ Sample information only</span><span>✓ Reset and try again anytime</span></div></section></>; }
