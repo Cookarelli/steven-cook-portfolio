@@ -1,5 +1,6 @@
 import Link from "next/link";
 import type { Metadata } from "next";
+import { consultationHref, consultationReady } from "@/lib/consultation";
 export const metadata: Metadata = {
   title: "Thanks for Reaching Out",
   description: "Thanks for contacting Optimize Local. Book a call or return to our services.",
@@ -16,7 +17,7 @@ export default function ThankYouPage() {
         <p>Thanks for telling us a little about your business. We’ll review your note and respond by email when it reaches our inbox.</p>
         <p>Want to get straight to it? You can book a free 20-minute conversation now.</p>
         <div className="ol-actions">
-          <a className="ol-button ol-button-primary" href="https://calendar.app.google/FcGwkANYvFkbsy349" target="_blank" rel="noopener noreferrer">Book a free consultation ↗</a>
+          <a className="ol-button ol-button-primary" href={consultationHref} {...(consultationReady ? { target: "_blank", rel: "noopener noreferrer" } : {})}>Book your free 20-minute call ↗</a>
           <Link className="ol-button ol-button-outline" href="/">Back to the website</Link>
         </div>
       </div>

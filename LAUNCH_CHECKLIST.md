@@ -14,19 +14,19 @@ This is the custom apps and small-business services site built from the Steven C
 ## Google Calendar (public booking link configured in code)
 - Confirmed booking link supplied by project owner: https://calendar.app.google/FcGwkANYvFkbsy349
 - This URL is included in the site as the fallback for `NEXT_PUBLIC_GOOGLE_BOOKING_URL`, so booking buttons work without an environment variable.
-- Verify that the linked schedule is the **Optimize Local 20-minute consultation**, held **Monday through Friday, 10 AM–5 PM Central**, with Google Meet and the desired intake questions.
-- If the linked booking page still shows an earlier OptAImal strategy schedule or older 9 AM–4 PM availability, edit the booking schedule in the Optimize Local Google account. The site cannot change Google's booking availability.
+- Verified on October 19, 2026: **Optimize Local - Free Business App Consultation**, **20 minutes**, **no payment required**, **Monday through Friday, 10 AM–5 PM America/Chicago**, with Google Meet. The old 90-minute OptAImal schedule was updated in the owner account; existing appointments were preserved.
+- The homepage, demos, thank-you page, and inquiry-error fallback all use the shared destination in `src/lib/consultation.ts`. Google availability must be managed in Calendar; website copy alone cannot configure it.
 
 ## Google Calendar (how to manage or replace the schedule)
 1. Sign into https://calendar.google.com as optimizelocalai@gmail.com, NOT the separate personal Calendar account.
-2. Click Create > Appointment schedule.
+2. Open the existing schedule under Bookable pages and click Edit appointment schedule. The current account allows one schedule; do not delete it or upgrade just to correct its settings.
 3. Name it "Optimize Local - Free Business App Consultation".
 4. Set duration to **Custom > 20 minutes**.
 5. Set weekly availability to **Monday through Friday, 10:00 AM–5:00 PM America/Chicago**. This timezone automatically observes CST/CDT daylight saving changes. Meetings last 20 minutes, with the last possible start at 4:40 PM when no buffer is used. Choose a meeting method (Google Meet recommended), buffer, and minimum notice. Do not enable Saturdays or Sundays.
 6. Save. Under Booking pages, copy the link for this exact schedule.
 7. The supplied Google booking URL is already integrated as a code fallback. Optionally set NEXT_PUBLIC_GOOGLE_BOOKING_URL in Vercel to override it later.
 8. Redeploy the project so the new link is included in the build.
-9. From a logged-out browser, click Book your free 20-minute call, and make a test booking. Confirm it appears on the correct calendar and confirmation email is delivered.
+9. Open the public link, verify the title and 20-minute duration, and open an available time to review the booking form. Cancel without submitting unless a real test appointment is explicitly requested. Verification on October 19 reached a 10:00–10:20 AM booking form with no payment step; no test appointment was created.
 
 The ChatGPT-connected Google Calendar account is a different owner and has only reader access to the Optimize Local calendar. Appointment schedules cannot be created by that access.
 

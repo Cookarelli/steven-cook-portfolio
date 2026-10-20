@@ -45,7 +45,7 @@ The Optimize Local services landing page links to two browser-only demonstration
 
 Each demo stores its draft and requests in `sessionStorage`, scoped to the current tab. Reset restores sample data for that demo. Photos are decoded and resized locally, previewed in an accessible dialog, and stored as browser data URLs. Nothing in either demo posts to an API, sends messages, takes payments, or creates real appointments. If session storage is blocked or full, the demo stays usable in memory and explains that reload persistence is unavailable.
 
-The consultation CTA shares `src/lib/consultation.ts` with the homepage, preserving the existing Google booking URL and optional `NEXT_PUBLIC_GOOGLE_BOOKING_URL` override. No credentials are required for demo flows. No dependencies or backend infrastructure were added.
+The homepage, demos, thank-you page, and inquiry-error fallback share `src/lib/consultation.ts`, preserving the existing Google booking URL and optional `NEXT_PUBLIC_GOOGLE_BOOKING_URL` override. The public schedule was verified on October 19, 2026 as **Optimize Local - Free Business App Consultation**: 20 minutes, no payment required, Google Meet, Monday–Friday 10 AM–5 PM America/Chicago. No credentials are required for demo flows. No dependencies or backend infrastructure were added.
 
 Appointment availability uses sample dates and 9 AM–5 PM hours. Confirmation and rescheduling reject overlapping **confirmed** appointments for the same staff member, account for each service’s duration, and allow adjacent times. Pending requests do not reserve a slot. “No preference” chooses an available staff member. Owner changes update the current customer confirmation without sending a notification.
 

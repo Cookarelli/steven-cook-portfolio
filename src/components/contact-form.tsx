@@ -2,10 +2,10 @@
 
 import { useRouter } from "next/navigation";
 import { useState, type FormEvent } from "react";
+import { consultationHref } from "@/lib/consultation";
 
 const INQUIRY_ENDPOINT = "https://formsubmit.co/ajax/optimizelocalai@gmail.com";
 const EMAIL = "optimizelocalai@gmail.com";
-const BOOKING_URL = "https://calendar.app.google/FcGwkANYvFkbsy349";
 
 type DeliveryStatus = "idle" | "submitting" | "error";
 type DeliveryResponse = { success?: boolean | string; message?: string };
@@ -124,7 +124,7 @@ export function ContactForm() {
       <p className="ol-form-fine">Your information is sent securely to our form service and delivered to the Optimize Local inbox. <a href="/privacy">How we handle inquiries</a>.</p>
       {status === "error" && <div className="ol-form-error" role="alert">
         <p>{errorMessage}</p>
-        <p><a href={"mailto:" + EMAIL}>Email us directly</a> or <a href={BOOKING_URL} target="_blank" rel="noopener noreferrer">book a 20-minute consultation</a>.</p>
+        <p><a href={"mailto:" + EMAIL}>Email us directly</a> or <a href={consultationHref} target="_blank" rel="noopener noreferrer">book a free 20-minute consultation</a>.</p>
       </div>}
     </form>
   );
