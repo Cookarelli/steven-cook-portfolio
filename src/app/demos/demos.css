@@ -22,3 +22,6 @@
 .demo-step-heading h2,.demo-confirmation h2{scroll-margin-top:165px}
 @media(max-width:760px){.demo-toolbar{top:69px}}
 html:has(.demo-site){scroll-behavior:auto}
+
+/* Keep removal outside the photo so narrow touch targets never overlap. */
+.demo-photos .demo-photo-remove{position:static;display:block;width:100%;min-height:44px;margin-top:7px;border-radius:5px;font-size:10px;box-shadow:none}
