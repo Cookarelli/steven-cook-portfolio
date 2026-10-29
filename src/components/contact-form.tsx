@@ -1,14 +1,16 @@
 "use client";
 
 import { useRouter } from "next/navigation";
-import { useState, type FormEvent } from "react";
+import { useState, useSyncExternalStore, type FormEvent } from "react";
 import { consultationHref } from "@/lib/consultation";
+import { deliverInquiry, InquiryTimeoutError } from "@/lib/inquiry-delivery";
 
-const INQUIRY_ENDPOINT = "https://formsubmit.co/ajax/optimizelocalai@gmail.com";
 const EMAIL = "optimizelocalai@gmail.com";
+const subscribe = () => () => {};
+const clientReady = () => true;
+const serverReady = () => false;
 
 type DeliveryStatus = "idle" | "submitting" | "error";
-type DeliveryResponse = { success?: boolean | string; message?: string };
 
 function formValue(data: FormData, field: string) {
   return String(data.get(field) || "").trim();
@@ -24,6 +26,8 @@ function campaignDetails() {
 
 export function ContactForm() {
   const router = useRouter();
+  // Server HTML stays non-submittable until the client handler is attached.
+  const hydrated = useSyncExternalStore(subscribe, clientReady, serverReady);
   const [status, setStatus] = useState<DeliveryStatus>("idle");
   const [errorMessage, setErrorMessage] = useState("");
 
@@ -71,41 +75,35 @@ export function ContactForm() {
     };
 
     try {
-      const response = await fetch(INQUIRY_ENDPOINT, {
-        method: "POST",
-        headers: { "Content-Type": "application/json", Accept: "application/json" },
-        body: JSON.stringify(payload),
-      });
-
-      const result: DeliveryResponse = await response.json();
-      if (!response.ok || (result.success !== true && result.success !== "true")) {
-        throw new Error("Submission service did not accept the request.");
-      }
+      await deliverInquiry(payload);
 
       // A successful service response means the submission was accepted, not that
       // mailbox delivery or first-use email activation has been independently verified.
       const win = window as Window & { dataLayer?: Array<Record<string, string>> };
       win.dataLayer?.push({ event: "optimize_local_inquiry_accepted", lead_source: source.utm_source || "direct" });
       router.push("/thank-you");
-    } catch {
-      setErrorMessage("We couldn't send your request right now. Please try again or email us directly.");
+    } catch (error) {
+      setErrorMessage(error instanceof InquiryTimeoutError
+        ? "The request timed out. We couldn't confirm whether it was received. You can retry, or email us directly to avoid sending a duplicate."
+        : "We couldn't send your request right now. Please try again or email us directly.");
       setStatus("error");
     }
   }
 
   return (
-    <form className="ol-form" aria-label="Contact Optimize Local" onSubmit={submitInquiry}>
+    <form className="ol-form" method="post" aria-label="Contact Optimize Local" aria-busy={status === "submitting"} onSubmit={submitInquiry}>
+      <noscript><p className="ol-form-fine">This inquiry form needs JavaScript. Please <a href={"mailto:" + EMAIL}>email us directly</a> or <a href={consultationHref}>book a free consultation</a>.</p></noscript>
       <div className="ol-form-heading"><strong>Start a conversation</strong><span>FREE CONSULTATION</span></div>
       <div className="ol-form-two">
-        <label>Your name <input name="name" type="text" placeholder="Your name" autoComplete="name" required maxLength={120} disabled={status === "submitting"} /></label>
-        <label>Business name <input name="business" type="text" placeholder="Your business" autoComplete="organization" maxLength={120} disabled={status === "submitting"} /></label>
+        <label>Your name <input name="name" type="text" placeholder="Your name" autoComplete="name" required maxLength={120} disabled={!hydrated || status === "submitting"} /></label>
+        <label>Business name <input name="business" type="text" placeholder="Your business" autoComplete="organization" maxLength={120} disabled={!hydrated || status === "submitting"} /></label>
       </div>
       <div className="ol-form-two">
-        <label>Email address <input name="email" type="email" placeholder="you@business.com" autoComplete="email" required maxLength={200} disabled={status === "submitting"} /></label>
-        <label>Phone (optional) <input name="phone" type="tel" placeholder="(815) 555-0123" autoComplete="tel" maxLength={40} disabled={status === "submitting"} /></label>
+        <label>Email address <input name="email" type="email" placeholder="you@business.com" autoComplete="email" required maxLength={200} disabled={!hydrated || status === "submitting"} /></label>
+        <label>Phone (optional) <input name="phone" type="tel" placeholder="(815) 555-0123" autoComplete="tel" maxLength={40} disabled={!hydrated || status === "submitting"} /></label>
       </div>
       <label>What can we help with?
-        <select name="service" required defaultValue="" disabled={status === "submitting"}>
+        <select name="service" required defaultValue="" disabled={!hydrated || status === "submitting"}>
           <option value="" disabled>Choose a service</option>
           <option value="QuickStart Website">QuickStart Website · from $500</option>
           <option value="Business App">Business App · from $1,500</option>
@@ -115,10 +113,10 @@ export function ContactForm() {
         </select>
       </label>
       <label>Tell me a little about your idea
-        <textarea name="message" required maxLength={4000} placeholder="What does your business do, and what would you like to make easier?" rows={4} disabled={status === "submitting"} />
+        <textarea name="message" required maxLength={4000} placeholder="What does your business do, and what would you like to make easier?" rows={4} disabled={!hydrated || status === "submitting"} />
       </label>
       <label className="ol-contact-honeypot" aria-hidden="true">Leave this field empty <input name="company_url" tabIndex={-1} autoComplete="off" /></label>
-      <button className="ol-button ol-button-primary ol-submit" disabled={status === "submitting"} type="submit">
+      <button className="ol-button ol-button-primary ol-submit" disabled={!hydrated || status === "submitting"} type="submit">
         {status === "submitting" ? "Sending your inquiry…" : "Send my inquiry"} <span aria-hidden="true">↗</span>
       </button>
       <p className="ol-form-fine">Your information is sent securely to our form service and delivered to the Optimize Local inbox. <a href="/privacy">How we handle inquiries</a>.</p>

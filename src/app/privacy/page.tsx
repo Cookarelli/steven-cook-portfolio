@@ -1,6 +1,7 @@
 import Link from "next/link";
 import type { Metadata } from "next";
 export const metadata: Metadata = {
+  alternates: { canonical: "/privacy" },
   title: "Privacy & Contact Inquiries",
   description: "How Optimize Local handles information sent through our website inquiry form.",
 };

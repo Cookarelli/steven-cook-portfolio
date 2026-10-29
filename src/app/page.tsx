@@ -1,3 +1,4 @@
+import { MarketingNavigation } from "@/components/marketing-navigation";
 import { ContactForm } from "@/components/contact-form";
 
 import { consultationHref as callHref, consultationReady as bookingReady } from "@/lib/consultation";
@@ -64,9 +65,7 @@ export default function Home() {
             <span className="ol-brand-symbol">O<span>.</span></span>
             <span className="ol-brand-wordmark">OPTIMIZE <strong>LOCAL</strong><small>Practical tools for local businesses</small></span>
           </a>
-          <nav className="ol-nav" aria-label="Main navigation">
-            <a href="#benefits">Benefits</a><a href="#ideas">Business ideas</a><a href="#pricing">Pricing</a><a href="#work">Our work</a><a href="#demos">Try the demos</a>
-          </nav>
+          <MarketingNavigation />
           <ConsultationButton className="ol-button ol-button-small" label={bookingReady ? "Book a call" : "Let’s talk"} />
         </div>
       </header>

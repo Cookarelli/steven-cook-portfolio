@@ -2,7 +2,9 @@ import type { Metadata } from "next";
 import "./globals.css";
 import "./optimize-local.css";
 
-const siteUrl = new URL("https://optimizelocalai.com");
+import { getSiteUrl } from "@/lib/site-url";
+
+const siteUrl = getSiteUrl();
 
 export const metadata: Metadata = {
   metadataBase: siteUrl,
@@ -29,7 +31,7 @@ const businessSchema = {
   "@context": "https://schema.org",
   "@type": "ProfessionalService",
   name: "Optimize Local",
-  url: "https://optimizelocalai.com",
+  url: siteUrl.toString(),
   email: "optimizelocalai@gmail.com",
   description: "Custom business apps, websites, customer loyalty, booking and automation for local businesses.",
   founder: { "@type": "Person", name: "Steve Cook" },

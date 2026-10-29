@@ -1,5 +1,5 @@
 import type { Metadata } from "next";
-export const metadata: Metadata = { title: "Steve Cook - Professional Portfolio", description: "Steve Cook's digital marketing, software, and product portfolio." };
+export const metadata: Metadata = { alternates: { canonical: "/portfolio" }, title: "Steve Cook - Professional Portfolio", description: "Steve Cook's digital marketing, software, and product portfolio." };
 import { ContactForm } from "@/components/contact-form";
 import { ProjectCard } from "@/components/project-card";
 import { SiteHeader } from "@/components/site-header";

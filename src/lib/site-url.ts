@@ -1,3 +1,3 @@
 export function getSiteUrl(): URL {
-  return new URL("https://optimizelocalai.com");
+  return new URL("https://www.optimizelocalai.com");
 }
