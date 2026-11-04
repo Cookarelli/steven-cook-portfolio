@@ -1,0 +1,92 @@
+/* Homepage presentation stays separate from portfolio, demos and delivery forms. */
+.ol-home { --home-paper: #f7f7f0; --home-ink: #203c32; --home-muted: #53685d; }
+.ol-home .home-skip-link { position: fixed; top: 8px; left: 12px; z-index: 100; padding: 14px 20px; background: #b8ef67; color: #12200e; transform: translateY(-150%); }
+.ol-home .home-skip-link:focus { transform: translateY(0); }
+.ol-home section { scroll-margin-top: 90px; }
+.ol-home .ol-header { background: #10251f; }
+.ol-home .ol-nav { font-size: 13px; gap: 22px; }
+.ol-home .ol-nav a { padding-block: 15px; }
+.ol-home .ol-button { font-size: 14px; min-height: 48px; white-space: normal; text-align: center; }
+.ol-home .ol-hero { background: var(--home-paper); color: var(--home-ink); }
+.ol-home .ol-hero-grid { min-height: 0; padding-block: 72px; grid-template-columns: 1.25fr 1fr; gap: 64px; }
+.ol-home .ol-kicker { color: #42613c; font-size: 10px; letter-spacing: .1em; }
+.ol-home .ol-kicker-dot { background: #4a7135; box-shadow: none; flex-shrink: 0; }
+.ol-home .ol-hero h1 { font-size: clamp(42px, 4.4vw, 64px); line-height: 1.08; letter-spacing: -.055em; }
+.ol-home .ol-hero h1 em { color: #477031; }
+.ol-home .ol-lead { font-size: 18px; font-weight: 400; line-height: 1.75; color: var(--home-muted); }
+.ol-home .ol-hero .ol-button-primary { background: var(--home-ink); color: #fff; }
+.ol-home .ol-hero .ol-button-outline { color: var(--home-ink); border-color: #9cae9f; }
+.ol-home .ol-hero-note { color: var(--home-muted); line-height: 1.8; font-size: 12px; }
+.ol-home .ol-hero-note span { color: #477031; }
+.ol-home .home-start { border: 1px solid #d3dfd0; border-radius: 18px; padding: 30px; background: #fff; box-shadow: 0 12px 40px #203c3208; }
+.ol-home .home-start .ol-eyebrow { color: #526d43; font-size: 10px; letter-spacing: .12em; margin-bottom: 16px; }
+.ol-home .home-start h2 { font-size: 30px; line-height: 1.2; margin-bottom: 26px; letter-spacing: -.035em; }
+.ol-home .home-start > a { display: flex; align-items: center; justify-content: space-between; gap: 14px; padding-block: 20px; border-top: 1px solid #dce4d8; }
+.ol-home .home-start > a:hover strong { text-decoration: underline; text-underline-offset: 4px; }
+.ol-home .home-start strong { display: block; font-size: 15px; line-height: 1.5; }
+.ol-home .home-start small { display: block; color: var(--home-muted); font-size: 13px; margin-top: 5px; line-height: 1.5; }
+.ol-home .home-start-note { font-size: 12px; line-height: 1.7; color: var(--home-muted); margin: 12px 0 0; }
+.ol-home .home-trust { background: #e9eee2; color: #405540; border-block: 1px solid #d5dfcc; }
+.ol-home .home-trust > div { display: flex; justify-content: space-between; gap: 20px; padding-block: 20px; font-size: 12px; line-height: 1.6; }
+.ol-home .ol-section { padding-block: 76px; }
+.ol-home .ol-section-intro { gap: 50px; margin-bottom: 34px; }
+.ol-home .ol-section-intro h2, .ol-home .ol-contact-grid h2 { font-size: clamp(32px, 3.3vw, 46px); line-height: 1.15; letter-spacing: -.045em; }
+.ol-home .ol-eyebrow { font-size: 10px; margin-bottom: 15px; }
+.ol-home .ol-section-intro > p { font-size: 15px; line-height: 1.75; }
+.ol-home .ol-service { min-height: 0; padding: 28px; background: transparent; }
+.ol-home .ol-service-number { margin-bottom: 22px; }
+.ol-home .ol-service h3 { font-size: 25px; }
+.ol-home .ol-service p { font-size: 14px; max-width: none; }
+.ol-home .ol-tags span { font-size: 11px; }
+.ol-home .demo-landing-section { border-top: 1px solid #294045; }
+.ol-home .ol-pricing-wrap { background: var(--home-paper); }
+.ol-home .ol-price-card { min-height: 0; padding: 28px; box-shadow: none; }
+.ol-home .ol-price-card-header { font-size: 16px; flex-wrap: wrap; }
+.ol-home .ol-price-card-header strong { font-size: 9px; }
+.ol-home .ol-price-amount { font-size: 48px; }
+.ol-home .ol-price-description { font-size: 14px; opacity: 1; }
+.ol-home .ol-price-card li { font-size: 13px; }
+.ol-home .ol-package-link { font-size: 13px; min-height: 48px; align-items: center; }
+.ol-home .ol-price-footer { font-size: 12px; opacity: .85; }
+.ol-home .ol-pricing-note { font-size: 12px; color: var(--home-muted); }
+.ol-home .ol-project-card { background: transparent; }
+.ol-home .ol-project-info { padding: 25px; }
+.ol-home .ol-project-meta { font-size: 10px; flex-wrap: wrap; line-height: 1.6; }
+.ol-home .ol-project-info h3 { font-size: 25px; }
+.ol-home .ol-project-info p { font-size: 14px; }
+.ol-home #work > .ol-inline-link { margin-top: 24px; color: #b8ef67; border-color: #698b60; padding: 12px 0; }
+.ol-home .ol-steps h3 { font-size: 25px; margin-top: 20px; }
+.ol-home .ol-steps p { font-size: 14px; }
+.ol-home .home-person { display: grid; grid-template-columns: 80px minmax(0, 650px); gap: 30px; padding-block: 60px; }
+.ol-home .home-monogram { display: grid; place-items: center; width: 80px; height: 80px; border: 1px solid #698b60; border-radius: 50%; color: #b8ef67; font-size: 25px; }
+.ol-home .home-person h2 { font-size: 32px; margin-bottom: 16px; }
+.ol-home .home-person p:not(.ol-eyebrow) { font-size: 15px; color: #b2c1bb; line-height: 1.8; }
+.ol-home .home-person a { color: #b8ef67; padding-block: 12px; font-size: 13px; }
+.ol-home .ol-contact-wrap { padding-block: 76px; border-top: 1px solid #294045; }
+.ol-home .ol-contact-grid { gap: 55px; }
+.ol-home .ol-form label { font-size: 12px; }
+.ol-home .ol-form input, .ol-home .ol-form select, .ol-home .ol-form textarea { font-size: 16px; }
+.ol-home .ol-form-fine { font-size: 12px; }
+.ol-home .ol-email-line { line-height: 1.8; overflow-wrap: anywhere; }
+.ol-home .ol-footer-bottom { font-size: 12px; line-height: 1.8; }
+.ol-home .ol-footer-bottom a { display: inline-block; padding-block: 10px; }
+.ol-home :is(.ol-hero, .ol-pricing-wrap) a:focus-visible { outline-color: #477031; }
+.ol-home .ol-price-featured a:focus-visible { outline-color: #b8ef67; }
+@media (max-width: 1050px) {
+  .ol-home .ol-hero-grid { gap: 30px; }
+  .ol-home .home-start { padding: 24px; }
+  .ol-home .ol-pricing-grid { gap: 12px; }
+  .ol-home .ol-price-card { padding: 22px; }
+}
+@media (max-width: 760px) {
+  .ol-home .ol-hero-grid { display: grid; grid-template-columns: 1fr; padding-block: 44px; gap: 34px; }
+  .ol-home .ol-hero h1 { font-size: clamp(40px, 8vw, 58px); }
+  .ol-home .ol-lead { font-size: 17px; }
+  .ol-home .home-trust > div { flex-wrap: wrap; gap: 8px 24px; }
+  .ol-home .ol-section, .ol-home .ol-contact-wrap { padding-block: 52px; }
+  .ol-home .ol-section-intro > p { margin-top: 18px; }
+  .ol-home .ol-contact-grid { gap: 32px; }
+  .ol-home .home-person { grid-template-columns: 1fr; gap: 20px; padding-block: 44px; }
+  .ol-home .ol-service { padding: 24px; }
+  .ol-home .ol-form-heading { flex-wrap: wrap; }
+}

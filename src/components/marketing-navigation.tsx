@@ -4,10 +4,9 @@ import { useRef } from "react";
 import { consultationHref, consultationReady } from "@/lib/consultation";
 
 const links = [
-  ["#benefits", "Benefits"],
-  ["#ideas", "Business ideas"],
+  ["#services", "Services"],
   ["#pricing", "Pricing"],
-  ["#work", "Our work"],
+  ["#process", "How it works"],
   ["/portfolio", "Portfolio"],
   ["/demos", "Try the demos"],
 ] as const;
