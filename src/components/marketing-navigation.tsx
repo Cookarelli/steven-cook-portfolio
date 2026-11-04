@@ -11,13 +11,14 @@ const links = [
   ["/demos", "Try the demos"],
 ] as const;
 
-export function MarketingNavigation() {
+export function MarketingNavigation({ home = true }: { home?: boolean }) {
+  const navigationLinks = links.map(([href, label]) => [!home && href.startsWith("#") ? `/${href}` : href, label]);
   const disclosure = useRef<HTMLDetailsElement>(null);
   const toggle = useRef<HTMLElement>(null);
 
   return <>
     <nav className="ol-nav" aria-label="Main navigation">
-      {links.map(([href, label]) => <a key={href} href={href}>{label}</a>)}
+      {navigationLinks.map(([href, label]) => <a key={href} href={href} aria-current={!home && href === "/portfolio" ? "page" : undefined}>{label}</a>)}
     </nav>
     <details className="ol-mobile-navigation" ref={disclosure} onKeyDown={event => {
       if (event.key === "Escape" && disclosure.current?.open) {
@@ -32,7 +33,7 @@ export function MarketingNavigation() {
           toggle.current?.focus();
         }
       }}>
-        {links.map(([href, label]) => <a key={href} href={href}>{label}</a>)}
+        {navigationLinks.map(([href, label]) => <a key={href} href={href} aria-current={!home && href === "/portfolio" ? "page" : undefined}>{label}</a>)}
         <a href={consultationHref} {...(consultationReady ? { target: "_blank", rel: "noopener noreferrer" } : {})}>Book a free consultation ↗</a>
       </nav>
     </details>
