@@ -29,14 +29,14 @@
       },
       {
         "id": "everyday-creation-and-organization",
-        "title": "Everyday creation and organization",
+        "title": "Everyday Creation and Organization",
         "first_day": 8,
         "last_day": 14,
         "purpose": "Build practical plans, messages, action records, comparisons, and researched projects."
       },
       {
         "id": "personal-workflows-and-independent-practice",
-        "title": "Personal workflows and independent practice",
+        "title": "Workflows and Independent Practice",
         "first_day": 15,
         "last_day": 21,
         "purpose": "Create repeatable methods, transfer them to business or community tasks, and assess an independent capstone."
@@ -712,7 +712,7 @@
     "files": [
       {
         "path": "course.json",
-        "sha256": "3ab2b81fa00cbc8ad5a43a1e38ee1a0c6a57265509408c5dc66f1ba85096983d"
+        "sha256": "31e1e89c18562bec9491d4493411019eac1f202164ed1a4888a0ad33af243cbe"
       },
       {
         "path": "lesson.schema.json",
@@ -804,5 +804,5 @@
       }
     ]
   },
-  "content_revision": "c4febbb52025c15005bca39d61d5cf937dd7272a975648aaf5e0adc0d2dafe90"
+  "content_revision": "cf80f95019e9dc0d5c0f909d7f62ad302dd475982d6fffc09b0b4426e9e68b2b"
 }

@@ -13,6 +13,8 @@ test('public projection contains exactly three samples and the ordered 21-day ou
  assert.deepEqual(content.course.clear, ['Context','Lead with goal','Examples','Add constraints','Refine']);
  assert.equal(content.course.status.recording, 'recording-pending');
  assert.equal(content.course.status.availability, 'coming-soon');
+ assert.deepEqual(content.course.phases.map(p => p.title), ['Foundations','Everyday Creation and Organization','Workflows and Independent Practice']);
+ assert.deepEqual(content.course.phases.map(p => [p.first_day,p.last_day]), [[1,7],[8,14],[15,21]]);
 });
 test('non-sample summaries have no teaching, prompts, answers or instructor content', () => {
  const allowed = ['id','order','phase','title','objective','artifact','estimated_minutes','status'].sort();

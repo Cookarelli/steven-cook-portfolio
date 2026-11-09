@@ -8,9 +8,9 @@
     "day-03"
   ],
   "source_file": "src/data/course-preview.json",
-  "source_json_sha256": "05dc0157f38a2def2e7e64169d6b455489be2518d8d98a91aaa4a183a55104cf",
-  "sample_source_sha256": "0f42d56f8a1e524bdee2c0a8d412a6e970504aa43e08fc4bd9a6fc047e8ce93d",
-  "content_revision": "c4febbb52025c15005bca39d61d5cf937dd7272a975648aaf5e0adc0d2dafe90",
+  "source_json_sha256": "2c866a20895fce2fe7801e5ff968287d0142d2889c0a102d1e84d8d15b1d198d",
+  "sample_source_sha256": "f45d96de0cadc36a5181a126853858cc116b679c3d483d631e2704d40c46fdff",
+  "content_revision": "cf80f95019e9dc0d5c0f909d7f62ad302dd475982d6fffc09b0b4426e9e68b2b",
   "generator_sha256": "36e98b5db8dffcf1d910208ea1069f27bf43c9f525d7845cbc8aaf7d87a16b88",
   "reportlab_version": "4.4.9",
   "pdf_file": "public/ai-confidence-sample-workbook.pdf",

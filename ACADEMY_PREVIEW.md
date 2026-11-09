@@ -25,6 +25,8 @@ npm run build
 
 The PDF authoring step needs Python and ReportLab; it is a content-production tool, not a website runtime dependency. The committed generated JSON, HTML and PDF let the normal deployment build run without the private source or Python. Review PDF layout after changing it, and keep the original complete curriculum and workbook out of public assets.
 
+The connected editorial review aligned the phase names with the latest course map: Foundations; Everyday Creation and Organization; Workflows and Independent Practice. All 21 canonical lesson bodies and sample revision hashes remain unchanged. The public projection, sample HTML and PDF freshness manifest were regenerated from that updated course metadata; the sample PDF remains byte-identical.
+
 ## Learner behavior and access
 
 Days 1 through 3 are complete written samples with teaching, reusable prompts, synthetic examples, named exercises, answer checks and reflection. The 21-day outline shows later topics as coming soon, and server route generation permits only the three selected sample IDs. The full $79 course remains coming soon while author review, recorded media, learner access and delivery are incomplete.
