@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
 import "./globals.css";
 import "./optimize-local.css";
+import "./brand.css";
 
 import { getSiteUrl } from "@/lib/site-url";
 
@@ -32,6 +33,7 @@ const businessSchema = {
   "@type": "ProfessionalService",
   name: "Optimize Local",
   url: siteUrl.toString(),
+  logo: new URL("/brand/optimize-local-logo.png", siteUrl).toString(),
   email: "optimizelocalai@gmail.com",
   description: "Custom business apps, websites, customer loyalty, booking and automation for local businesses.",
   founder: { "@type": "Person", name: "Steve Cook" },

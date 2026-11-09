@@ -1,4 +1,5 @@
 import Link from "next/link";
+import { BrandLogo } from "@/components/brand-logo";
 import type { Metadata } from "next";
 export const metadata: Metadata = {
   alternates: { canonical: "/privacy" },
@@ -10,7 +11,7 @@ export default function PrivacyPage() {
   return (
     <main className="ol-site ol-message-page">
       <div className="ol-container ol-message-card ol-privacy-content">
-        <Link href="/" className="ol-footer-logo">OPTIMIZE <strong>LOCAL.</strong></Link>
+        <BrandLogo href="/" className="ol-footer-logo" />
         <p className="ol-eyebrow">YOUR INFORMATION</p>
         <h1>Privacy & contact inquiries</h1>
         <p>When you send an inquiry, we collect the information you enter, such as your name, email address, business name, phone number, and project description. If you follow an advertisement, the form may also include campaign labels so we can tell where the inquiry came from.</p>

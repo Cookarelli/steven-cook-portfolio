@@ -1,4 +1,5 @@
 import Link from "next/link";
+import { BrandLogo } from "@/components/brand-logo";
 import type { Metadata } from "next";
 import { consultationHref, consultationReady } from "@/lib/consultation";
 export const metadata: Metadata = {
@@ -11,7 +12,7 @@ export default function ThankYouPage() {
   return (
     <main className="ol-site ol-message-page">
       <div className="ol-container ol-message-card">
-        <Link href="/" className="ol-footer-logo">OPTIMIZE <strong>LOCAL.</strong></Link>
+        <BrandLogo href="/" className="ol-footer-logo" />
         <p className="ol-eyebrow">THANK YOU</p>
         <h1>Thanks for your message.</h1>
         <p>Thanks for telling me about your business. I’ll read your note and reply by email once it reaches the inbox. If you’d rather talk, you can book a free call below.</p>

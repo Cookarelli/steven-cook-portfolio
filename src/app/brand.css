@@ -1,0 +1,85 @@
+/* The original PNG is unchanged. This viewport trims its transparent canvas. */
+.ol-site .ol-brand-logo {
+  display: inline-flex;
+  flex: 0 1 auto;
+  align-items: center;
+  min-width: 0;
+  width: max-content;
+  max-width: 100%;
+  padding: 8px;
+  border-radius: 8px;
+  background: #fff;
+  line-height: 0;
+}
+.ol-site .ol-brand-logo:focus-visible {
+  outline: 3px solid #0031b1;
+  outline-offset: 4px;
+}
+.ol-brand-logo-image {
+  display: block;
+  position: relative;
+  width: 240px;
+  max-width: 100%;
+  aspect-ratio: 2100 / 385;
+  overflow: hidden;
+}
+.ol-brand-logo-image img {
+  position: absolute;
+  width: 103.428571%;
+  max-width: none;
+  height: 188.051948%;
+  left: -1.809524%;
+  top: -45.454545%;
+}
+.ol-site .ol-header.ol-header {
+  background: #fff;
+  color: #051328;
+  border-bottom-color: #dce3ea;
+}
+.ol-site .ol-header .ol-nav,
+.ol-site .ol-header .demo-home-link {
+  color: #26384c;
+}
+.ol-site .ol-header .ol-nav a:hover,
+.ol-site .ol-header .demo-home-link:hover {
+  color: #0031b1;
+}
+.ol-site .ol-header .ol-button-small {
+  background: #0031b1;
+  color: #fff;
+  border-color: #0031b1;
+}
+.ol-site .ol-header .ol-button-small:hover {
+  background: #052780;
+  color: #fff;
+}
+.ol-site .ol-header .ol-mobile-navigation summary {
+  color: #051328;
+  border-color: #aebdcb;
+  background: #fff;
+}
+.ol-site .ol-header .ol-mobile-navigation nav {
+  background: #fff;
+  color: #051328;
+  border-color: #dce3ea;
+}
+.ol-site .ol-header .ol-mobile-navigation nav a:hover,
+.ol-site .ol-header .ol-mobile-navigation nav a[aria-current] {
+  background: #edf3ff;
+  color: #0031b1;
+}
+.ol-site .ol-header a:focus-visible,
+.ol-site .ol-header summary:focus-visible {
+  outline: 3px solid #0031b1;
+  outline-offset: 3px;
+}
+.ol-site .ol-header .ol-mobile-navigation summary:hover {
+  background: #edf3ff;
+}
+@media (max-width: 760px) {
+  .ol-brand-logo-image { width: 190px; }
+  .ol-site .ol-header-inner { gap: 12px; }
+}
+@media (max-width: 380px) {
+  .ol-brand-logo-image { width: 170px; }
+}

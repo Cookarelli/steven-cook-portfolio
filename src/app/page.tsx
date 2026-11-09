@@ -1,6 +1,7 @@
 import Link from "next/link";
 import { MarketingNavigation } from "@/components/marketing-navigation";
 import { ContactForm } from "@/components/contact-form";
+import { BrandLogo } from "@/components/brand-logo";
 
 import { consultationHref as callHref, consultationReady as bookingReady } from "@/lib/consultation";
 import { DemoCards } from "@/components/demos/shared";
@@ -64,10 +65,7 @@ export default function Home() {
       <a className="home-skip-link" href="#main-content">Skip to content</a>
       <header className="ol-header">
         <div className="ol-container ol-header-inner">
-          <a href="#top" className="ol-brand" aria-label="Optimize Local home">
-            <span className="ol-brand-symbol">O<span>.</span></span>
-            <span className="ol-brand-wordmark">OPTIMIZE <strong>LOCAL</strong><small>Websites, apps and training</small></span>
-          </a>
+          <BrandLogo href="#top" />
           <MarketingNavigation />
           <ConsultationButton className="ol-button ol-button-small" label={bookingReady ? "Book a call" : "Let’s talk"} />
         </div>
@@ -166,7 +164,7 @@ export default function Home() {
       </div></section>
 
       </main>
-      <footer className="ol-footer"><div className="ol-container ol-footer-main"><a href="#top" className="ol-footer-logo">OPTIMIZE <strong>LOCAL.</strong></a><p>Websites, apps, and automation from Rockford, Illinois.</p><a href="mailto:optimizelocalai@gmail.com">Get in touch ↗</a></div><div className="ol-container ol-footer-bottom"><span>© {new Date().getFullYear()} Optimize Local · Rockford, Illinois</span><span><a href="#services">Services</a> · <a href="#pricing">Pricing</a> · <a href="#work">Work</a> · <Link href="/ai-training">AI Training</Link> · <a href="/privacy">Privacy</a> · <a href="https://connect.optimizelocalai.com" target="_blank" rel="noopener noreferrer">Connect</a></span></div></footer>
+      <footer className="ol-footer"><div className="ol-container ol-footer-main"><BrandLogo href="#top" className="ol-footer-logo" /><p>Websites, apps, and automation from Rockford, Illinois.</p><a href="mailto:optimizelocalai@gmail.com">Get in touch ↗</a></div><div className="ol-container ol-footer-bottom"><span>© {new Date().getFullYear()} Optimize Local · Rockford, Illinois</span><span><a href="#services">Services</a> · <a href="#pricing">Pricing</a> · <a href="#work">Work</a> · <Link href="/ai-training">AI Training</Link> · <a href="/privacy">Privacy</a> · <a href="https://connect.optimizelocalai.com" target="_blank" rel="noopener noreferrer">Connect</a></span></div></footer>
     </div>
   );
 }

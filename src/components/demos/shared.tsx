@@ -1,12 +1,13 @@
 "use client";
 import Link from "next/link";
+import { BrandLogo } from "@/components/brand-logo";
 import { useRef, useState, type ReactNode } from "react";
 
 export function DemoIcon({ kind = "spark", size = 24 }: { kind?: "spark" | "car" | "calendar" | "arrow" | "check"; size?: number }) {
   const paths = { spark: "m12 3 2.4 6.6L21 12l-6.6 2.4L12 21l-2.4-6.6L3 12l6.6-2.4L12 3Z", car: "m5 7 2-4h10l2 4m-14 0h14l2 5v6h-3v-3H6v3H3v-6l2-5Zm1 4h2m8 0h2", calendar: "M7 2v4m10-4v4M3 10h18M4 4h16v17H4V4Zm4 10h2m4 0h2m-8 3h2", arrow: "M5 12h14m-6-6 6 6-6 6", check: "m5 12 4 4L19 6" };
   return <svg width={size} height={size} viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.6" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true"><path d={paths[kind]} /></svg>;
 }
-export function Brand() { return <Link href="/" className="ol-brand" aria-label="Optimize Local home"><span className="ol-brand-symbol">O<span>.</span></span><span className="ol-brand-wordmark">OPTIMIZE <strong>LOCAL</strong><small>Websites, apps and training</small></span></Link>; }
+export function Brand() { return <BrandLogo />; }
 export function DemoFrame({ title, business, kind, view, setView, reset, children, storageWarning }: { title: string; business: string; kind: "car" | "calendar"; view: string; setView: (view: "customer" | "owner") => void; reset: () => void; children: ReactNode; storageWarning: string }) {
   const [resetOpen, setResetOpen] = useState(false);
   const resetButton = useRef<HTMLButtonElement>(null);
