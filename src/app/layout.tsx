@@ -9,21 +9,21 @@ const siteUrl = getSiteUrl();
 export const metadata: Metadata = {
   metadataBase: siteUrl,
   title: { default: "Optimize Local | Business Apps, Booking & Loyalty", template: "%s | Optimize Local" },
-  description: "Spend less time on paperwork, booking, and follow-ups. Optimize Local builds affordable business apps, loyalty programs, and customer tools for local businesses.",
+  description: "Websites and apps for local businesses, including booking, customer requests and rewards. Work directly with Steve Cook in Rockford, Illinois.",
   keywords: ["Optimize Local", "business apps", "custom web apps", "customer loyalty programs", "small business booking", "Rockford app development", "business automation", "local business websites"],
   alternates: { canonical: "/" },
   openGraph: {
     type: "website",
     url: siteUrl,
     siteName: "Optimize Local",
-    title: "Optimize Local | Big business tools. Local business prices.",
+    title: "Optimize Local | Websites and Apps for Local Businesses",
     description: "Custom apps, loyalty programs, booking, and automation for local businesses. Packages start at $500.",
     locale: "en_US",
   },
   twitter: {
     card: "summary_large_image",
-    title: "Optimize Local | Apps That Save Time for Local Business",
-    description: "Save time, stay organized, and help customers come back with practical business apps, booking, and rewards.",
+    title: "Optimize Local | Websites, Apps and Training",
+    description: "Websites, booking tools, customer apps and training for local business owners. Packages start at $500.",
   },
 };
 

@@ -36,7 +36,7 @@ test('sample workbook contains each exact artifact, template and check but no un
   for (const prompt of day.prompts) assert.ok(workbook.includes(escape(prompt.template)));
   for (const q of day.check.items) assert.ok(workbook.includes(escape(q.question)));
  }
- for (const day of content.overview.slice(3)) assert.ok(!workbook.includes(`Day ${String(day.order).padStart(2,'0')} ${escape(day.title)}`));
+ for (const day of content.overview.slice(3)) assert.ok(!workbook.includes(`Day ${day.order} ${escape(day.title)}`));
  assert.equal((workbook.match(/class="write-line"/g) ?? []).length, 48);
  assert.ok(!workbook.includes('type="password"'));
  assert.ok(!workbook.includes('<form'));

@@ -278,7 +278,7 @@ function lines(count) {
 function workbookHTML(payload) {
   invariant(stable(payload.samples.map(sample => sample.id)) === stable(SAMPLE_IDS), 'Workbook must contain exactly the three selected public samples');
   const course = payload.course;
-  const dayTitle = sample => `Day ${String(sample.order).padStart(2, '0')} ${sample.title}`;
+  const dayTitle = sample => `Day ${sample.order} ${sample.title}`;
   const tasks = payload.samples.map(sample => {
     const task = `<section class="task-page" aria-labelledby="${sample.id}">
       <h1 id="${sample.id}">${escapeHTML(dayTitle(sample))}</h1>
@@ -291,7 +291,7 @@ function workbookHTML(payload) {
       ${sample.prompts.map(prompt => `<h2>${escapeHTML(prompt.title)}</h2><p>${escapeHTML(prompt.when_to_use)}</p><pre class="prompt">${escapeHTML(prompt.template)}</pre>`).join('\n')}
     </section>`;
     const work = `<section class="work-page" aria-labelledby="${sample.id}-working">
-      <h1 id="${sample.id}-working">Day ${String(sample.order).padStart(2, '0')} Working space</h1>
+      <h1 id="${sample.id}-working">Day ${sample.order} Working space</h1>
       ${sample.exercise.writing_fields.map(field => `<div class="writing-field"><h2>${escapeHTML(field.label)}</h2><p>${escapeHTML(field.hint)}</p>${lines(field.lines)}</div>`).join('\n')}
       <h2>Check and reflect</h2>${list(sample.check.items.map(item => item.question), true)}
       ${paragraphs(sample.reflection)}${lines(2)}
@@ -345,11 +345,11 @@ function workbookHTML(payload) {
     <h1>${escapeHTML(course.title)}</h1>
     <p class="subtitle">Sample workbook — Days 1–3</p>
     <p>${escapeHTML(course.academy)}<br>${escapeHTML(course.author)}</p>
-    <p>This sample contains the first three written lessons' exercises and reusable prompts. Use a harmless task or the supplied hypothetical alternative, then keep your input with the reviewed result. The ruled pages are for your own work, and answers follow the exercises.</p>
+    <p>This workbook goes with the first three written lessons. Use a simple task of your own or try the sample exercise. Keep your notes and the answer you checked so you can use them in the next lesson.</p>
     <p><strong>CLEAR:</strong> ${escapeHTML(course.clear.join('; '))}.</p>
-    <div class="status"><strong>Written content complete; author review pending; recordings pending.</strong><p>This is a public written sample, not the full 21-day course. The full self-paced course is $79 and coming soon. No recording, paid enrollment or learner account is established by this workbook.</p></div>
+    <div class="status"><strong>Written samples. Author review and recordings are still pending.</strong><p>The full 21-day course will cost $79 when it opens. It is still coming soon. This free workbook does not enroll you or create an account.</p></div>
     <nav aria-label="Sample workbook contents"><h2>Contents</h2><ul>${payload.samples.map(sample => `<li><a href="#${sample.id}">${escapeHTML(dayTitle(sample))}</a></li>`).join('')}<li><a href="#sample-answers">Check answers and completion rules</a></li></ul></nav>
-    <p class="screen-only">Use your browser's print command and select Letter paper to print or save this workbook. Keep this file for your own practice; answers and writing stay with you. No form on this page uploads your work.</p>
+    <p class="screen-only">Use your browser's print command and select Letter paper to print or save this workbook. Write your answers in your own copy. This page has no form and does not upload your work.</p>
     <p class="small">Public content revision: ${payload.content_revision}</p>
   </header>
   ${tasks}

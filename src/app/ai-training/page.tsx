@@ -1,6 +1,6 @@
 import type { Metadata } from "next";
 import AcademyLanding from "@/components/academy/landing";
-const description = "Practical Zoom AI training for everyday life, independent professionals and small teams. Explore six offers and try three written lessons from 21 Days to AI Confidence.";
+const description = "Learn to use ChatGPT for everyday tasks and small business work. Compare six Zoom and self-paced programs, and try three free written course lessons.";
 export const metadata: Metadata = {
   title: "AI Training and Academy", description,
   alternates: { canonical: "/ai-training" },

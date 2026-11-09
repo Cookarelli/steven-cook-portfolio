@@ -217,17 +217,17 @@ def create_pdf(payload, output):
     story = [Spacer(1, .55 * inch), paragraph(course['title'], st['title']),
              paragraph('Sample workbook - Days 1-3', st['subtitle']),
              paragraph(f'{course["academy"]}\n{course["author"]}', st['body']), Spacer(1, 14)]
-    story.append(paragraph('This workbook contains the first three written samples and their practice tasks. Use a harmless task or the supplied hypothetical alternative, then keep your input with the reviewed result. The ruled pages are for your own work, and answers follow the exercises.', st['body']))
+    story.append(paragraph('This workbook goes with the first three written lessons. Use a simple task of your own or try the sample exercise. Keep your notes and the answer you checked so you can use them in the next lesson.', st['body']))
     story.append(labeled('CLEAR:', '; '.join(course['clear']) + '.', st['body']))
     story.append(paragraph('Written content is complete, while author review and recordings remain pending. The full self-paced course is USD 79 and coming soon. This sample does not establish paid enrollment or a learner account.', st['body']))
     story.append(paragraph('Use the original numbered days in order and keep each named artifact for the next sample. Written-preview estimates cover reading, practice and checks, excluding the planned demonstration. All messages remain drafts, and sending or changing a record is a separate human decision.', st['body']))
     story.append(paragraph('In this sample', st['h2']))
-    story.extend(bullets([f'Day {s["order"]:02d}: {s["title"]} - {s["estimated_minutes"]} estimated minutes' for s in samples], st['list']))
+    story.extend(bullets([f'Day {s["order"]}: {s["title"]} - {s["estimated_minutes"]} estimated minutes' for s in samples], st['list']))
     story.append(paragraph('The answer key includes all questions, answers, explanations and completion rules.', st['body']))
 
     for sample in samples:
         story.append(PageBreak())
-        story.append(paragraph(f'Day {sample["order"]:02d} {sample["title"]}', st['h1']))
+        story.append(paragraph(f'Day {sample["order"]} {sample["title"]}', st['h1']))
         story.append(labeled('Learning objective:', sample['objective'], st['body']))
         story.append(labeled('Written preview estimate:', f'{sample["estimated_minutes"]} minutes for reading, practice and checks; planned demonstration excluded.', st['body']))
         story.append(labeled('Save as:', sample['exercise']['artifact_name'], st['body']))
@@ -242,7 +242,7 @@ def create_pdf(payload, output):
             story.append(KeepTogether([paragraph(prompt['template'], st['prompt'])]))
 
         story.append(PageBreak())
-        story.append(paragraph(f'Day {sample["order"]:02d} Working space', st['h1']))
+        story.append(paragraph(f'Day {sample["order"]} Working space', st['h1']))
         for field in sample['exercise']['writing_fields']:
             story.append(KeepTogether([
                 paragraph(field['label'], st['field']), paragraph(field['hint'], st['hint']),
@@ -256,7 +256,7 @@ def create_pdf(payload, output):
     story.append(PageBreak())
     story.append(paragraph('Check answers and completion rules', st['h1']))
     for sample in samples:
-        section = [paragraph(f'Day {sample["order"]:02d} {sample["title"]}', st['h2'])]
+        section = [paragraph(f'Day {sample["order"]} {sample["title"]}', st['h2'])]
         for i, item in enumerate(sample['check']['items'], 1):
             section.extend([
                 paragraph(f'{i}. {item["question"]}', st['bold']),
