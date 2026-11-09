@@ -12,6 +12,6 @@ export default function AcademyLayout({ children }: { children: React.ReactNode 
       <a className="ol-button ol-button-small" href={consultationHref}>Book a call ↗</a>
     </div></header>
     {children}
-    <footer className="academy-footer ol-container"><div><Link className="ol-footer-logo" href="/">OPTIMIZE LOCAL.</Link><p>Practical tools. Real-world skills. Rockford, Illinois.</p></div><nav aria-label="Academy footer"><Link href="/ai-academy">AI Training</Link><Link href="/#services">Apps & automation</Link><Link href="/ai-academy/contact">Contact Academy</Link><Link href="/privacy">Privacy</Link><a href="mailto:optimizelocalai@gmail.com">Get in touch ↗</a></nav></footer>
+    <footer className="academy-footer ol-container"><div><Link className="ol-footer-logo" href="/">OPTIMIZE LOCAL.</Link><p>Practical tools. Real-world skills. Rockford, Illinois.</p></div><nav aria-label="Academy footer"><Link href="/ai-training">AI Training</Link><Link href="/#services">Apps & automation</Link><Link href="/ai-academy/contact">Contact Academy</Link><Link href="/privacy">Privacy</Link><a href="mailto:optimizelocalai@gmail.com">Get in touch ↗</a></nav></footer>
   </div>;
 }

@@ -1,5 +1,6 @@
 import type { Pool } from 'pg';
-import { acknowledgment } from './templates';
+import { acknowledgment, businessNotification } from './templates';
+import { getOfferSnapshot } from './model';
 export interface MailConfig { resendKey?:string; from?:string; formsubmit:boolean }
 export function mailConfig():MailConfig { return {resendKey:process.env.RESEND_API_KEY,from:process.env.ACADEMY_EMAIL_FROM,formsubmit:process.env.ACADEMY_NOTIFY_FORMSUBMIT!=='false'}; }
 // Outbox is created in the same transaction as the lead. Provider acceptance is not delivery.
@@ -12,9 +13,9 @@ export async function processNotifications(pool:Pool,leadId:string,config:MailCo
   try {
    const lead=(await pool.query('SELECT * FROM academy_crm.leads WHERE id=$1',[leadId])).rows[0];
    const business=job.kind==='business';
-   const subject=business?`New Academy lead: ${lead.program} (${lead.request_type})`:'Your Optimize Local AI Academy request';
+   const subject=business?`New Academy request: ${getOfferSnapshot(lead.program).title} (${lead.request_type})`:'Your Optimize Local AI Academy request';
    // Keep business alerts minimal: private lead details stay in the authenticated view.
-   const text=business?`A new ${lead.request_type} lead has been saved.\nProgram: ${lead.program}\nReference: ${lead.id}\nReview it in the protected Academy lead view.`:acknowledgment(lead.name,lead.program,lead.request_type,lead.id);
+   const text=business?businessNotification(lead.program,lead.request_type,lead.id):acknowledgment(lead.name,lead.program,lead.request_type,lead.id);
    let response:Response|undefined;
    if(config.resendKey && config.from) {
     provider='resend';

@@ -1,6 +1,6 @@
 import { createHash, createHmac, randomUUID } from 'node:crypto';
 import type { Pool } from 'pg';
-import { consentVersion, CrmError, type LeadInput, type LeadStatus, statuses } from './model';
+import { consentVersion, courseUpdatesConsentVersion, privacyAgreementVersion, freeDiscoveryService, getOfferSnapshot, leadNotes, CrmError, type LeadInput, type LeadStatus, statuses } from './model';
 export async function captureLead(pool: Pool, input: LeadInput, key: string, ip: string, rateSecret: string) {
  if (!/^[0-9a-f]{8}-[0-9a-f]{4}-4[0-9a-f]{3}-[89ab][0-9a-f]{3}-[0-9a-f]{12}$/i.test(key)) throw new CrmError(400,'Invalid submission identifier. Reload the form.');
  const fingerprint=createHash('sha256').update(JSON.stringify(input)).digest('hex');
@@ -26,8 +26,15 @@ export async function captureLead(pool: Pool, input: LeadInput, key: string, ip:
   const id=duplicate.rows[0]?.id??randomUUID();
   if(!duplicate.rows.length) {
    await client.query(`INSERT INTO academy_crm.leads(id,name,email,phone,program,request_type,source,contact_method,status,notes,transaction_reference,marketing_consent,marketing_consent_at,marketing_consent_version,course_updates_consent,fingerprint)
-    VALUES($1,$2,$3,$4,$5,$6,$7,$8,$9,$10,$11,$12,now(),$13,$14,$15)`,[id,input.name,input.email,input.phone||null,input.program,input.requestType,input.source,input.contactMethod,input.requestType==='payment-verification'?'Payment Pending':'New',input.notes,input.transactionReference||null,input.marketingConsent,consentVersion,input.courseUpdatesConsent,fingerprint]);
-   await client.query(`INSERT INTO academy_crm.events(lead_id,actor,event,details) VALUES($1,'prospect','created',$2)`,[id,JSON.stringify({marketingConsent:input.marketingConsent,courseUpdatesConsent:input.courseUpdatesConsent,consentVersion})]);
+    VALUES($1,$2,$3,$4,$5,$6,$7,$8,$9,$10,$11,$12,now(),$13,$14,$15)`,[id,input.name,input.email,input.phone||null,input.program,input.requestType,input.source,input.contactMethod,input.requestType==='payment-verification'?'Payment Pending':'New',leadNotes(input),input.transactionReference||null,input.marketingConsent,consentVersion,input.courseUpdatesConsent,fingerprint]);
+   await client.query(`INSERT INTO academy_crm.events(lead_id,actor,event,details) VALUES($1,'prospect','created',$2)`,[id,JSON.stringify({
+    marketingConsent:input.marketingConsent,courseUpdatesConsent:input.courseUpdatesConsent,consentVersion,
+    context:{business:input.business,timeZone:input.timeZone,goal:input.goal},
+    privacyAgreement:true,privacyAgreementVersion,
+    consents:{privacyNotice:{agreed:true,version:privacyAgreementVersion},marketing:{agreed:input.marketingConsent,version:consentVersion},courseUpdates:{agreed:input.courseUpdatesConsent,version:courseUpdatesConsentVersion}},
+    offerSnapshot:getOfferSnapshot(input.program),
+    ...(input.requestType==='consultation'?{requestedService:{...freeDiscoveryService}}:{}),
+   })]);
    for(const kind of ['business','acknowledgment']) await client.query(`INSERT INTO academy_crm.notifications(id,lead_id,kind,status) VALUES($1,$2,$3,'pending')`,[randomUUID(),id,kind]);
   }
   await client.query('INSERT INTO academy_crm.submissions(key,fingerprint,lead_id) VALUES($1,$2,$3)',[key,fingerprint,id]);

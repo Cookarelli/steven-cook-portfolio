@@ -1,0 +1,3 @@
+"use client";
+import Link from "next/link";
+export default function LessonError({ reset }: { error: Error & { digest?: string }; reset: () => void }) { return <main id="academy-main" className="ol-container academy-section"><h1>This lesson could not open</h1><p>Your saved browser progress has not been reset. Try opening the lesson again. If it still will not load, return to the course overview and use the sample workbook.</p><div className="ol-actions"><button className="ol-button ol-button-primary" onClick={reset}>Try again</button><Link className="ol-button ol-button-outline" href="/ai-academy/21-day-ai-confidence#course-preview">Course overview</Link></div></main>; }

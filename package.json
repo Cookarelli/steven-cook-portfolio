@@ -11,9 +11,13 @@
     "test:demos": "node --experimental-strip-types --test tests/demo-model.test.mjs",
     "typecheck": "tsc --noEmit",
     "test:academy": "node --experimental-strip-types --test tests/academy.test.mjs",
-    "test:routes": "node --experimental-strip-types --test tests/academy-routes.test.mjs tests/local-readiness.test.mjs",
+    "test:routes": "node --experimental-strip-types --test tests/academy-routes.test.mjs tests/local-readiness.test.mjs tests/course-routes.test.mjs",
     "test:crm": "node scripts/test-academy-crm.mjs",
-    "db:migrate": "node scripts/migrate-academy.mjs"
+    "db:migrate": "node scripts/migrate-academy.mjs",
+    "content:preview": "node scripts/build-course-preview.mjs",
+    "test:course": "node --experimental-strip-types --test tests/course-progress.test.mjs tests/course-content.test.mjs",
+    "test:training": "node --import tsx --test tests/academy-crm-context.test.ts tests/academy-analytics.test.mjs",
+    "prebuild": "node scripts/verify-course-assets.mjs"
   },
   "dependencies": {
     "next": "16.4.5",

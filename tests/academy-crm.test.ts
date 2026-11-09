@@ -11,7 +11,7 @@ import {POST as retry} from '../src/app/api/admin/academy/notifications/route';
 const url=process.env.ACADEMY_TEST_DATABASE_URL;
 if(!url||!url.includes('127.0.0.1'))throw new Error('Use the isolated local PostgreSQL test runner.');
 const pool=new Pool({connectionString:url});
-const input=(extra={})=>validateLead({name:'Synthetic Learner',email:`test-${randomUUID()}@example.invalid`,program:'ai-made-simple',requestType:'inquiry',contactMethod:'email',source:'test',...extra});
+const input=(extra={})=>validateLead({name:'Synthetic Learner',email:`test-${randomUUID()}@example.invalid`,program:'ai-made-simple',requestType:'inquiry',contactMethod:'email',source:'test',privacyAgreement:true,...extra});
 const save=(data=input(),key=randomUUID(),ip=randomUUID())=>captureLead(pool,data,key,ip,'test-rate-key');
 const request=(body:unknown,key=randomUUID(),origin='http://localhost:3107')=>new Request('http://localhost:3107/api/academy/leads',{method:'POST',headers:{'Content-Type':'application/json',Origin:origin,'Idempotency-Key':key},body:JSON.stringify(body)});
 const admin=(url:string,options:RequestInit={})=>new Request('http://localhost:3107'+url,{...options,headers:{Authorization:`Bearer ${process.env.ACADEMY_ADMIN_TOKEN}`,'Content-Type':'application/json',...options.headers}});

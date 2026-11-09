@@ -101,8 +101,8 @@ export default function Home() {
       <section className="ol-section ol-container" id="ai-training">
         <p className="ol-eyebrow">INTRODUCING OPTIMIZE LOCAL AI ACADEMY</p>
         <h2>Practical AI skills.<br />For real life and real work.</h2>
-        <p className="ol-lead">Beginner-friendly private sessions, group workshops and team training. Learn to use AI with confidence while keeping your own judgment.</p>
-        <Link className="ol-button ol-button-primary" href="/ai-academy">Explore AI Training ↗</Link>
+        <p className="ol-lead">Bring one practical task and learn how to work on it with AI. Choose private help, a group workshop or training for your team. Keep the useful prompts and your own judgment.</p>
+        <div className="ol-actions"><Link className="ol-button ol-button-primary" href="/ai-training">Explore AI Training ↗</Link><ConsultationButton className="ol-button ol-button-outline" label="Book a Free 20-Minute Call" /></div>
       </section>
       <section className="ol-section ol-container" id="services">
         <div className="ol-section-intro"><div><p className="ol-eyebrow">HOW WE CAN HELP</p><h2>More time for your customers.</h2></div><p>Your app should solve a problem you face every week: missed inquiries, paperwork, confusing schedules, slow payments, or customers who forget to come back.</p></div>
@@ -113,6 +113,7 @@ export default function Home() {
             <div className="ol-tags">{service.tags.map((tag) => <span key={tag}>{tag}</span>)}</div>
           </article>
         ))}</div>
+        <p className="ol-lead">Prefer to learn the tools yourself? <Link className="ol-inline-link" href="/ai-training">Explore AI Training ↗</Link></p>
       </section>
 
       <section className="ol-section ol-container demo-landing-section" id="demos">
@@ -165,7 +166,7 @@ export default function Home() {
       </div></section>
 
       </main>
-      <footer className="ol-footer"><div className="ol-container ol-footer-main"><a href="#top" className="ol-footer-logo">OPTIMIZE <strong>LOCAL.</strong></a><p>Easier days, happier customers, and more room to grow.</p><a href="mailto:optimizelocalai@gmail.com">Get in touch ↗</a></div><div className="ol-container ol-footer-bottom"><span>© {new Date().getFullYear()} Optimize Local · Rockford, Illinois</span><span><a href="#services">Services</a> · <a href="#pricing">Pricing</a> · <a href="#work">Work</a> · <Link href="/ai-academy">AI Training</Link> · <a href="/privacy">Privacy</a> · <a href="https://connect.optimizelocalai.com" target="_blank" rel="noopener noreferrer">Connect</a></span></div></footer>
+      <footer className="ol-footer"><div className="ol-container ol-footer-main"><a href="#top" className="ol-footer-logo">OPTIMIZE <strong>LOCAL.</strong></a><p>Easier days, happier customers, and more room to grow.</p><a href="mailto:optimizelocalai@gmail.com">Get in touch ↗</a></div><div className="ol-container ol-footer-bottom"><span>© {new Date().getFullYear()} Optimize Local · Rockford, Illinois</span><span><a href="#services">Services</a> · <a href="#pricing">Pricing</a> · <a href="#work">Work</a> · <Link href="/ai-training">AI Training</Link> · <a href="/privacy">Privacy</a> · <a href="https://connect.optimizelocalai.com" target="_blank" rel="noopener noreferrer">Connect</a></span></div></footer>
     </div>
   );
 }

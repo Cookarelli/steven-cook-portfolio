@@ -2,7 +2,7 @@ import test from 'node:test';
 import assert from 'node:assert/strict';
 import { academyPrograms, programPath } from '../src/config/ai-academy.ts';
 const base = 'http://127.0.0.1:3107';
-for (const path of ['/ai-academy', ...academyPrograms.map(programPath)]) {
+for (const path of ['/ai-training', ...academyPrograms.map(programPath)]) {
   test(`${path}: renders with independent SEO and Academy navigation`, async () => {
     const response = await fetch(base + path);
     assert.equal(response.status, 200);
@@ -22,13 +22,20 @@ test('early access requires explicit consent and has no purchase link', async ()
   const html = await (await fetch(base + '/ai-academy/21-day-ai-confidence')).text();
   assert.match(html, /COMING SOON/);
   assert.match(html, /type="checkbox"[^>]*required=""/);
-  assert.match(html, /Join the Early Access List/);
+  assert.match(html, /Join the Course Interest List/);
   assert.match(html, /No payment collected/);
   assert.doesNotMatch(html, /href="[^"]*(?:paypal|venmo|checkout)/);
 });
 test('group CTA leads to interest form, never calendar seat inventory', async () => {
   const html = await (await fetch(base + '/ai-academy/everyday-ai-workshop')).text();
-  assert.match(html, /href="#request">Reserve Your \$39 Workshop Seat/);
+  assert.match(html, /href="#request">Join the Next Workshop List/);
   assert.match(html, /Interest requests only/);
   assert.match(html, /not a ticket or confirmed seat/);
+});
+
+// The original Academy remains one experience at its requested canonical entry.
+test('legacy Academy entry redirects to AI Training', async () => {
+ const r = await fetch(base + '/ai-academy', { redirect: 'manual' });
+ assert.equal(r.status, 308);
+ assert.equal(r.headers.get('location'), '/ai-training');
 });

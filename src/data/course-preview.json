@@ -1,0 +1,808 @@
+{
+  "schema_version": "1.0",
+  "course": {
+    "id": "21-days-to-ai-confidence",
+    "title": "21 Days to AI Confidence",
+    "academy": "Optimize Local AI Academy",
+    "author": "Steven Cook",
+    "price_usd": 79,
+    "format": "Self-paced",
+    "audience": [
+      "Nontechnical adults",
+      "Independent professionals",
+      "Small business owners"
+    ],
+    "clear": [
+      "Context",
+      "Lead with goal",
+      "Examples",
+      "Add constraints",
+      "Refine"
+    ],
+    "phases": [
+      {
+        "id": "foundations",
+        "title": "Foundations",
+        "first_day": 1,
+        "last_day": 7,
+        "purpose": "Choose useful tasks, supply context, use CLEAR, refine, verify, protect information, and practice independently."
+      },
+      {
+        "id": "everyday-creation-and-organization",
+        "title": "Everyday creation and organization",
+        "first_day": 8,
+        "last_day": 14,
+        "purpose": "Build practical plans, messages, action records, comparisons, and researched projects."
+      },
+      {
+        "id": "personal-workflows-and-independent-practice",
+        "title": "Personal workflows and independent practice",
+        "first_day": 15,
+        "last_day": 21,
+        "purpose": "Create repeatable methods, transfer them to business or community tasks, and assess an independent capstone."
+      }
+    ],
+    "status": {
+      "content": "content-complete",
+      "recording": "recording-pending",
+      "author_review": "review-pending",
+      "delivery": "not-deployed",
+      "availability": "coming-soon"
+    }
+  },
+  "preview": {
+    "sample_ids": [
+      "day-01",
+      "day-02",
+      "day-03"
+    ],
+    "duration_basis": "Estimated reading, practice and checks; excludes the planned demonstration. Recordings are pending.",
+    "progress_scope": "browser-local-preview",
+    "workbook_filename": "ai-confidence-sample-workbook.html"
+  },
+  "overview": [
+    {
+      "id": "day-01",
+      "order": 1,
+      "phase": 1,
+      "title": "Pick one real task",
+      "objective": "By the end, choose one bounded task and save a baseline task card naming its input, deliverable, reviewer, stop rule, and at least three observable success criteria.",
+      "artifact": "Baseline task and success criteria",
+      "estimated_minutes": 20,
+      "status": {
+        "content": "content-complete",
+        "recording": "recording-pending",
+        "author_review": "review-pending"
+      }
+    },
+    {
+      "id": "day-02",
+      "order": 2,
+      "phase": 1,
+      "title": "Context and goals",
+      "objective": "By the end, save an improved version of one vague prompt that identifies audience, relevant context, a specific deliverable, known and unknown information, and at least two boundaries.",
+      "artifact": "Improved version of a vague prompt",
+      "estimated_minutes": 21,
+      "status": {
+        "content": "content-complete",
+        "recording": "recording-pending",
+        "author_review": "review-pending"
+      }
+    },
+    {
+      "id": "day-03",
+      "order": 3,
+      "phase": 1,
+      "title": "The full CLEAR framework",
+      "objective": "By the end, save one reusable CLEAR template with all five exact elements and a filled example whose output passes at least three stated checks.",
+      "artifact": "A reusable CLEAR template",
+      "estimated_minutes": 22,
+      "status": {
+        "content": "content-complete",
+        "recording": "recording-pending",
+        "author_review": "review-pending"
+      }
+    },
+    {
+      "id": "day-04",
+      "order": 4,
+      "phase": 1,
+      "title": "Refine the first answer",
+      "objective": "By the end, save a before/after output comparison showing one targeted revision, at least three preserved requirements, an honest tradeoff, and an independently checked result.",
+      "artifact": "Before/after output comparison",
+      "estimated_minutes": 21,
+      "status": {
+        "content": "content-complete",
+        "recording": "recording-pending",
+        "author_review": "review-pending"
+      }
+    },
+    {
+      "id": "day-05",
+      "order": 5,
+      "phase": 1,
+      "title": "Check facts and assumptions",
+      "objective": "By the end, apply a verification checklist to one output, classify at least four important claims, independently check one calculation using your output or the supplied practice card, and resolve or explicitly hold unsupported claims.",
+      "artifact": "A verification checklist applied to one output",
+      "estimated_minutes": 22,
+      "status": {
+        "content": "content-complete",
+        "recording": "recording-pending",
+        "author_review": "review-pending"
+      }
+    },
+    {
+      "id": "day-06",
+      "order": 6,
+      "phase": 1,
+      "title": "Use examples and protect private information",
+      "objective": "By the end, save a sanitized task example and style prompt, explain at least three details removed or generalized, and check that the resulting unsent draft preserves facts without adding private background or commitments.",
+      "artifact": "Sanitized example and style prompt",
+      "estimated_minutes": 21,
+      "status": {
+        "content": "content-complete",
+        "recording": "recording-pending",
+        "author_review": "review-pending"
+      }
+    },
+    {
+      "id": "day-07",
+      "order": 7,
+      "phase": 1,
+      "title": "First independent practice",
+      "objective": "By the end, save and test a three-prompt starter library with usage notes, filled examples, reviewed outputs, and a reflection identifying one specific improvement; at least one test uses a fresh safe variation you choose independently.",
+      "artifact": "3-prompt starter library and reflection",
+      "estimated_minutes": 29,
+      "status": {
+        "content": "content-complete",
+        "recording": "recording-pending",
+        "author_review": "review-pending"
+      }
+    },
+    {
+      "id": "day-08",
+      "order": 8,
+      "phase": 2,
+      "title": "Plan a realistic day",
+      "objective": "By the end, create a time-blocked daily plan that fits one stated window, preserves every fixed commitment, includes a buffer, and names one deferred task and first action.",
+      "artifact": "Time-blocked daily plan",
+      "estimated_minutes": 22,
+      "status": {
+        "content": "content-complete",
+        "recording": "recording-pending",
+        "author_review": "review-pending"
+      }
+    },
+    {
+      "id": "day-09",
+      "order": 9,
+      "phase": 2,
+      "title": "Build a useful week",
+      "objective": "By the end, create weekly priorities and a review routine with no more than three defined outcomes, enough time for their estimates, and a recorded decision about one optional task.",
+      "artifact": "Weekly priorities and review routine",
+      "estimated_minutes": 24,
+      "status": {
+        "content": "content-complete",
+        "recording": "recording-pending",
+        "author_review": "review-pending"
+      }
+    },
+    {
+      "id": "day-10",
+      "order": 10,
+      "phase": 2,
+      "title": "Meals and groceries",
+      "objective": "By the end, produce a three-dinner meal plan and shopping list that account for supplied quantities, separate existing food from purchases, and flag price and storage checks before use.",
+      "artifact": "Practical meal plan and shopping list",
+      "estimated_minutes": 24,
+      "status": {
+        "content": "content-complete",
+        "recording": "recording-pending",
+        "author_review": "review-pending"
+      }
+    },
+    {
+      "id": "day-11",
+      "order": 11,
+      "phase": 2,
+      "title": "Write clearer messages",
+      "objective": "By the end, produce one reviewed email or text draft with a clear purpose and next step, no invented reason or commitment, and a recorded decision to keep it unsent during practice.",
+      "artifact": "Reviewed email or text draft",
+      "estimated_minutes": 20,
+      "status": {
+        "content": "content-complete",
+        "recording": "recording-pending",
+        "author_review": "review-pending"
+      }
+    },
+    {
+      "id": "day-12",
+      "order": 12,
+      "phase": 2,
+      "title": "Summarize notes into action",
+      "objective": "By the end, convert supplied notes into an action list that preserves every confirmed owner and due time, marks missing fields, and separates decisions from proposals without inventing assignments.",
+      "artifact": "Action list with owners and dates where known",
+      "estimated_minutes": 22,
+      "status": {
+        "content": "content-complete",
+        "recording": "recording-pending",
+        "author_review": "review-pending"
+      }
+    },
+    {
+      "id": "day-13",
+      "order": 13,
+      "phase": 2,
+      "title": "Compare options",
+      "objective": "By the end, build a criteria table for at least three options, distinguish must-have failures from unknowns, recalculate supplied costs, and name a provisional choice with evidence still to verify.",
+      "artifact": "Criteria table with assumptions to verify",
+      "estimated_minutes": 23,
+      "status": {
+        "content": "content-complete",
+        "recording": "recording-pending",
+        "author_review": "review-pending"
+      }
+    },
+    {
+      "id": "day-14",
+      "order": 14,
+      "phase": 2,
+      "title": "Plan a trip or personal project",
+      "objective": "By the end, create a researched trip or project plan with at least two source-checked facts, source URLs and check dates, explicit assumptions, at least four unanswered questions, and a conditional schedule that does not claim a booking.",
+      "artifact": "Researched plan and unanswered questions",
+      "estimated_minutes": 28,
+      "status": {
+        "content": "content-complete",
+        "recording": "recording-pending",
+        "author_review": "review-pending"
+      }
+    },
+    {
+      "id": "day-15",
+      "order": 15,
+      "phase": 3,
+      "title": "Map a recurring task",
+      "objective": "By the end, map and dry-run one recurring task with a trigger, approved inputs, bounded AI step, human review, final output, and exception rule, then identify one correction from the test.",
+      "artifact": "Trigger input review output workflow",
+      "estimated_minutes": 24,
+      "status": {
+        "content": "content-complete",
+        "recording": "recording-pending",
+        "author_review": "review-pending"
+      }
+    },
+    {
+      "id": "day-16",
+      "order": 16,
+      "phase": 3,
+      "title": "Handle customer inquiries",
+      "objective": "By the end, create and test a reusable inquiry reply template that answers supported questions, asks at most three necessary questions, preserves unconfirmed status, and passes a fact and promise checklist.",
+      "artifact": "Reusable inquiry reply template and review checklist",
+      "estimated_minutes": 24,
+      "status": {
+        "content": "content-complete",
+        "recording": "recording-pending",
+        "author_review": "review-pending"
+      }
+    },
+    {
+      "id": "day-17",
+      "order": 17,
+      "phase": 3,
+      "title": "Plan useful content",
+      "objective": "By the end, create a three-entry content calendar tied to real or supplied audience questions, complete one post, and verify every public claim and call to action against an approved fact packet.",
+      "artifact": "Short content calendar and one complete post",
+      "estimated_minutes": 24,
+      "status": {
+        "content": "content-complete",
+        "recording": "recording-pending",
+        "author_review": "review-pending"
+      }
+    },
+    {
+      "id": "day-18",
+      "order": 18,
+      "phase": 3,
+      "title": "Create a service description or estimate draft",
+      "objective": "By the end, produce a reviewed service description and itemized estimate or community-project budget using supplied scope, units, and prices, with correct arithmetic and every unknown charge or approval visibly unresolved.",
+      "artifact": "Service description or estimate draft using supplied facts and prices",
+      "estimated_minutes": 26,
+      "status": {
+        "content": "content-complete",
+        "recording": "recording-pending",
+        "author_review": "review-pending"
+      }
+    },
+    {
+      "id": "day-19",
+      "order": 19,
+      "phase": 3,
+      "title": "Organize a reusable prompt library",
+      "objective": "By the end, save at least three reusable prompts with tags, purpose, inputs, limits, review instructions, and version status, then retrieve and test the right entry for one new task.",
+      "artifact": "Tagged prompts with usage notes",
+      "estimated_minutes": 24,
+      "status": {
+        "content": "content-complete",
+        "recording": "recording-pending",
+        "author_review": "review-pending"
+      }
+    },
+    {
+      "id": "day-20",
+      "order": 20,
+      "phase": 3,
+      "title": "Complete a capstone",
+      "objective": "By the end, independently run one bounded everyday, community, or business workflow from sanitized inputs through a checked final artifact, document one revision or tested gap, and meet the capstone rubric with full privacy and factual accuracy scores.",
+      "artifact": "Independently executed everyday or business workflow",
+      "estimated_minutes": 37,
+      "status": {
+        "content": "content-complete",
+        "recording": "recording-pending",
+        "author_review": "review-pending"
+      }
+    },
+    {
+      "id": "day-21",
+      "order": 21,
+      "phase": 3,
+      "title": "Review and keep going",
+      "objective": "By the end, evaluate the saved capstone against its evidence and rubric, choose a justified keep/revise/pause/stop decision, and create a 30-day practice plan with named sessions, review criteria, stop rules, and a feasible total time budget.",
+      "artifact": "Capstone evaluation and 30 day practice plan",
+      "estimated_minutes": 29,
+      "status": {
+        "content": "content-complete",
+        "recording": "recording-pending",
+        "author_review": "review-pending"
+      }
+    }
+  ],
+  "samples": [
+    {
+      "id": "day-01",
+      "order": 1,
+      "phase": 1,
+      "title": "Pick one real task",
+      "objective": "By the end, choose one bounded task and save a baseline task card naming its input, deliverable, reviewer, stop rule, and at least three observable success criteria.",
+      "estimated_minutes": 20,
+      "status": {
+        "content": "content-complete",
+        "recording": "recording-pending",
+        "author_review": "review-pending"
+      },
+      "introduction": "AI confidence begins with a job you can recognize when it is finished. You do not need to redesign your working life before you can ask for help with one awkward message or untidy set of notes. Today you will choose a small task and decide what a useful result would look like before the assistant gets a chance to decorate it.",
+      "lesson_sections": [
+        {
+          "heading": "Choose a result you can inspect",
+          "body": "A task is a piece of work with a useful finish line, not a general wish to become more organized. “Draft a short reply from these facts” gives you something to read and check. “Fix my business” makes it difficult to tell whether the answer has helped or simply described a more impressive business than the one you currently have.\n\nChoose work that matters enough to use but is small enough to review. Suitable first tasks include organizing a few nonprivate notes, preparing an unsent everyday message, or making a short checklist from approved instructions. If the task would make a consequential commitment, change a record, or require expertise you do not have, choose a smaller drafting step or a different practice.\n\nThe first useful intervention may be a clearer task rather than AI. A missing owner, an unknown price, or an unconfirmed date cannot be repaired by asking for more confident wording. Record what you can supply and what remains unknown so the assistant is not silently hired to invent the missing business."
+        },
+        {
+          "heading": "Define the baseline before judging the answer",
+          "body": "Your baseline task card records what happens now and the result you want to inspect. Add three concrete criteria, such as preserving the supplied date, staying within a chosen length, and making the next step clear without adding a promise. “Sounds good” is a preference worth considering, but it is not enough to catch a wrong date hidden in a pleasant sentence.\n\nDecide who can review the result and when you will stop refining. For a personal message, that may be you checking your actual availability; for business wording, it may be the person authorized to approve the facts. The stop rule prevents a ten-minute drafting exercise from becoming an afternoon of asking for an even friendlier version.\n\nThe demonstration uses invented choices and does not carry out the selected task. Your exercise can use a real low stakes task with unnecessary details removed, or the supplied household alternative. The artifact is the task card and success criteria, not a claim that a tool has already saved you time."
+        }
+      ],
+      "prompts": [
+        {
+          "id": "d01-p01",
+          "title": "Choose a bounded task",
+          "when_to_use": "When several ideas compete and you need one low stakes task to practice.",
+          "template": "Help me compare these practice tasks: [two or three candidates].\nMy available practice time is [minutes]. I can supply [approved facts or materials].\nA useful result would be [something I can inspect].\nCompare each task for clear scope, available information, reviewability, and consequences if wrong.\nSuggest one small drafting or organizing task and explain why. Keep the final choice with me.\nReturn a task card with the starting input, named deliverable, three success criteria, reviewer, and stop rule.\nDo not invent missing facts, promise a result, send a message, or change a record.",
+          "filled_example": "This is a hypothetical practice exercise, not a real customer record.\nHelp me compare these tasks:\nA. Draft a kind message declining a friend's request for moving help on Saturday. I am unavailable Saturday and can genuinely offer one hour of packing help on Friday.\nB. Redesign an entire business over the next year; no records or priorities are supplied.\nC. Automatically send new prices to every customer; no approved price list or sending authority is supplied.\nI have ten minutes of practice time. I can supply the facts in A and review a short draft myself.\nA useful result is an unsent message of no more than 60 words, not an action performed on my behalf.\nCompare scope, information, reviewability, and consequences. Suggest one small drafting task, keeping the choice with me.\nReturn a task card with starting input, named deliverable, three success criteria, reviewer, and stop rule.\nDo not invent missing facts or promises, send messages, or change records.",
+          "illustrative_output": "Illustrative output — wording may vary.\nComparison:\nA: Small drafting task; the necessary availability and truthful alternative are supplied; the learner can check the message. Suitable for a first practice.\nB: Too broad for this session; narrow it to one task and supply evidence before proceeding.\nC: An external action with missing prices and authority. Do not run it as this practice; a bounded unsent draft could be considered later after the inputs are approved.\nSuggested task card:\nTask: Prepare one kind decline with a genuine alternative.\nStarting input: Unavailable Saturday; can offer one hour of packing help Friday; no reason for Saturday needs to be shared.\nDeliverable: One unsent message of no more than 60 words.\nSuccess criteria: Clearly declines Saturday; offers exactly one hour Friday; invents no explanation or extra availability.\nReviewer: Learner, checking the actual availability before using the draft.\nStop rule: Stop once the three criteria and length are checked; sending is a separate human decision.\nChoice: The learner accepts, narrows, or replaces this task.",
+          "review_checklist": [
+            "The chosen task produces one inspectable draft rather than an unapproved action.",
+            "The criteria come from supplied facts and contain no promised saving or outcome.",
+            "Any real availability or commitment will be checked by the learner."
+          ],
+          "tags": [
+            "task-choice",
+            "baseline",
+            "foundation"
+          ]
+        }
+      ],
+      "exercise": {
+        "artifact_name": "Baseline task and success criteria",
+        "instructions": [
+          "Choose one real low stakes drafting or organizing task, or use the supplied alternative.",
+          "Write how you handle it now, the nonprivate input you can provide, and what remains unknown.",
+          "Name one deliverable and at least three observable success criteria before asking for a comparison.",
+          "Use or adapt the task-choice prompt, then accept, narrow, or reject its suggestion using your criteria.",
+          "Save the task card with a reviewer and a stop rule; do not send, publish, purchase, or change records."
+        ],
+        "success_criteria": [
+          "Exactly one bounded task and named deliverable are chosen.",
+          "At least three checks can be applied to the eventual output using supplied evidence.",
+          "The card names a reviewer and a stop rule and separates drafting from external action."
+        ],
+        "writing_fields": [
+          {
+            "label": "Task and current method",
+            "hint": "What happens now, and which small part needs help?",
+            "lines": 3
+          },
+          {
+            "label": "Input and unknowns",
+            "hint": "List the facts or approved material you have, and what you do not know.",
+            "lines": 3
+          },
+          {
+            "label": "Deliverable and success criteria",
+            "hint": "Name the artifact and three things you can inspect.",
+            "lines": 3
+          },
+          {
+            "label": "Reviewer and stopping rule",
+            "hint": "Who checks it, and when is the practice finished?",
+            "lines": 3
+          }
+        ],
+        "transfer_option": "If you have no suitable task, choose a checklist for packing a day bag. Hypothetical facts: water bottle, packed lunch, notebook, and rain jacket are needed; all are available; the result should be a four-item checklist with no extra shopping or travel assumptions."
+      },
+      "check": {
+        "type": "questions",
+        "items": [
+          {
+            "question": "Which is a clearer first task: improve my whole business or draft a reply from these approved facts?",
+            "answer": "Draft a reply from these approved facts.",
+            "explanation": "It has a bounded input and output that a person can inspect."
+          },
+          {
+            "question": "The assistant offers Friday afternoon even though your card says only one hour Friday. Has it met the criterion?",
+            "answer": "No. It has broadened the offer and needs correction or removal.",
+            "explanation": "Natural wording must preserve the actual limit, not replace it with an attractive assumption."
+          },
+          {
+            "question": "Does selecting a message-drafting task authorize sending it?",
+            "answer": "No. Sending remains a separate human decision after fact and recipient checks.",
+            "explanation": "The task boundary concerns an unsent draft, not an external action."
+          },
+          {
+            "question": "Name two essential features of a success criterion.",
+            "answer": "It is observable in the output and can be checked against supplied facts or a stated requirement.",
+            "explanation": "A clear criterion helps the learner assess usefulness without trusting a confident tone."
+          }
+        ],
+        "pass_rule": "Answer all four correctly, using your own wording where the meaning is preserved. Any error about sending or unsupported commitments must be repaired before continuing; revise the task card and retry missed checks."
+      },
+      "troubleshooting": "If the task feels too large, replace the broad goal with one document, list, or unsent draft somebody can inspect. If essential information is missing, mark it unknown or choose a task for which you have the necessary facts. If you cannot say what a good result would contain, finish the success criteria before running another prompt.",
+      "reflection": "Which part of the task currently creates avoidable effort, and what evidence supports that impression? Record one reason this is a sensible practice and one limit you want to preserve. A different task is acceptable if the comparison revealed that the first choice was too broad or hard to review.",
+      "next_step": "Keep the baseline card for Day 2. You will turn a vague request into a prompt that states the context and goal clearly. Bring only the task information needed to do that work, with private details left out.",
+      "official_references": [],
+      "revision": "0829ccd5a73dd920475918364e4a748cbdcc080d5e3695b4cc02caa4f470cf0d"
+    },
+    {
+      "id": "day-02",
+      "order": 2,
+      "phase": 1,
+      "title": "Context and goals",
+      "objective": "By the end, save an improved version of one vague prompt that identifies audience, relevant context, a specific deliverable, known and unknown information, and at least two boundaries.",
+      "estimated_minutes": 21,
+      "status": {
+        "content": "content-complete",
+        "recording": "recording-pending",
+        "author_review": "review-pending"
+      },
+      "introduction": "A helpful assistant cannot know which part of your situation matters until you explain the job. “Help me get organized” could produce anything from a shopping list to an unsolicited new personality. Today you will replace that vague request with a clear situation and a goal, then check whether the answer respects the difference between a fact and a sensible suggestion.",
+      "lesson_sections": [
+        {
+          "heading": "Give enough context without writing your life story",
+          "body": "Context is the information that changes the answer. It can include who the result is for, what has already happened, the facts available now, and the limits that make a suggestion usable. A proposed date, a confirmed date, and a date somebody merely mentioned are different pieces of context even if they look similar in a hurried note.\n\nYou do not need to provide everything you know. A preparation checklist may need the available materials and unresolved decisions, but it probably does not need everybody's full name or home address. Choose the minimum useful detail and keep a separate list of unknowns so a smooth paragraph does not make them disappear.\n\nContext should also explain the stage of the work. Drafting a preparation list before approval is different from inviting people to a confirmed event. If the assistant invents a venue or says a proposed date is booked, the problem is not simply tone; the output has crossed a factual boundary."
+        },
+        {
+          "heading": "Lead with a result rather than a general improvement",
+          "body": "A goal says what the output should help someone do. “Prepare a checklist that separates work we can do now from facts the host must confirm” gives the assistant a decision to support and a structure to produce. The result can then be checked against the goal instead of judged by how organized the page looks.\n\nName the deliverable, audience, and scope in the prompt. Add the known facts, mark the important gaps, and describe the format briefly enough that another person could recognize whether it was followed. You will learn the full CLEAR framework tomorrow; today you are making its context and goal portions do real work.\n\nKeep your original vague prompt next to the improved one. Run the improved version and inspect which details now appear correctly, which questions remain, and whether the output introduces any unsupported commitment. The improvement you are recording is a better-defined request, not proof that the assistant now understands every detail of your life or business."
+        }
+      ],
+      "prompts": [
+        {
+          "id": "d02-p01",
+          "title": "State the situation and the result",
+          "when_to_use": "When a broad request needs enough context to produce an inspectable first draft.",
+          "template": "Help me create [specific deliverable] for [person or audience].\nSituation: [relevant facts that affect the work].\nGoal: [what the deliverable must help someone do].\nKnown information: [approved facts]. Unknown information: [gaps].\nUse this format: [headings or structure]. Keep within [length or scope limit].\nSeparate supplied facts from proposed actions and questions. Do not invent [facts or commitments at risk].\nReturn a draft for [reviewer] to check; do not send, schedule, or change anything.",
+          "filled_example": "This is hypothetical practice material.\nHelp me create a preparation checklist for a volunteer planning a neighborhood book swap.\nSituation: twelve donated paperbacks and one folding table are available. Saturday is proposed, but the host has not approved the date or confirmed a location.\nGoal: help the volunteer prepare what is possible now and see what must be confirmed before announcing the event.\nKnown information: twelve paperbacks; one folding table. Unknown information: approved date, location, and who will staff the table.\nUse two headings, Ready to prepare and Needs confirmation, with no more than five bullets altogether.\nSeparate supplied facts from proposed actions and questions. Do not invent a confirmed event, a venue, staffing, or an invitation.\nReturn a draft for the volunteer to check; do not send, schedule, or change anything.",
+          "illustrative_output": "Illustrative output — wording may vary.\nReady to prepare\n- Supplied facts: twelve donated paperbacks and one folding table are available.\n- Proposed action: make a simple list of the books and check their condition before planning the display.\nNeeds confirmation\n- Ask the host whether Saturday is approved; it is currently only proposed.\n- Confirm the location before announcing where the swap will happen.\n- Confirm who will staff the table; no volunteer assignment is supplied.\nReview note: This is a preparation draft, not a confirmed event or an invitation.",
+          "review_checklist": [
+            "The proposed Saturday has not become a confirmed date.",
+            "The twelve books and one table match the supplied facts.",
+            "Proposed preparation is labeled as a suggestion, and missing venue or staffing remains unknown."
+          ],
+          "tags": [
+            "context",
+            "goal",
+            "foundation"
+          ]
+        }
+      ],
+      "exercise": {
+        "artifact_name": "Improved version of a vague prompt",
+        "instructions": [
+          "Copy the vague request for your Day 1 task without adding private material.",
+          "Write the audience, intended deliverable, relevant context, known facts, and important unknowns.",
+          "Rewrite the request with an explicit goal, a usable format, and at least two boundaries.",
+          "Run the improved request and label output statements as supplied fact, proposed action, or question.",
+          "Save both prompt versions, the checked output, and a note explaining one useful change."
+        ],
+        "success_criteria": [
+          "The improved prompt identifies an audience and one named deliverable.",
+          "Relevant facts and important unknowns are explicit, with at least two limits or prohibited inventions.",
+          "The checked output does not turn an unknown into a fact or a draft into an external commitment."
+        ],
+        "writing_fields": [
+          {
+            "label": "Original vague prompt",
+            "hint": "Copy the request you started with.",
+            "lines": 3
+          },
+          {
+            "label": "Context and known facts",
+            "hint": "What changes the answer, and what evidence do you have?",
+            "lines": 3
+          },
+          {
+            "label": "Goal and unknowns",
+            "hint": "Name the result and decisions still awaiting confirmation.",
+            "lines": 3
+          },
+          {
+            "label": "Improved prompt and limits",
+            "hint": "Write the new request, format, and boundaries.",
+            "lines": 3
+          },
+          {
+            "label": "Output review",
+            "hint": "Which additions helped, and which unsupported detail did you remove or hold?",
+            "lines": 3
+          }
+        ],
+        "transfer_option": "Use this alternate task: “Help me get ready for a day out.” Hypothetical facts: bring water, a packed lunch, and a notebook; a rain jacket is available; destination, weather, and departure time are not supplied. Ask for a short packing checklist that uses only these items and lists the missing planning questions without guessing travel details."
+      },
+      "check": {
+        "type": "questions",
+        "items": [
+          {
+            "question": "Saturday is proposed but not approved. Which output belongs in the checklist?",
+            "answer": "Ask the host to confirm Saturday, rather than state that the event is confirmed.",
+            "explanation": "Approval status is a fact boundary, not an invitation to assume the likely answer."
+          },
+          {
+            "question": "Which detail is useful context for this task: the number of available books or every volunteer’s home address?",
+            "answer": "The number of available books.",
+            "explanation": "The home addresses are unnecessary for a preparation checklist and should be omitted."
+          },
+          {
+            "question": "Is make a book list a supplied fact or a proposed action?",
+            "answer": "A proposed action.",
+            "explanation": "The input did not say a list already exists; the output may suggest one but must label it appropriately."
+          },
+          {
+            "question": "What must a usable goal identify?",
+            "answer": "A specific deliverable and what it should help its audience do.",
+            "explanation": "That creates a finish line for reviewing the answer."
+          }
+        ],
+        "pass_rule": "Answer all four correctly and show all three exercise success criteria in your artifact. If an output invents approval or unnecessary personal detail, repair the prompt and output before continuing."
+      },
+      "troubleshooting": "If the answer is too broad, replace a general request such as organize this with the document or decision you actually need. If it asks for unnecessary information, omit that detail and restate the minimum facts required for the task. If it invents an approval, preserve the unknown explicitly and hold the relevant line rather than treating a plausible suggestion as confirmation.",
+      "reflection": "Which piece of context changed the result most, and why? Note one detail you intentionally left out because it was not needed. Use that distinction to decide what you will include in tomorrow's reusable template.",
+      "next_step": "Keep your improved prompt and checked output for Day 3. You will add the full CLEAR structure without losing the useful context and goal. The same task can stay small while the instructions become more reusable.",
+      "official_references": [],
+      "revision": "4a9ea16391cabfd53f95194b84b6f57e14d021a9eace6bc05357ade7a232ec2f"
+    },
+    {
+      "id": "day-03",
+      "order": 3,
+      "phase": 1,
+      "title": "The full CLEAR framework",
+      "objective": "By the end, save one reusable CLEAR template with all five exact elements and a filled example whose output passes at least three stated checks.",
+      "estimated_minutes": 22,
+      "status": {
+        "content": "content-complete",
+        "recording": "recording-pending",
+        "author_review": "review-pending"
+      },
+      "introduction": "CLEAR gives a useful request a repeatable shape. It does not require special vocabulary or a long prompt, and it does not turn an assistant into an authority. Today you will use Context; Lead with goal; Examples; Add constraints; Refine to make one small task easier to explain, check, and use again.",
+      "lesson_sections": [
+        {
+          "heading": "Understand what each part contributes",
+          "body": "Context supplies the situation and facts that affect the answer, while Lead with goal names the result you want. Examples show a useful format, preference, or quality standard when you have one. Add constraints sets the limits and prohibited inventions, and Refine gives you a way to inspect and improve the first version.\n\nThe exact framework is Context; Lead with goal; Examples; Add constraints; Refine. The letters are a memory aid for the work, not five boxes that must all contain the same amount of text. A two-sentence context may be enough, while a task with important boundaries may need a longer constraints section.\n\nAn example is not a secret second set of facts. If you show “Task — 5 minutes” to demonstrate format, say that it is a format model rather than another activity to add. If you have no suitable example, state that and describe the desired structure instead of borrowing someone else's private material."
+        },
+        {
+          "heading": "Make refinement part of the request",
+          "body": "Refine does not mean asking for endless alternatives. It means comparing the first answer with the result you need, correcting a specific weakness, and stopping when the output meets your criteria. You might check the minutes, preserve a fixed commitment, remove an invented promise, or ask for missing information before a recommendation.\n\nThe kitchen demonstration makes this visible because the arithmetic can be checked. Twenty minutes is a budget for the sequence, not evidence that every dish can be washed in eight minutes. A useful answer keeps a stopping point and names what remains instead of pretending that a smaller allowance requires the learner to acquire unusually fast hands.\n\nSave both the reusable version and a filled example. The template should contain clear fields that you will update next time, while the example shows what those fields look like when actually completed. Keep the checked output with them so another person can recognize the expected structure and the review still required."
+        }
+      ],
+      "prompts": [
+        {
+          "id": "d03-p01",
+          "title": "Use all five CLEAR elements",
+          "when_to_use": "When you want a repeatable request with context, a goal, an example, boundaries, and a refinement rule.",
+          "template": "Context: [situation and relevant facts].\nLead with goal: Create [specific deliverable] so [intended use].\nExamples: Use a format like [small model or say no example available]. The example shows [format or style], not additional facts.\nAdd constraints: Work within [time, scope, access, length, or other limits]. Do not invent [facts or commitments]. Keep [important requirement].\nRefine: Check the first draft against [success criteria]. If it will not fit, [how to reduce scope or ask for missing information]. Separate supplied facts from assumptions and leave actions to me.",
+          "filled_example": "This is an invented household practice example.\nContext: My kitchen has dirty dishes, a crowded counter, and obvious trash. I have twenty minutes, with a trash bag, dish soap, and an appropriate labeled surface cleaner available. The walkway must stay clear.\nLead with goal: Create a short sequence that makes a useful counter area and the sink more usable without starting a larger cleaning project.\nExamples: Use numbered steps with minutes, like “Task — 5 minutes.” This demonstrates format only; it does not add a task.\nAdd constraints: Total exactly twenty minutes. Include putting supplies away and leaving the walkway clear. Exclude other rooms, deep cleaning, shopping, heavy lifting, and mixed cleaning products. Treat task lengths as planning allowances rather than a promise that everything will be finished.\nRefine: Check the total and whether each step supports the stated goal. If the dishes need longer, stop at the time allowance and list what remains instead of extending the session. Keep the actual cleaning and product-label decisions with me.",
+          "illustrative_output": "Illustrative output — not a guarantee of completion.\n1. Collect obvious trash and take it to the usual disposal point — 4 minutes.\n2. Wash or load the dishes needed to make the sink more usable, stopping when the allowance ends — 8 minutes.\n3. Clear one useful counter area and clean it with an appropriate product according to its label — 5 minutes.\n4. Put supplies away and check that the walkway is clear — 3 minutes.\nCheck: 4 + 8 + 5 + 3 = 20 minutes.\nPostponed: remaining dishes, other counter areas, deep cleaning, and all other rooms.\nAssumption to review: the selected counter area can be made useful within its allowance. If it cannot, reduce the area rather than rush or extend the plan.\nStop rule: finish safely, put supplies away within the final allowance, and record anything still unfinished.",
+          "review_checklist": [
+            "All five CLEAR elements are present with their exact names and distinct jobs.",
+            "The minutes add to twenty, and putting supplies away is included.",
+            "The example did not add an unrelated task; product labels, physical limits and actual work remain with the learner."
+          ],
+          "tags": [
+            "CLEAR",
+            "template",
+            "foundation"
+          ]
+        }
+      ],
+      "exercise": {
+        "artifact_name": "A reusable CLEAR template",
+        "instructions": [
+          "Use your Day 2 task or the supplied alternate and write the five exact CLEAR labels.",
+          "Fill Context and Lead with goal using the relevant facts and the named deliverable.",
+          "Add a safe example or format model, then state what it demonstrates and which facts it does not add.",
+          "Complete the constraints and a refinement rule tied to at least three observable checks.",
+          "Run the filled example, check the result, and save the reusable template separately from the example and output."
+        ],
+        "success_criteria": [
+          "All five exact CLEAR elements are identifiable and have distinct useful content.",
+          "The filled example has no unfilled fields and identifies important unknowns or assumptions.",
+          "The output is checked against at least three requirements, with any necessary correction recorded."
+        ],
+        "writing_fields": [
+          {
+            "label": "Context and goal",
+            "hint": "Record relevant facts and one inspectable deliverable.",
+            "lines": 3
+          },
+          {
+            "label": "Example and its purpose",
+            "hint": "Show an invented or approved format example and explain what it demonstrates.",
+            "lines": 3
+          },
+          {
+            "label": "Constraints and prohibited inventions",
+            "hint": "State the limits, required facts, and decisions the assistant must not invent.",
+            "lines": 3
+          },
+          {
+            "label": "Refinement and stopping rule",
+            "hint": "Name three checks and what you will do when one fails.",
+            "lines": 3
+          },
+          {
+            "label": "Reusable version location",
+            "hint": "Where are the template, filled example, and checked output saved?",
+            "lines": 3
+          }
+        ],
+        "transfer_option": "Use an invented twenty-minute desk reset: loose papers, three books, and stationery are on the desk; one empty tray is available. Goal: a clear writing area and a visible list of papers needing later decisions. Exclude reading every document, discarding papers without review, other rooms, and shopping; include putting supplies away."
+      },
+      "check": {
+        "type": "questions",
+        "items": [
+          {
+            "question": "What are the five exact CLEAR elements?",
+            "answer": "Context; Lead with goal; Examples; Add constraints; Refine.",
+            "explanation": "Keeping the names stable makes the method reusable across tasks."
+          },
+          {
+            "question": "A format example says Task — 5 minutes. Must the output add a task called Task?",
+            "answer": "No. It demonstrates structure, not an additional fact or activity.",
+            "explanation": "Examples need a stated purpose so their content is not misread as task data."
+          },
+          {
+            "question": "Do four, eight, five, and three minutes fit the twenty-minute budget?",
+            "answer": "Yes: 4 + 8 + 5 + 3 = 20.",
+            "explanation": "The learner checks the arithmetic independently rather than trusting the presentation."
+          },
+          {
+            "question": "What should happen if eight minutes will not finish the dishes?",
+            "answer": "Stop within the allowance, reduce scope if needed, and record what remains.",
+            "explanation": "A planning allowance is not a guarantee of completion or a reason to rush unsafely."
+          }
+        ],
+        "pass_rule": "Answer all four correctly and show all five framework elements in the saved template. Repair any incorrect arithmetic, invented fact, or missing boundary before carrying the example into Day 4."
+      },
+      "troubleshooting": "If the prompt becomes repetitive, give each CLEAR section a separate job instead of repeating the goal under every label. If the example introduces unwanted content, state that it shows format only and replace it with a smaller model. If the result is still hard to judge, revise the success checks before asking for more versions.",
+      "reflection": "Which CLEAR element made the most useful difference to your result? Identify one assumption the output still needed you to judge. Record a stopping condition that will keep refinement from becoming a substitute for using the artifact.",
+      "next_step": "Bring the filled prompt and first checked output to Day 4. You will practice a targeted refinement while preserving the facts and boundaries that still apply. Keep the reusable template unchanged until you know which improvement is worth saving.",
+      "official_references": [],
+      "revision": "b4ac5e70757136ad233e5e402e2aa67d606a3c08019af46e540fcbaa98588527"
+    }
+  ],
+  "source_manifest": {
+    "algorithm": "sha256",
+    "files": [
+      {
+        "path": "course.json",
+        "sha256": "3ab2b81fa00cbc8ad5a43a1e38ee1a0c6a57265509408c5dc66f1ba85096983d"
+      },
+      {
+        "path": "lesson.schema.json",
+        "sha256": "8c50860f9f93374bbef78f3e38652ab55dbe2ac7521ec97d868935890b716f67"
+      },
+      {
+        "path": "lessons/day-01.json",
+        "sha256": "25c5f3eb47099f677116fa9dea9b156f1c4a2756b2507cf10f026e62198910d7"
+      },
+      {
+        "path": "lessons/day-02.json",
+        "sha256": "c2756939a74bd08d7b62f7b49bad7af4b22f9f5960a02e002a42836deac40e16"
+      },
+      {
+        "path": "lessons/day-03.json",
+        "sha256": "533a24e94203127abadd69ab850faef476ea503467b74e6bb9b82683042e6692"
+      },
+      {
+        "path": "lessons/day-04.json",
+        "sha256": "fbde5d3f8fe257a42a1557713c6c32e6fe4e35673f703db905e5f43c6942898a"
+      },
+      {
+        "path": "lessons/day-05.json",
+        "sha256": "b42c80cde82d89ec3cd1dc6ed82088695c3f34ffba228e414e8e4c9abdc4a447"
+      },
+      {
+        "path": "lessons/day-06.json",
+        "sha256": "8c943408a8b6ca7fe375b8410ae982e49953061131687a7c1fe628d3fef09eb3"
+      },
+      {
+        "path": "lessons/day-07.json",
+        "sha256": "4d02fd8fc1d3be13237c51be1c1a0f69e1962653f130f3c60727db6aecedb530"
+      },
+      {
+        "path": "lessons/day-08.json",
+        "sha256": "9608c1d5c809a42b9ee6bde84b50fb0017d4bfac71fe76ab9eb5c105567298d7"
+      },
+      {
+        "path": "lessons/day-09.json",
+        "sha256": "23bfe27e8c74dc4ab0d5af421e403ea8e8e44205a95efd1c63bf188d69d47e66"
+      },
+      {
+        "path": "lessons/day-10.json",
+        "sha256": "447c8f41cd7b33ddecfd1f08917b0b1e87a4e9b4b07fbd030ae1fc5776aca995"
+      },
+      {
+        "path": "lessons/day-11.json",
+        "sha256": "afb604b0e86c72c529ad74f03d3156548b73f9dfd3bc1482d739b81f86eafa9b"
+      },
+      {
+        "path": "lessons/day-12.json",
+        "sha256": "23312c44e02bbed56aba296c05dab49de3de8c40841b77d316b237428cea19b3"
+      },
+      {
+        "path": "lessons/day-13.json",
+        "sha256": "f27d4bc6eaf26a20536854bfc5ad02859b2fa3b176991ebf0acd22bc588046b9"
+      },
+      {
+        "path": "lessons/day-14.json",
+        "sha256": "c8cc2554f5bf75cf3ccf685e00ced35ec6683285af0cde2cc8aa7230076a68ef"
+      },
+      {
+        "path": "lessons/day-15.json",
+        "sha256": "0c7fa6db433eb40b981617d4a8cd16ea225aab880971add152831a57200e1e8a"
+      },
+      {
+        "path": "lessons/day-16.json",
+        "sha256": "56611c8b617e745a148c628cdaf7c7e5a44e4e1cee5a6f817d63c24c22a62d8b"
+      },
+      {
+        "path": "lessons/day-17.json",
+        "sha256": "d84dfc5c55c0a21ce6af199b4f4420b651cc410230a95662f133f9e4a7aa5e82"
+      },
+      {
+        "path": "lessons/day-18.json",
+        "sha256": "d1427596cc02e27dd464ca01b3eb1aa7b3ae1147b66079131a9c82123e4205fa"
+      },
+      {
+        "path": "lessons/day-19.json",
+        "sha256": "3b3a06fc883a11e29809c92240922a2f1ee417303672369fe0e989d066379136"
+      },
+      {
+        "path": "lessons/day-20.json",
+        "sha256": "6715e2955b10b934d6ef3716fbc91c3c3854a33d2d31dc816e77b1007d325f0e"
+      },
+      {
+        "path": "lessons/day-21.json",
+        "sha256": "110932461c59fbc381e07b8938286ba226e9ebd8278ad5c50aff5bfc2e9db676"
+      }
+    ]
+  },
+  "content_revision": "c4febbb52025c15005bca39d61d5cf937dd7272a975648aaf5e0adc0d2dafe90"
+}

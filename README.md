@@ -1,5 +1,7 @@
 This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
 
+The Academy course-preview implementation, source recovery, content pipeline, access boundaries, checks and launch dependencies are documented in [ACADEMY_PREVIEW.md](ACADEMY_PREVIEW.md).
+
 ## Getting Started
 
 First, run the development server:

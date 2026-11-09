@@ -6,4 +6,4 @@ export default function ContactPage(){return <main id="academy-main"><section cl
  <section id="general" className="ol-container academy-section"><h2>General AI training inquiry</h2><AcademyInquiryForm slug="general" title="General AI training" chooseProgram/></section>
  <section id="consultation" className="ol-container academy-section"><h2>Free 20-minute consultation request</h2><p>This records your request; we’ll confirm a time separately.</p><AcademyInquiryForm slug="general" title="Free consultation" kind="consultation" chooseProgram/></section>
  <section id="payment" className="ol-container academy-section"><h2>Already made an arranged payment?</h2><AcademyInquiryForm slug="general" title="Payment verification" kind="payment-verification" chooseProgram/></section>
- <div className="ol-container academy-back"><Link href="/ai-academy">← Back to Academy programs</Link></div></main>;}
+ <div className="ol-container academy-back"><Link href="/ai-training">← Back to Academy programs</Link></div></main>;}

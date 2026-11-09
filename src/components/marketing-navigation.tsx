@@ -8,14 +8,14 @@ const links = [
   ["#services", "Services"],
   ["#pricing", "Pricing"],
   ["#process", "How it works"],
-  ["/ai-academy", "AI Training"],
+  ["/ai-training", "AI Training"],
   ["/portfolio", "Portfolio"],
   ["/demos", "Try the demos"],
 ] as const;
 
 export function MarketingNavigation({ home = true }: { home?: boolean }) {
   const pathname = usePathname();
-  const current = (href: string) => pathname === href ? "page" as const : href === "/ai-academy" && pathname.startsWith("/ai-academy/") ? "location" as const : undefined;
+  const current = (href: string) => pathname === href ? "page" as const : href === "/ai-training" && (pathname.startsWith("/ai-academy/") || pathname.startsWith("/ai-training/")) ? "location" as const : undefined;
   const navigationLinks = links.map(([href, label]) => [!home && href.startsWith("#") ? `/${href}` : href, label]);
   const disclosure = useRef<HTMLDetailsElement>(null);
   const toggle = useRef<HTMLElement>(null);

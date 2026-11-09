@@ -4,11 +4,32 @@ export type LeadStatus = typeof statuses[number];
 export const requestTypes = ['inquiry','consultation','waitlist','workshop','payment-verification'] as const;
 export type RequestType = typeof requestTypes[number];
 export const consentVersion = 'academy-marketing-v1';
+export const courseUpdatesConsentVersion = 'academy-course-updates-v1';
+export const privacyAgreementVersion = 'academy-privacy-v1';
+export const freeDiscoveryService = {kind:'free-discovery',price:0,currency:'USD',durationMinutes:20} as const;
 export const marketingConsentText = 'Email me optional AI training offers and app-development promotions. I can withdraw this consent at any time.';
+export const privacyAgreementText = 'I have read the Privacy and inquiries notice and agree that Optimize Local may use the details I submit to respond to this request.';
 export interface LeadInput {
  name: string; email: string; phone: string; program: string; requestType: RequestType;
  source: string; contactMethod: 'email' | 'phone'; notes: string; transactionReference: string;
  marketingConsent: boolean; courseUpdatesConsent: boolean;
+ business: string; timeZone: string; goal: string;
+ privacyAgreement: true; privacyAgreementVersion: string;
+}
+export interface OfferSnapshot {
+ slug: string; title: string; price: number | null; currency: 'USD'; priceBasis: string;
+ duration: string; delivery: string; comingSoon: boolean;
+}
+// Call with the validated program slug. Offer terms never come from form fields.
+export function getOfferSnapshot(slug: string): OfferSnapshot {
+ const program = academyPrograms.find(p=>p.slug===slug);
+ if (!program) return {slug:'general',title:'General AI training inquiry',price:null,currency:'USD',priceBasis:'To be confirmed after choosing a program',duration:'To be confirmed',delivery:'To be confirmed',comingSoon:false};
+ const delivery = 'delivery' in program && typeof program.delivery === 'string' ? program.delivery : 'Delivery arrangements to be confirmed';
+ return {slug:program.slug,title:program.title,price:program.price,currency:'USD',priceBasis:program.priceBasis,duration:program.duration,delivery,comingSoon:program.comingSoon};
+}
+export function leadNotes(input: LeadInput): string {
+ if (input.requestType === 'payment-verification') return '';
+ return [input.notes,input.business && `Business: ${input.business}`,input.timeZone && `Preferred time zone (not a booking): ${input.timeZone}`,input.goal && `Learning goal: ${input.goal}`].filter(Boolean).join('\n');
 }
 export class CrmError extends Error { constructor(public status: number, message: string) { super(message); } }
 export function validateLead(raw: unknown): LeadInput {
@@ -34,13 +55,18 @@ export function validateLead(raw: unknown): LeadInput {
  const contactMethod = str('contactMethod',10,true) as 'email'|'phone';
  if (!['email','phone'].includes(contactMethod) || (contactMethod === 'phone' && !phone)) throw new CrmError(400,'Provide a phone number or choose email.');
  const notes = str('notes',2000), transactionReference = str('transactionReference',100);
+ const business = str('business',160), timeZone = str('timeZone',100), goal = str('goal',800);
+ if (/[\r\n]/.test(business+' '+timeZone)) throw new CrmError(400,'Keep business and time zone on one line each.');
  if (requestType === 'payment-verification' && !/^[a-zA-Z0-9][a-zA-Z0-9_-]{3,99}$/.test(transactionReference)) throw new CrmError(400,'Enter only the transaction reference (letters, numbers, hyphens or underscores).');
  if (requestType === 'payment-verification' && notes) throw new CrmError(400,'Submit the transaction reference only; no payment notes or credentials.');
+ if (requestType === 'payment-verification' && (business || timeZone || goal)) throw new CrmError(400,'Submit the transaction reference only. Use a separate training inquiry for business details or learning goals.');
  if (requestType !== 'payment-verification' && transactionReference) throw new CrmError(400,'Transaction references belong in payment verification requests.');
- if (/\b(?:\d[ -]?){12,19}\b/.test(notes+' '+transactionReference) || /(?:password|api[_ -]?key|secret|cvv|routing number|account number)\s*[:=]/i.test(notes+' '+transactionReference)) throw new CrmError(400,'Remove financial credentials, card numbers or secrets. Submit a transaction reference only.');
+ const requestText = [notes,transactionReference,business,timeZone,goal].join(' ');
+ if (/\b(?:\d[ -]?){12,19}\b/.test(requestText) || /(?:password|api[_ -]?key|secret|cvv|routing number|account number)\s*[:=]/i.test(requestText)) throw new CrmError(400,'Remove financial credentials, card numbers or secrets. Submit a transaction reference only for payment verification.');
+ if (r.privacyAgreement !== true) throw new CrmError(400,'Read and agree to the Privacy and inquiries notice before sending your request.');
  for (const key of ['marketingConsent','courseUpdatesConsent']) if (r[key] !== undefined && typeof r[key] !== 'boolean') throw new CrmError(400,'Consent must be explicitly selected.');
  if (requestType === 'waitlist' && r.courseUpdatesConsent !== true) throw new CrmError(400,'Consent to course availability updates is required to join the list.');
- return {name,email,phone,program,requestType,contactMethod,notes,transactionReference,source:str('source',300)||'direct',marketingConsent:r.marketingConsent===true,courseUpdatesConsent:requestType==='waitlist' && r.courseUpdatesConsent===true};
+ return {name,email,phone,program,requestType,contactMethod,notes,transactionReference,business,timeZone,goal,privacyAgreement:true,privacyAgreementVersion,source:str('source',300)||'direct',marketingConsent:r.marketingConsent===true,courseUpdatesConsent:requestType==='waitlist' && r.courseUpdatesConsent===true};
 }
 export function safeCsv(rows: Record<string, unknown>[]) {
  const columns=['id','name','email','phone','program','request_type','status','source','contact_method','next_follow_up_at','marketing_consent','marketing_consent_at','course_updates_consent','created_at','updated_at','notes'];

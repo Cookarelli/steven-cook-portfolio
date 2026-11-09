@@ -1,0 +1,1 @@
+export default function LoadingLesson() { return <main id="academy-main" className="ol-container academy-section"><h2>Opening your written lesson</h2><p role="status">Loading the sample. Your practice progress stays local to this browser.</p></main>; }

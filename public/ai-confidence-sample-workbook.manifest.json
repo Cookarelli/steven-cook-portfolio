@@ -1,0 +1,43 @@
+{
+  "schema_version": "1.0",
+  "generator_version": "1.0",
+  "course_id": "21-days-to-ai-confidence",
+  "sample_ids": [
+    "day-01",
+    "day-02",
+    "day-03"
+  ],
+  "source_file": "src/data/course-preview.json",
+  "source_json_sha256": "05dc0157f38a2def2e7e64169d6b455489be2518d8d98a91aaa4a183a55104cf",
+  "sample_source_sha256": "0f42d56f8a1e524bdee2c0a8d412a6e970504aa43e08fc4bd9a6fc047e8ce93d",
+  "content_revision": "c4febbb52025c15005bca39d61d5cf937dd7272a975648aaf5e0adc0d2dafe90",
+  "generator_sha256": "36e98b5db8dffcf1d910208ea1069f27bf43c9f525d7845cbc8aaf7d87a16b88",
+  "reportlab_version": "4.4.9",
+  "pdf_file": "public/ai-confidence-sample-workbook.pdf",
+  "pdf_filename": "ai-confidence-sample-workbook.pdf",
+  "pdf_sha256": "414a9defb4c2ed13ce2e7b3fa9116a5190e27f30b6b84764875ee1278ece4ad5",
+  "pages": 9,
+  "page_size": "Letter portrait",
+  "body_font_points": 11,
+  "writing_lines": [
+    {
+      "id": "day-01",
+      "field_lines": 12,
+      "reflection_lines": 2
+    },
+    {
+      "id": "day-02",
+      "field_lines": 15,
+      "reflection_lines": 2
+    },
+    {
+      "id": "day-03",
+      "field_lines": 15,
+      "reflection_lines": 2
+    }
+  ],
+  "total_ruled_lines": 48,
+  "answered_checks": 12,
+  "text_normalization": "Typographic Unicode dash variants become ASCII hyphens; nonbreaking spaces become ordinary spaces. Wording and template line breaks are preserved.",
+  "visual_review": "Required separately after generation; this manifest checks freshness, not inspected layout."
+}
