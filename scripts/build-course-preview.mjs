@@ -313,7 +313,7 @@ function workbookHTML(payload) {
   <style>
     @page { size: Letter portrait; margin: .65in .7in; }
     * { box-sizing: border-box; }
-    body { max-width: 8.5in; margin: 0 auto; padding: .65in .7in; color: #181818; background: #fff; font-family: Georgia, 'Times New Roman', serif; font-size: 11pt; line-height: 1.22; }
+    body { max-width: 8.5in; margin: 0 auto; padding: .65in .7in; color: #181818; background: #fff; font-family: Georgia, 'Times New Roman', serif; font-size: 11pt; line-height: 1.22; overflow-wrap: anywhere; }
     h1,h2,h3 { font-family: Arial, Helvetica, sans-serif; line-height: 1.15; break-after: avoid; }
     h1 { font-size: 20pt; margin: 0 0 12pt; }
     h2 { font-size: 12pt; margin: 12pt 0 5pt; }
