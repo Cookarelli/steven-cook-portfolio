@@ -8,21 +8,29 @@
     "start": "next start",
     "lint": "eslint",
     "test:forms": "node --experimental-strip-types --test tests/inquiry-delivery.test.mjs",
-    "test:demos": "node --experimental-strip-types --test tests/demo-model.test.mjs"
+    "test:demos": "node --experimental-strip-types --test tests/demo-model.test.mjs",
+    "typecheck": "tsc --noEmit",
+    "test:academy": "node --experimental-strip-types --test tests/academy.test.mjs",
+    "test:routes": "node --experimental-strip-types --test tests/academy-routes.test.mjs tests/local-readiness.test.mjs",
+    "test:crm": "node scripts/test-academy-crm.mjs",
+    "db:migrate": "node scripts/migrate-academy.mjs"
   },
   "dependencies": {
-    "next": "16.3.3",
+    "next": "16.4.5",
+    "pg": "8.23.1",
     "react": "19.2.8",
     "react-dom": "19.2.8"
   },
   "devDependencies": {
     "@tailwindcss/postcss": "^4",
     "@types/node": "^20",
+    "@types/pg": "8.23.1",
     "@types/react": "^19",
     "@types/react-dom": "^19",
     "eslint": "^9",
-    "eslint-config-next": "16.3.3",
+    "eslint-config-next": "16.4.5",
     "tailwindcss": "^4",
+    "tsx": "4.23.15",
     "typescript": "^5"
   }
 }

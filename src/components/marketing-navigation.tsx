@@ -1,24 +1,28 @@
 "use client";
 
 import { useRef } from "react";
+import { usePathname } from "next/navigation";
 import { consultationHref, consultationReady } from "@/lib/consultation";
 
 const links = [
   ["#services", "Services"],
   ["#pricing", "Pricing"],
   ["#process", "How it works"],
+  ["/ai-academy", "AI Training"],
   ["/portfolio", "Portfolio"],
   ["/demos", "Try the demos"],
 ] as const;
 
 export function MarketingNavigation({ home = true }: { home?: boolean }) {
+  const pathname = usePathname();
+  const current = (href: string) => pathname === href ? "page" as const : href === "/ai-academy" && pathname.startsWith("/ai-academy/") ? "location" as const : undefined;
   const navigationLinks = links.map(([href, label]) => [!home && href.startsWith("#") ? `/${href}` : href, label]);
   const disclosure = useRef<HTMLDetailsElement>(null);
   const toggle = useRef<HTMLElement>(null);
 
   return <>
     <nav className="ol-nav" aria-label="Main navigation">
-      {navigationLinks.map(([href, label]) => <a key={href} href={href} aria-current={!home && href === "/portfolio" ? "page" : undefined}>{label}</a>)}
+      {navigationLinks.map(([href, label]) => <a key={href} href={href} aria-current={current(href)}>{label}</a>)}
     </nav>
     <details className="ol-mobile-navigation" ref={disclosure} onKeyDown={event => {
       if (event.key === "Escape" && disclosure.current?.open) {
@@ -33,7 +37,7 @@ export function MarketingNavigation({ home = true }: { home?: boolean }) {
           toggle.current?.focus();
         }
       }}>
-        {navigationLinks.map(([href, label]) => <a key={href} href={href} aria-current={!home && href === "/portfolio" ? "page" : undefined}>{label}</a>)}
+        {navigationLinks.map(([href, label]) => <a key={href} href={href} aria-current={current(href)}>{label}</a>)}
         <a href={consultationHref} {...(consultationReady ? { target: "_blank", rel: "noopener noreferrer" } : {})}>Book a free consultation ↗</a>
       </nav>
     </details>

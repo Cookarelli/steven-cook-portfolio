@@ -30,7 +30,7 @@ test('crawler files use absolute preferred-host URLs and omit thank-you', async 
   assert.match(robots, /Sitemap: https:\/\/www\.optimizelocalai\.com\/sitemap.xml/);
   const sitemap = await (await fetch(base + '/sitemap.xml')).text();
   const urls = [...sitemap.matchAll(/<loc>([^<]+)<\/loc>/g)].map(match => match[1]);
-  assert.equal(urls.length, 6);
+  assert.equal(urls.length, 14);
   assert.ok(urls.every(url => url.startsWith('https://www.optimizelocalai.com/')));
   assert.ok(urls.includes('https://www.optimizelocalai.com/privacy'));
   assert.ok(!urls.some(url => url.includes('thank-you')));

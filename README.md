@@ -63,3 +63,46 @@ npm run start -- --hostname 0.0.0.0 --port 3100
 `test:demos` uses Node’s built-in test runner and TypeScript stripping (Node 22.18+). No browser automation dependency is included. Browser QA covers both customer and owner flows, photos, form errors, session reloads, resets, sample-calendar conflicts, and narrow-phone/desktop layouts.
 
 Production publishing is intentionally separate from this implementation. The root and `www` domains already serve this repository’s app-services landing page; Connect remains separate at `connect.optimizelocalai.com`. No Connect source, domain assignments, or database configuration are changed here.
+
+
+## Optimize Local AI Academy
+
+The Academy hub is `/ai-academy`; six statically generated detail pages use the
+program slugs in `src/config/ai-academy.ts`. This typed configuration holds all
+program copy, prices, duration/format, CTA labels, and explicitly null external
+payment, booking and group-registration destinations. Course and pricing cards
+share the same data. Existing app-development services remain intact.
+
+Current release is inquiry-only for live training. CTA labels lead to an inquiry
+form when no verified private booking URL exists. Group workshop interest is
+never seat inventory and never uses private calendar slots. Payment actions are
+not implemented: PayPal/Venmo fields remain unconfigured. Enabling group ticket
+sales or payments requires a separate validated registration/payment flow.
+
+21 Days to AI Confidence stays Coming Soon. Academy forms now save lead records
+through the server-side PostgreSQL workflow, with separate course-update and
+promotional consent. The database destination still needs configuration; missing
+persistence returns an error instead of an inbox-only success.
+
+See [ACADEMY_CRM.md](ACADEMY_CRM.md) for the protected lead view, notifications,
+export, database setup and durable integration tests.
+
+Validation:
+
+```bash
+npm run lint
+npm run typecheck
+npm run test:forms
+npm run test:demos
+npm run test:academy
+npm run test:crm
+npm run build
+# In a separate terminal, for read-only route checks:
+npm run start -- --hostname 127.0.0.1 --port 3107
+npm run test:routes
+```
+
+Do not submit real inquiries as part of automated tests. External booking URLs,
+workshop schedules, payment handling, mailbox receipt and course delivery still
+need operational verification before taking paid enrollments. No production
+publication is part of this implementation.

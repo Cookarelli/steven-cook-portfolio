@@ -1,3 +1,4 @@
+import Link from "next/link";
 import { MarketingNavigation } from "@/components/marketing-navigation";
 import { ContactForm } from "@/components/contact-form";
 
@@ -97,6 +98,12 @@ export default function Home() {
       </section>
       <div className="home-trust"><div className="ol-container"><span>Based in Rockford, Illinois</span><span>Work directly with your builder</span><span>Scope and price agreed before work begins</span></div></div>
 
+      <section className="ol-section ol-container" id="ai-training">
+        <p className="ol-eyebrow">INTRODUCING OPTIMIZE LOCAL AI ACADEMY</p>
+        <h2>Practical AI skills.<br />For real life and real work.</h2>
+        <p className="ol-lead">Beginner-friendly private sessions, group workshops and team training. Learn to use AI with confidence while keeping your own judgment.</p>
+        <Link className="ol-button ol-button-primary" href="/ai-academy">Explore AI Training ↗</Link>
+      </section>
       <section className="ol-section ol-container" id="services">
         <div className="ol-section-intro"><div><p className="ol-eyebrow">HOW WE CAN HELP</p><h2>More time for your customers.</h2></div><p>Your app should solve a problem you face every week: missed inquiries, paperwork, confusing schedules, slow payments, or customers who forget to come back.</p></div>
         <div className="ol-service-grid">{services.map((service) => (
@@ -158,7 +165,7 @@ export default function Home() {
       </div></section>
 
       </main>
-      <footer className="ol-footer"><div className="ol-container ol-footer-main"><a href="#top" className="ol-footer-logo">OPTIMIZE <strong>LOCAL.</strong></a><p>Easier days, happier customers, and more room to grow.</p><a href="mailto:optimizelocalai@gmail.com">Get in touch ↗</a></div><div className="ol-container ol-footer-bottom"><span>© {new Date().getFullYear()} Optimize Local · Rockford, Illinois</span><span><a href="#services">Services</a> · <a href="#pricing">Pricing</a> · <a href="#work">Work</a> · <a href="/privacy">Privacy</a> · <a href="https://connect.optimizelocalai.com" target="_blank" rel="noopener noreferrer">Connect</a></span></div></footer>
+      <footer className="ol-footer"><div className="ol-container ol-footer-main"><a href="#top" className="ol-footer-logo">OPTIMIZE <strong>LOCAL.</strong></a><p>Easier days, happier customers, and more room to grow.</p><a href="mailto:optimizelocalai@gmail.com">Get in touch ↗</a></div><div className="ol-container ol-footer-bottom"><span>© {new Date().getFullYear()} Optimize Local · Rockford, Illinois</span><span><a href="#services">Services</a> · <a href="#pricing">Pricing</a> · <a href="#work">Work</a> · <Link href="/ai-academy">AI Training</Link> · <a href="/privacy">Privacy</a> · <a href="https://connect.optimizelocalai.com" target="_blank" rel="noopener noreferrer">Connect</a></span></div></footer>
     </div>
   );
 }
