@@ -4,7 +4,7 @@ This implements one-time purchases of the existing $49, $99, $299 and $149 priva
 
 ## Release status
 
-Implementation and mocked-provider PostgreSQL tests are complete. Production payments are **disabled by default**. Actual sandbox buyer approval, production credentials, webhook delivery, the tax treatment of these offers must be verified before enabling checkout. No real payment has been made by the agent. Transactional payment emails are not configured by this implementation; the customer gets an on-site receipt and the owner gets a durable scheduling queue. Review that queue for follow-up.
+Implementation and mocked-provider PostgreSQL tests are complete. Production payments are **disabled**. Actual sandbox buyer approval, credential operation, webhook delivery, and the tax treatment of these offers must be verified before enabling checkout. No real payment has been made by the agent. Transactional payment emails are not configured by this implementation; the customer gets an on-site receipt and the owner gets a durable scheduling queue. Review that queue for follow-up.
 
 ## Confirmed target
 
@@ -13,7 +13,17 @@ Implementation and mocked-provider PostgreSQL tests are complete. Production pay
 - Vercel team: `steves-projects-e37a4ef4`
 - Vercel project: `steven-cook-portfolio` (`prj_kdbrE2yyITioKHBur9saPJHWRnsG`)
 - Existing dedicated database: Supabase `pqjooyzoiatwtlfjbzrz`, private `academy_crm` schema, restricted `academy_app` server role.
-- Live PayPal application: **Optimize Local Checkout**. Merchant ID must still be verified against the receiving business account. Website contact address remains its existing `optimizelocalai@gmail.com`.
+- Live PayPal application: **Optimize Local Checkout**. The receiving business account and merchant ID were verified in PayPal's authenticated business settings. Website contact address remains its existing `optimizelocalai@gmail.com`.
+
+## Configuration checkpoint — November 10, 2026
+
+- With the owner's explicit approval, the live client ID, client secret, and verified merchant ID were stored as Vercel Secrets scoped only to Production. `PAYPAL_ENV=live`, `PAYMENTS_ENABLED=false`, and `PAYMENT_TAX_REVIEWED=false` are saved Production configuration. No secret values are recorded here.
+- The existing PayPal **Default Application** sandbox client ID, secret, and sandbox business account ID were stored separately as Vercel Secrets scoped only to Preview branch `codex/paypal-venmo-checkout-20261110`. Its configuration uses `PAYPAL_ENV=sandbox`, `PAYMENTS_ENABLED=false`, `PAYMENT_TAX_REVIEWED=false`, and the branch preview origin below.
+- Preview origin: `https://steven-cook-portfolio-git-codex-eb66a1-steves-projects-e37a4ef4.vercel.app`.
+- A separate **Optimize Local Checkout Sandbox** Supabase project was created in the existing Optimize Local AI organization at a quoted **$0/month**: `gwwfvdihmtzwlznacswc`, region `us-west-1`. The existing `db/academy-crm.sql` schema was applied; all five base tables are empty. No production data was copied.
+- The sandbox pooler address was confirmed in Supabase's Connect panel: `aws-0-us-west-1.pooler.supabase.com:6543`, database `postgres`. TLS must remain verified.
+- Automatic approval review rejected creation of the sandbox runtime login because the prior authorization did not specify the new persistent database access grant. A follow-up read confirmed that **no `academy_app` role exists in the sandbox**. Do not retry the access change without the owner's specific approval. Prefer a restricted checkout-only login with access to payment orders, payment events, and rate-limit records; do not grant access to leads or notification tables for checkout testing.
+- Sandbox payment tables, database credential, CA certificate, administrator/rate-limit secrets, both PayPal webhooks, deployed webhook delivery, and actual buyer testing remain incomplete. Production checkout code is still in draft PR #3; only the approved refund policy is live. No production checkout deployment or payment enablement was performed.
 
 ## Environment configuration
 
