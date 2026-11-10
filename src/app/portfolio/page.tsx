@@ -120,7 +120,7 @@ export default function Portfolio() {
         </section>
       </main>
 
-      <footer className="ol-footer"><div className="ol-container ol-footer-main"><BrandLogo href="/" className="ol-footer-logo" /><p>Websites, apps, and automation from Rockford, Illinois.</p><a href="mailto:optimizelocalai@gmail.com">Get in touch ↗</a></div><div className="ol-container ol-footer-bottom"><span>© {new Date().getFullYear()} Optimize Local · Rockford, Illinois</span><span><Link href="/#services">Services</Link> · <Link href="/#pricing">Pricing</Link> · <Link href="/demos">Demos</Link> · <Link href="/privacy">Privacy</Link></span></div></footer>
+      <footer className="ol-footer"><div className="ol-container ol-footer-main"><BrandLogo href="/" className="ol-footer-logo" /><p>Websites, apps, and automation from Rockford, Illinois.</p><a href="mailto:optimizelocalai@gmail.com">Get in touch ↗</a></div><div className="ol-container ol-footer-bottom"><span>© {new Date().getFullYear()} Optimize Local · Rockford, Illinois</span><span><Link href="/#services">Services</Link> · <Link href="/#pricing">Pricing</Link> · <Link href="/demos">Demos</Link> · <Link href="/privacy">Privacy</Link> · <Link href="/refund-policy">Cancellation & refunds</Link></span></div></footer>
     </div>
   );
 }
