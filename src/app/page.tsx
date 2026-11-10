@@ -164,7 +164,7 @@ export default function Home() {
       </div></section>
 
       </main>
-      <footer className="ol-footer"><div className="ol-container ol-footer-main"><BrandLogo href="#top" className="ol-footer-logo" /><p>Websites, apps, and automation from Rockford, Illinois.</p><a href="mailto:optimizelocalai@gmail.com">Get in touch ↗</a></div><div className="ol-container ol-footer-bottom"><span>© {new Date().getFullYear()} Optimize Local · Rockford, Illinois</span><span><a href="#services">Services</a> · <a href="#pricing">Pricing</a> · <a href="#work">Work</a> · <Link href="/ai-training">AI Training</Link> · <a href="/privacy">Privacy</a> · <a href="https://connect.optimizelocalai.com" target="_blank" rel="noopener noreferrer">Connect</a></span></div></footer>
+      <footer className="ol-footer"><div className="ol-container ol-footer-main"><BrandLogo href="#top" className="ol-footer-logo" /><p>Websites, apps, and automation from Rockford, Illinois.</p><a href="mailto:optimizelocalai@gmail.com">Get in touch ↗</a></div><div className="ol-container ol-footer-bottom"><span>© {new Date().getFullYear()} Optimize Local · Rockford, Illinois</span><span><a href="#services">Services</a> · <a href="#pricing">Pricing</a> · <a href="#work">Work</a> · <Link href="/ai-training">AI Training</Link> · <a href="/privacy">Privacy</a> · <Link href="/refund-policy">Cancellation & refunds</Link> · <a href="https://connect.optimizelocalai.com" target="_blank" rel="noopener noreferrer">Connect</a></span></div></footer>
     </div>
   );
 }
