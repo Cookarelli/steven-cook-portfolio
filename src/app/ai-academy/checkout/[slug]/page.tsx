@@ -3,6 +3,7 @@ import { notFound } from 'next/navigation';
 import { getAcademyProgram, formatPrice } from '@/config/ai-academy';
 import { paymentConfig } from '@/lib/payments/config';
 import { Checkout } from '@/components/academy/checkout';
+import { PurchasePolicy } from '@/components/purchase-policy';
 import './checkout.css';
 export const dynamic = 'force-dynamic';
 export const metadata = { title: 'Secure checkout | Optimize Local AI', robots: { index: false, follow: false } };
@@ -16,7 +17,7 @@ export default async function Page({ params }: { params: Promise<{ slug: string 
     <h1>{program.title}</h1>
     <div className="checkout-grid"><section className="checkout-summary"><h2>{formatPrice(program)} USD</h2><p>{program.priceBasis} · {program.duration}</p><p>{program.delivery}</p><ul>{program.included.map(item => <li key={item}>{item}</li>)}</ul>
       <p><strong>Payment does not reserve an appointment.</strong> We’ll contact you at the email you provide to agree on a time. Third-party AI subscriptions are not included.</p>
-      {config.enabled && <><h3>Payment, cancellation and scheduling terms</h3><p className="checkout-terms">{config.policy}</p></>}
+      <details className="checkout-terms"><summary>Cancellation & refund policy</summary><PurchasePolicy /></details><p><Link href="/refund-policy">Read the full policy on its own page ↗</Link></p>
       <p>Questions? <a href="mailto:optimizelocalai@gmail.com">Email Optimize Local</a>.</p>
     </section>{config.enabled ? <Checkout program={program.slug} clientId={config.clientId} environment={config.environment} termsVersion={config.policyVersion} /> : <section className="checkout-summary"><h2>Request your session</h2><p>Online checkout is being prepared. Send a request and we’ll confirm availability and payment arrangements.</p><Link className="ol-button ol-button-primary" href={`/ai-academy/${program.slug}#request`}>Request this session ↗</Link><Checkout program={program.slug} clientId="" environment={config.environment} termsVersion="" enabled={false} /></section>}</div>
   </main>;

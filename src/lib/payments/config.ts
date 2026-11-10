@@ -1,4 +1,5 @@
 import { getAcademyProgram } from '../../config/ai-academy';
+import { purchasePolicyText, purchasePolicyVersion } from '../../config/purchase-policy';
 import { CrmError } from '../academy-crm/model';
 
 export type PaymentEnvironment = 'sandbox' | 'live';
@@ -12,8 +13,8 @@ export function paymentConfig(): PaymentConfig {
   const config = {
     environment, clientId: process.env.PAYPAL_CLIENT_ID || '', secret: process.env.PAYPAL_CLIENT_SECRET || '',
     merchantId: process.env.PAYPAL_MERCHANT_ID || '', webhookId: process.env.PAYPAL_WEBHOOK_ID || '',
-    origin: process.env.ACADEMY_SITE_ORIGIN || '', policy: process.env.PAYMENT_CUSTOMER_TERMS || '',
-    policyVersion: process.env.PAYMENT_TERMS_VERSION || '', enabled: process.env.PAYMENTS_ENABLED === 'true',
+    origin: process.env.ACADEMY_SITE_ORIGIN || '', policy: purchasePolicyText,
+    policyVersion: purchasePolicyVersion, enabled: process.env.PAYMENTS_ENABLED === 'true',
   };
   if (environment === 'live' && process.env.VERCEL_ENV !== 'production') config.enabled = false;
   if (!config.clientId || !config.secret || !config.merchantId || !config.webhookId || !config.origin || !config.policy || !config.policyVersion || process.env.PAYMENT_TAX_REVIEWED !== 'true') config.enabled = false;

@@ -4,7 +4,7 @@ This implements one-time purchases of the existing $49, $99, $299 and $149 priva
 
 ## Release status
 
-Implementation and mocked-provider PostgreSQL tests are complete. Production payments are **disabled by default**. Actual sandbox buyer approval, production credentials, webhook delivery, approved cancellation/refund terms, and the tax treatment of these offers must be verified before enabling checkout. No real payment has been made by the agent. Transactional payment emails are not configured by this implementation; the customer gets an on-site receipt and the owner gets a durable scheduling queue. Review that queue for follow-up.
+Implementation and mocked-provider PostgreSQL tests are complete. Production payments are **disabled by default**. Actual sandbox buyer approval, production credentials, webhook delivery, the tax treatment of these offers must be verified before enabling checkout. No real payment has been made by the agent. Transactional payment emails are not configured by this implementation; the customer gets an on-site receipt and the owner gets a durable scheduling queue. Review that queue for follow-up.
 
 ## Confirmed target
 
@@ -26,8 +26,6 @@ PAYPAL_CLIENT_SECRET=
 PAYPAL_MERCHANT_ID=
 PAYPAL_WEBHOOK_ID=
 PAYMENTS_ENABLED=false
-PAYMENT_CUSTOMER_TERMS=
-PAYMENT_TERMS_VERSION=
 PAYMENT_TAX_REVIEWED=false
 # Reuse the current production values; use isolated sandbox/test values on Preview.
 ACADEMY_DATABASE_URL=
@@ -39,7 +37,7 @@ ACADEMY_ADMIN_TOKEN=
 
 The enablement flag is checked on the server. The four offer-page links are generated during the build, so redeploy after changes. Live API access is rejected outside `VERCEL_ENV=production`. The SDK, REST endpoints, webhook ID and order environment must agree. No secrets are included in client props. Existing transactions can be reconciled by the status endpoint and verified webhooks when new checkout is disabled.
 
-`PAYMENT_CUSTOMER_TERMS` is owner-approved text displayed before payment and saved with each order. It needs to cover how scheduling is agreed, what happens if no suitable time is available, and cancellation, rescheduling, refunds and no-shows. Do not invent these terms. `PAYMENT_TERMS_VERSION` identifies that approved text. `PAYMENT_TAX_REVIEWED=true` means the owner has verified that the exact listed total is appropriate for this configuration. There is no automatic tax calculator or invented exemption/rate. If additional tax must be calculated, keep checkout disabled and implement that before launch.
+The owner-approved cancellation/refund policy is versioned in `src/config/purchase-policy.ts`, published at `/refund-policy`, displayed and linked before checkout, and saved verbatim with each order. Version: `optimize-local-refunds-2026-11-10`. The November 10, 2026 wording was supplied and approved by the owner. Policy edits must update the version; environment overrides cannot silently replace the published policy. `PAYMENT_TAX_REVIEWED=true` means the owner has verified that the exact listed total is appropriate for this configuration. There is no automatic tax calculator or invented exemption/rate. If additional tax must be calculated, keep checkout disabled and implement that before launch.
 
 ## Database and PayPal webhooks
 
