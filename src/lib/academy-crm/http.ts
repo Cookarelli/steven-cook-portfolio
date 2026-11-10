@@ -12,12 +12,12 @@ export function assertOrigin(request:Request) {
  if(!expected) throw new CrmError(503,'Lead capture is not configured.');
  if(origin!==expected) throw new CrmError(403,'Request origin not allowed.');
 }
-export async function readJson(request:Request) {
+export async function readJson(request:Request,maxBytes=16000) {
  if(!request.headers.get('content-type')?.startsWith('application/json')) throw new CrmError(415,'JSON is required.');
- if(Number(request.headers.get('content-length')||0)>16000) throw new CrmError(413,'Request too large.');
+ if(Number(request.headers.get('content-length')||0)>maxBytes) throw new CrmError(413,'Request too large.');
  const reader=request.body?.getReader();if(!reader) throw new CrmError(400,'Request body required.');
  let size=0;const chunks:Uint8Array[]=[];
- while(true) { const {done,value}=await reader.read();if(done)break;size+=value.length;if(size>16000){await reader.cancel();throw new CrmError(413,'Request too large.');}chunks.push(value); }
+ while(true) { const {done,value}=await reader.read();if(done)break;size+=value.length;if(size>maxBytes){await reader.cancel();throw new CrmError(413,'Request too large.');}chunks.push(value); }
  try {return JSON.parse(Buffer.concat(chunks).toString('utf8'));} catch {throw new CrmError(400,'Invalid JSON.');}
 }
 export function json(value:unknown,status=200) {return Response.json(value,{status,headers:{'Cache-Control':'no-store'}});}

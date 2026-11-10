@@ -13,6 +13,8 @@
     "test:academy": "node --experimental-strip-types --test tests/academy.test.mjs",
     "test:routes": "node --experimental-strip-types --test tests/academy-routes.test.mjs tests/local-readiness.test.mjs tests/course-routes.test.mjs",
     "test:crm": "node scripts/test-academy-crm.mjs",
+    "test:payments": "node scripts/test-payments.mjs",
+    "test:checkout-routes": "node scripts/check-checkout-routes.mjs",
     "db:migrate": "node scripts/migrate-academy.mjs",
     "content:preview": "node scripts/build-course-preview.mjs",
     "test:course": "node --experimental-strip-types --test tests/course-progress.test.mjs tests/course-content.test.mjs",
