@@ -4,7 +4,7 @@ This implements one-time purchases of the existing $49, $99, $299 and $149 priva
 
 ## Release status
 
-Implementation and mocked-provider PostgreSQL tests are complete. Production payments are **disabled**. The owner chose to perform the first purchase test on the website and waived an agent-run sandbox purchase. Credential operation and webhook delivery remain to be checked before reporting a fully verified payment flow. No real payment has been made by the agent. Transactional payment emails are not configured by this implementation; the customer gets an on-site receipt and the owner gets a durable scheduling queue. Review that queue for follow-up.
+Implementation and mocked-provider PostgreSQL tests are complete. The Production enablement setting is now **true**; the release build must use the current Vercel environment variables. The owner chose to perform the first purchase test on the website and waived an agent-run sandbox purchase. Credential operation and webhook delivery remain to be checked before reporting a fully verified payment flow. No real payment has been made by the agent. Transactional payment emails are not configured by this implementation; the customer gets an on-site receipt and the owner gets a durable scheduling queue. Review that queue for follow-up.
 
 ## Confirmed target
 
@@ -17,13 +17,15 @@ Implementation and mocked-provider PostgreSQL tests are complete. Production pay
 
 ## Configuration checkpoint — November 10, 2026
 
-- With the owner's explicit approval, the live client ID, client secret, and verified merchant ID were stored as Vercel Secrets scoped only to Production. `PAYPAL_ENV=live`, `PAYMENTS_ENABLED=false`, and `PAYMENT_TAX_REVIEWED=false` are saved Production configuration. No secret values are recorded here.
-- The existing PayPal **Default Application** sandbox client ID, secret, and sandbox business account ID were stored separately as Vercel Secrets scoped only to Preview branch `codex/paypal-venmo-checkout-20261110`. Its configuration uses `PAYPAL_ENV=sandbox`, `PAYMENTS_ENABLED=false`, `PAYMENT_TAX_REVIEWED=false`, and the branch preview origin below.
+- Checkout PR #3 was merged as `b5567cc2823ff5b53c08fb7775c0fcded06ca30f`, and the disabled production build was verified live before enablement.
+- Live client ID, client secret and verified merchant ID are Vercel Secrets scoped only to Production. Production Config values are `PAYPAL_ENV=live`, `PAYMENT_TOTALS_CONFIRMED=true` and `PAYMENTS_ENABLED=true`. The owner completed Vercel email verification before the enablement setting was saved. No secret values are recorded here.
+- The live **Optimize Local Checkout** app now has webhook `99E52268939633132` at `https://www.optimizelocalai.com/api/payments/paypal/webhook`. PayPal confirmed registration for capture completed, pending, denied, refunded and reversed events. Its ID is saved as `PAYPAL_WEBHOOK_ID` in Production. Registration does not prove delivery; no actual transaction event has been verified.
+- Redeploy after these environment changes. The owner will perform the first purchase from the live website; no agent-run payment, refund or Venmo app-switch test has been performed.
+- The existing **Default Application** sandbox credentials remain separate Vercel Secrets scoped only to Preview branch `codex/paypal-venmo-checkout-20261110`, with `PAYPAL_ENV=sandbox` and `PAYMENTS_ENABLED=false`.
 - Preview origin: `https://steven-cook-portfolio-git-codex-eb66a1-steves-projects-e37a4ef4.vercel.app`.
-- A separate **Optimize Local Checkout Sandbox** Supabase project was created in the existing Optimize Local AI organization at a quoted **$0/month**: `gwwfvdihmtzwlznacswc`, region `us-west-1`. The existing `db/academy-crm.sql` schema was applied; all five base tables are empty. No production data was copied.
-- The sandbox pooler address was confirmed in Supabase's Connect panel: `aws-0-us-west-1.pooler.supabase.com:6543`, database `postgres`. TLS must remain verified.
-- Automatic approval review rejected creation of the sandbox runtime login because the prior authorization did not specify the new persistent database access grant. A follow-up read confirmed that **no `academy_app` role exists in the sandbox**. Do not retry the access change without the owner's specific approval. Prefer a restricted checkout-only login with access to payment orders, payment events, and rate-limit records; do not grant access to leads or notification tables for checkout testing.
-- Sandbox payment tables, database credential, CA certificate, administrator/rate-limit secrets, both PayPal webhooks, deployed webhook delivery, and actual buyer testing remain incomplete. Production checkout code is still in draft PR #3; only the approved refund policy is live. No production checkout deployment or payment enablement was performed.
+- The separate **Optimize Local Checkout Sandbox** Supabase project (`gwwfvdihmtzwlznacswc`, `us-west-1`, quoted $0/month) contains only the five empty base CRM tables. No production data was copied. It has no checkout runtime login, payment tables or webhook.
+- The owner approved a restricted checkout-only sandbox login after an initial automatic-review rejection, then waived the agent-run sandbox purchase. The unused login was not created. If testing resumes, keep access limited to payment orders, payment events and rate-limit records.
+- The old `PAYMENT_TAX_REVIEWED` configuration remains unused. Published catalog totals are final USD amounts with no separate tax addition; this is not a tax-review attestation.
 
 ## Environment configuration
 
