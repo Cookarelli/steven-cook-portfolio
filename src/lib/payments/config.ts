@@ -17,7 +17,7 @@ export function paymentConfig(): PaymentConfig {
     policyVersion: purchasePolicyVersion, enabled: process.env.PAYMENTS_ENABLED === 'true',
   };
   if (environment === 'live' && process.env.VERCEL_ENV !== 'production') config.enabled = false;
-  if (!config.clientId || !config.secret || !config.merchantId || !config.webhookId || !config.origin || !config.policy || !config.policyVersion || process.env.PAYMENT_TAX_REVIEWED !== 'true') config.enabled = false;
+  if (!config.clientId || !config.secret || !config.merchantId || !config.webhookId || !config.origin || !config.policy || !config.policyVersion || process.env.PAYMENT_TOTALS_CONFIRMED !== 'true') config.enabled = false;
   return config as PaymentConfig;
 }
 export function assertPaymentsEnabled(config: PaymentConfig) {

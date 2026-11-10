@@ -4,7 +4,7 @@ This implements one-time purchases of the existing $49, $99, $299 and $149 priva
 
 ## Release status
 
-Implementation and mocked-provider PostgreSQL tests are complete. Production payments are **disabled**. Actual sandbox buyer approval, credential operation, webhook delivery, and the tax treatment of these offers must be verified before enabling checkout. No real payment has been made by the agent. Transactional payment emails are not configured by this implementation; the customer gets an on-site receipt and the owner gets a durable scheduling queue. Review that queue for follow-up.
+Implementation and mocked-provider PostgreSQL tests are complete. Production payments are **disabled**. The owner chose to perform the first purchase test on the website and waived an agent-run sandbox purchase. Credential operation and webhook delivery remain to be checked before reporting a fully verified payment flow. No real payment has been made by the agent. Transactional payment emails are not configured by this implementation; the customer gets an on-site receipt and the owner gets a durable scheduling queue. Review that queue for follow-up.
 
 ## Confirmed target
 
@@ -36,7 +36,7 @@ PAYPAL_CLIENT_SECRET=
 PAYPAL_MERCHANT_ID=
 PAYPAL_WEBHOOK_ID=
 PAYMENTS_ENABLED=false
-PAYMENT_TAX_REVIEWED=false
+PAYMENT_TOTALS_CONFIRMED=false
 # Reuse the current production values; use isolated sandbox/test values on Preview.
 ACADEMY_DATABASE_URL=
 ACADEMY_DATABASE_CA_CERT=
@@ -47,7 +47,7 @@ ACADEMY_ADMIN_TOKEN=
 
 The enablement flag is checked on the server. The four offer-page links are generated during the build, so redeploy after changes. Live API access is rejected outside `VERCEL_ENV=production`. The SDK, REST endpoints, webhook ID and order environment must agree. No secrets are included in client props. Existing transactions can be reconciled by the status endpoint and verified webhooks when new checkout is disabled.
 
-The owner-approved cancellation/refund policy is versioned in `src/config/purchase-policy.ts`, published at `/refund-policy`, displayed and linked before checkout, and saved verbatim with each order. Version: `optimize-local-refunds-2026-11-10`. The November 10, 2026 wording was supplied and approved by the owner. Policy edits must update the version; environment overrides cannot silently replace the published policy. `PAYMENT_TAX_REVIEWED=true` means the owner has verified that the exact listed total is appropriate for this configuration. There is no automatic tax calculator or invented exemption/rate. If additional tax must be calculated, keep checkout disabled and implement that before launch.
+The owner-approved cancellation/refund policy is versioned in `src/config/purchase-policy.ts`, published at `/refund-policy`, displayed and linked before checkout, and saved verbatim with each order. Version: `optimize-local-refunds-2026-11-10`. The November 10, 2026 wording was supplied and approved by the owner. Policy edits must update the version; environment overrides cannot silently replace the published policy. `PAYMENT_TOTALS_CONFIRMED=true` selects the published catalog amounts as final USD totals ($49, $99, $149, $299), with no separate tax calculation. This operational setting is not a representation that a tax review occurred. If the owner needs an additional tax calculation, disable new payments and implement it before collecting those amounts. The earlier `PAYMENT_TAX_REVIEWED` variable is no longer used.
 
 ## Database and PayPal webhooks
 
@@ -90,7 +90,7 @@ npm run build
 
 Payment tests start an isolated PostgreSQL instance over loopback TCP, use a synthetic PayPal provider, exercise concurrency, ownership, unavailable offers, tampering, pending/unknown outcomes, duplicate webhooks, refunds/reversals, provider-host selection, and durable records after database restart. They make no PayPal charges and send no messages. Mocked tests are not a real sandbox transaction.
 
-Before enabling live checkout, complete actual sandbox buyer approval/capture, cancel and declined/pending cases, verify webhook receipts and the admin scheduling queue, and inspect desktop/mobile UI. PayPal determines Venmo eligibility; a missing Venmo button must leave eligible PayPal usable. Sandbox desktop login does not prove production Venmo QR/app-switch behavior.
+The recommended provider validation covers actual sandbox buyer approval/capture, cancel and declined/pending cases, webhook receipts and the admin scheduling queue, and desktop/mobile UI. On November 10 the owner waived the agent-run sandbox purchase and elected to test from the live website; do not claim these provider checks passed. PayPal determines Venmo eligibility; a missing Venmo button must leave eligible PayPal usable. Sandbox desktop login does not prove production Venmo QR/app-switch behavior.
 
 For the first live purchase, the account owner or intended buyer must initiate their own authorized payment. Confirm the offer/total, completed capture in PayPal, matching local receipt, one scheduling record and no duplicate capture. A real wallet test has not been performed by this change.
 
@@ -104,3 +104,7 @@ Set `PAYMENTS_ENABLED=false` in Production and redeploy. Stop new payments while
 - https://developer.paypal.com/sdk/js/set-up
 - https://developer.paypal.com/venmo/
 - https://developer.paypal.com/api/rest/webhooks/
+
+## Owner-directed release plan
+
+On November 10 the owner approved the restricted sandbox database login, then stated that an agent-run sandbox purchase was unnecessary and that they would test on the website or use a manual invoice. Do not create unused sandbox credentials solely to satisfy the earlier plan. Complete the live integration using the existing published offer prices, preserve the payment enablement switch, and clearly report that no real payment, refund, or wallet app-switch test was performed by the agent.

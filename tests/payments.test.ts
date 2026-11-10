@@ -34,12 +34,12 @@ test('catalog prices and request validation reject tampering and unavailable off
   assert.equal(checkoutInput(raw, config).program, 'ai-made-simple');
   for (const extra of [{ amount: 1 }, { currency: 'EUR' }, { quantity: 10 }, { consent: false }, { termsVersion: 'old' }]) assert.throws(() => checkoutInput({ ...raw, ...extra }, config));
 });
-test('live checkout fails closed on preview and missing terms/tax configuration', () => {
+test('live checkout fails closed on preview and unconfirmed checkout totals', () => {
   const before = { ...process.env };
   try {
-    Object.assign(process.env, { PAYPAL_ENV:'live', VERCEL_ENV:'preview', PAYMENTS_ENABLED:'true', PAYPAL_CLIENT_ID:'id',PAYPAL_CLIENT_SECRET:'secret',PAYPAL_MERCHANT_ID:'merchant',PAYPAL_WEBHOOK_ID:'webhook',ACADEMY_SITE_ORIGIN:'https://example.invalid',PAYMENT_CUSTOMER_TERMS:'approved',PAYMENT_TERMS_VERSION:'v1',PAYMENT_TAX_REVIEWED:'true' });
+    Object.assign(process.env, { PAYPAL_ENV:'live', VERCEL_ENV:'preview', PAYMENTS_ENABLED:'true', PAYPAL_CLIENT_ID:'id',PAYPAL_CLIENT_SECRET:'secret',PAYPAL_MERCHANT_ID:'merchant',PAYPAL_WEBHOOK_ID:'webhook',ACADEMY_SITE_ORIGIN:'https://example.invalid',PAYMENT_CUSTOMER_TERMS:'approved',PAYMENT_TERMS_VERSION:'v1',PAYMENT_TOTALS_CONFIRMED:'true' });
     assert.equal(paymentConfig().enabled,false); process.env.VERCEL_ENV='production'; assert.equal(paymentConfig().enabled,true);
-    delete process.env.PAYMENT_TAX_REVIEWED; assert.equal(paymentConfig().enabled,false);
+    delete process.env.PAYMENT_TOTALS_CONFIRMED; assert.equal(paymentConfig().enabled,false);
   } finally { for (const key of Object.keys(process.env)) if (!(key in before)) delete process.env[key]; Object.assign(process.env,before); }
 });
 test('concurrent duplicate create and capture perform one provider operation', async () => {
