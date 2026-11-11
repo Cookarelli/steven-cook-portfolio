@@ -4,7 +4,13 @@ This implements one-time purchases of the existing $49, $99, $299 and $149 priva
 
 ## Release status
 
-Implementation and mocked-provider PostgreSQL tests are complete. The Production enablement setting is now **true**; the release build must use the current Vercel environment variables. The owner chose to perform the first purchase test on the website and waived an agent-run sandbox purchase. Credential operation and webhook delivery remain to be checked before reporting a fully verified payment flow. No real payment has been made by the agent. Transactional payment emails are not configured by this implementation; the customer gets an on-site receipt and the owner gets a durable scheduling queue. Review that queue for follow-up.
+The Production enablement setting is **true**. Live credentials successfully created an unpaid PayPal order on November 11, 2026. The owner chose to perform the first purchase test on the website and waived an agent-run sandbox purchase. Actual buyer approval/capture and webhook delivery remain unverified. No real payment has been made by the agent. Transactional payment emails are not configured by this implementation; the customer gets an on-site receipt and the owner gets a durable scheduling queue. Review that queue for follow-up.
+
+## Direct PayPal links — November 11, 2026
+
+The four paid training cards link directly to checkout, and the stale message saying online payments are unavailable has been removed. Newly created orders expose a validated PayPal-hosted approval link alongside the existing eligible wallet buttons. The link works independently of the embedded PayPal SDK. Approval/cancellation returns to the same protected order; return parameters are not payment proof. The server verifies buyer-session ownership and provider approval before an idempotent capture.
+
+Approval URLs must use the matching PayPal environment, HTTPS, the checkout path and the exact provider order token. They are stored in the existing private payment event table and disappear once the order is no longer awaiting payment or is older than three hours. No schema migration or credential change is needed. Legacy orders created without return URLs retain their embedded wallet flow. Custom app quotes, the workshop interest list and the coming-soon course remain outside checkout.
 
 ## Confirmed target
 

@@ -5,7 +5,7 @@ import { Pool } from 'pg';
 import { checkoutInput, nextStatus } from '../src/lib/payments/model';
 import { paymentConfig, payableProgram, type PaymentConfig } from '../src/lib/payments/config';
 import { beginCheckout, checkoutStatus, acceptWebhook, paymentRateLimit } from '../src/lib/payments/store';
-import { PayPal, type PayPalProvider, type ProviderOrder } from '../src/lib/payments/paypal';
+import { PayPal, approvalLink, type PayPalProvider, type ProviderOrder } from '../src/lib/payments/paypal';
 
 const pool = new Pool({ connectionString: process.env.ACADEMY_TEST_DATABASE_URL });
 after(() => pool.end());
@@ -15,7 +15,9 @@ class MockPayPal implements PayPalProvider {
   orders = new Map<string, ProviderOrder>(); creates = 0; captures = 0; valid = true; captureState = 'COMPLETED'; lostResponse = false;
   async create(id: string, title: string, cents: number) {
     if (!this.orders.has(id)) { this.creates++; this.orders.set(id, { id, status: 'APPROVED', purchase_units: [{ custom_id: id, amount: { currency_code: 'USD', value: (cents / 100).toFixed(2) }, payee: { merchant_id: config.merchantId } }] }); }
-    return structuredClone(this.orders.get(id)!);
+    const value = structuredClone(this.orders.get(id)!);
+    value.links = [{ rel: 'approve', href: `https://www.sandbox.paypal.com/checkoutnow?token=${id}` }];
+    return value;
   }
   async order(id: string) { return structuredClone(this.orders.get(id)!); }
   async capture(id: string, requestId: string) {
@@ -47,6 +49,8 @@ test('concurrent duplicate create and capture perform one provider operation', a
   const results = await Promise.all(Array.from({length:5}, () => beginCheckout(pool,provider,config,data,session)));
   assert.equal(new Set(results.map(row=>row.id)).size,1); assert.equal(provider.creates,1);
   const id = results[0].id;
+  assert.equal(results[0].approvalUrl, `https://www.sandbox.paypal.com/checkoutnow?token=${id}`);
+  assert.equal((await checkoutStatus(pool,provider,config,id,session)).approvalUrl,results[0].approvalUrl);
   const otherTab = await beginCheckout(pool,provider,config,{...data,attempt:randomUUID()},session);
   assert.equal(otherTab.id,id); assert.equal(provider.creates,1);
   await assert.rejects(() => checkoutStatus(pool,provider,config,id,'foreign-session',true));
@@ -54,7 +58,21 @@ test('concurrent duplicate create and capture perform one provider operation', a
   await assert.rejects(() => beginCheckout(pool,provider,config,{...data,name:'Different buyer'},session));
   const captured = await Promise.all(Array.from({length:5},()=>checkoutStatus(pool,provider,config,id,session,true)));
   assert.equal(provider.captures,1); assert.ok(captured.every(row=>row.status==='paid' && row.fulfillment==='scheduling_pending'));
+  assert.ok(captured.every(row=>row.approvalUrl===null));
   assert.equal((await pool.query("SELECT count(*)::int AS n FROM academy_crm.payment_events WHERE order_id=$1 AND kind='provider-status'",[id])).rows[0].n,1);
+});
+test('hosted approval URLs cannot redirect to another merchant order or origin', () => {
+  const order = (href:string):ProviderOrder => ({id:'ORDER123',status:'CREATED',links:[{rel:'approve',href}]});
+  assert.equal(approvalLink(order('https://www.paypal.com/checkoutnow?token=ORDER123'),'live'),'https://www.paypal.com/checkoutnow?token=ORDER123');
+  for (const href of ['https://evil.invalid/checkoutnow?token=ORDER123','https://www.paypal.com.evil.invalid/checkoutnow?token=ORDER123','http://www.paypal.com/checkoutnow?token=ORDER123','https://user@www.paypal.com/checkoutnow?token=ORDER123','https://www.paypal.com/checkoutnow?token=OTHER','https://www.sandbox.paypal.com/checkoutnow?token=ORDER123','https://www.paypal.com/other?token=ORDER123']) assert.equal(approvalLink(order(href),'live'),null);
+});
+test('legacy orders do not get a redirect link without configured return URLs', async () => {
+  const provider=new MockPayPal(),session=randomUUID();
+  const order=await beginCheckout(pool,provider,config,input(),session);
+  await pool.query("DELETE FROM academy_crm.payment_events WHERE order_id=$1 AND kind='checkout-link'",[order.id]);
+  const resumed=await checkoutStatus(pool,provider,config,order.id,session);
+  assert.equal(resumed.approvalUrl,null);
+  assert.equal(resumed.paypalOrderId,order.paypalOrderId);
 });
 test('pending remains unfulfilled; lost capture response recovers without a second charge', async () => {
   const provider = new MockPayPal(), session = randomUUID();
@@ -119,9 +137,11 @@ test('provider transport uses correct host, stable IDs and verification endpoint
     seen.push({url:String(url),options:options!});
     return Response.json(String(url).endsWith('/token')?{access_token:'test-access'}:String(url).includes('verify-webhook-signature')?{verification_status:'SUCCESS'}:{id:'ORDER',status:'CREATED'});
   };
-  const provider=new PayPal(config,transport);await provider.create('test-id','Test',4900);
+  const provider=new PayPal(config,transport);await provider.create('test-id','Test',4900,'ai-made-simple');
   const sent=JSON.parse(String(seen[1].options.body));assert.equal(sent.purchase_units[0].amount.value,'49.00');
   assert.equal((seen[1].options.headers as Record<string,string>)['PayPal-Request-Id'],'create-test-id');
+  assert.equal(sent.application_context.return_url,'http://localhost:3107/ai-academy/checkout/ai-made-simple?order=test-id&paypal=return');
+  assert.equal(sent.application_context.cancel_url,'http://localhost:3107/ai-academy/checkout/ai-made-simple?order=test-id&paypal=cancel');
   assert.ok(seen.every(call=>call.url.startsWith('https://api-m.sandbox.paypal.com/')));
   assert.equal(await provider.verifyWebhook(new Headers(),{}),false);
   const headers=new Headers(Object.fromEntries(['paypal-auth-algo','paypal-cert-url','paypal-transmission-id','paypal-transmission-sig','paypal-transmission-time'].map(name=>[name,'test'])));

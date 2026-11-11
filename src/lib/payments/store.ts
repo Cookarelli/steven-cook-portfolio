@@ -3,15 +3,23 @@ import type { Pool, PoolClient } from 'pg';
 import { CrmError } from '../academy-crm/model';
 import { assertPaymentsEnabled, payableProgram, type PaymentConfig } from './config';
 import { hash, nextStatus, uuid, verifiedCapture, type CheckoutInput } from './model';
-import type { PayPalProvider, ProviderOrder } from './paypal';
+import { approvalLink, type PayPalProvider, type ProviderOrder } from './paypal';
 
 export interface PaymentOrder {
   id: string; environment: string; session_hash: string; provider_order_id: string; capture_id: string | null;
   cents: number; merchant_id: string; title: string; program: string; status: string; fulfillment: string;
   created_at: Date; updated_at: Date; fingerprint: string;
 }
-export function publicOrder(order: PaymentOrder) {
-  return { id: order.id, program: order.program, title: order.title, cents: order.cents, currency: 'USD', environment: order.environment, status: order.status, fulfillment: order.fulfillment, captureId: order.capture_id, paypalOrderId: order.provider_order_id };
+export function publicOrder(order: PaymentOrder, approvalUrl: string | null = null) {
+  return { id: order.id, program: order.program, title: order.title, cents: order.cents, currency: 'USD', environment: order.environment, status: order.status, fulfillment: order.fulfillment, captureId: order.capture_id, paypalOrderId: order.provider_order_id, approvalUrl };
+}
+async function checkoutLink(client: PoolClient, order: PaymentOrder, config: PaymentConfig) {
+  if (order.status !== 'created' || Date.now() - new Date(order.created_at).getTime() > 3 * 60 * 60 * 1000) return null;
+  // The event exists only for orders created with a configured return/cancel URL.
+  // Legacy orders retain the embedded-wallet flow, without an unsafe redirect.
+  const result = await client.query("SELECT details FROM academy_crm.payment_events WHERE id=$1 AND order_id=$2 AND kind='checkout-link'", [`${config.environment}:checkout-link:${order.id}`, order.id]);
+  const href = result.rows[0]?.details?.approvalUrl;
+  return typeof href === 'string' ? approvalLink({ id: order.provider_order_id, status: 'CREATED', links: [{ rel: 'approve', href }] }, config.environment) : null;
 }
 export async function paymentRateLimit(pool: Pool, value: string, secret: string, limit = 20) {
   if (secret.length < 32) throw new CrmError(503, 'Checkout is temporarily unavailable.');
@@ -56,13 +64,15 @@ export async function beginCheckout(pool: Pool, provider: PayPalProvider, config
   return locked(pool, order.id, async (client, current) => {
     if (!current.provider_order_id) {
       if (Date.now() - new Date(current.created_at).getTime() > 3 * 60 * 60 * 1000) throw new CrmError(409, 'This checkout needs review. Contact Optimize Local before starting another payment.');
-      const created = await provider.create(current.id, current.title, current.cents);
+      const created = await provider.create(current.id, current.title, current.cents, current.program);
       if (!/^[A-Za-z0-9_-]{1,100}$/.test(created.id || '')) throw new CrmError(502, 'Unable to prepare payment. Retry this checkout.');
       current.provider_order_id = created.id;
       verifiedCapture(created, current);
       await client.query('UPDATE academy_crm.payment_orders SET provider_order_id=$2,updated_at=now() WHERE id=$1', [current.id, created.id]);
+      const approvalUrl = approvalLink(created, config.environment);
+      if (approvalUrl) await client.query("INSERT INTO academy_crm.payment_events(id,environment,order_id,kind,details) VALUES($1,$2,$3,'checkout-link',$4) ON CONFLICT DO NOTHING", [`${config.environment}:checkout-link:${current.id}`, config.environment, current.id, JSON.stringify({ approvalUrl })]);
     }
-    return { ...publicOrder(current), paypalOrderId: current.provider_order_id };
+    return publicOrder(current, await checkoutLink(client, current, config));
   });
 }
 function assertOwner(order: PaymentOrder, config: PaymentConfig, session: string) {
@@ -93,7 +103,8 @@ export async function checkoutStatus(pool: Pool, provider: PayPalProvider, confi
       // A fresh authenticated read recovers successful captures even after a lost browser response.
       remote = await provider.order(order.provider_order_id);
     }
-    return publicOrder(await applyProviderOrder(client, order, remote));
+    const updated = await applyProviderOrder(client, order, remote);
+    return publicOrder(updated, await checkoutLink(client, updated, config));
   });
 }
 export async function acceptWebhook(pool: Pool, provider: PayPalProvider, config: PaymentConfig, headers: Headers, raw: unknown) {
