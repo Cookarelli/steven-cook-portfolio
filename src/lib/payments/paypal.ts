@@ -8,13 +8,24 @@ export interface Capture {
 }
 export interface ProviderOrder {
   id: string; status: string;
+  links?: { rel: string; href: string }[];
   purchase_units?: { custom_id?: string; amount?: Money; payee?: { merchant_id?: string }; payments?: { captures?: Capture[] } }[];
 }
 export interface PayPalProvider {
-  create(id: string, title: string, cents: number): Promise<ProviderOrder>;
+  create(id: string, title: string, cents: number, program: string): Promise<ProviderOrder>;
   order(id: string): Promise<ProviderOrder>;
   capture(id: string, requestId: string): Promise<ProviderOrder>;
   verifyWebhook(headers: Headers, event: unknown): Promise<boolean>;
+}
+export function approvalLink(order: ProviderOrder, environment: PaymentConfig['environment']) {
+  const href = order.links?.find(link => link.rel === 'approve' || link.rel === 'payer-action')?.href;
+  if (!href) return null;
+  try {
+    const url = new URL(href);
+    const host = environment === 'live' ? 'www.paypal.com' : 'www.sandbox.paypal.com';
+    if (url.protocol !== 'https:' || url.hostname !== host || url.port || url.username || url.password || url.pathname !== '/checkoutnow' || url.searchParams.get('token') !== order.id) return null;
+    return url.href;
+  } catch { return null; }
 }
 export class PayPal implements PayPalProvider {
   private token = '';
@@ -35,10 +46,15 @@ export class PayPal implements PayPalProvider {
     if (!response.ok) throw new CrmError(502, 'We could not confirm the payment outcome. Check this order again before trying another payment.');
     return data;
   }
-  create(id: string, title: string, cents: number): Promise<ProviderOrder> {
+  create(id: string, title: string, cents: number, program: string): Promise<ProviderOrder> {
+    const returnUrl = new URL(`/ai-academy/checkout/${encodeURIComponent(program)}`, this.config.origin);
+    returnUrl.searchParams.set('order', id);
+    const cancelUrl = new URL(returnUrl);
+    returnUrl.searchParams.set('paypal', 'return');
+    cancelUrl.searchParams.set('paypal', 'cancel');
     return this.request('/v2/checkout/orders', 'POST', {
       intent: 'CAPTURE', purchase_units: [{ custom_id: id, description: title, payee: { merchant_id: this.config.merchantId }, amount: { currency_code: 'USD', value: (cents / 100).toFixed(2) } }],
-      application_context: { brand_name: 'Optimize Local AI', shipping_preference: 'NO_SHIPPING', user_action: 'PAY_NOW' },
+      application_context: { brand_name: 'Optimize Local AI', shipping_preference: 'NO_SHIPPING', user_action: 'PAY_NOW', return_url: returnUrl.href, cancel_url: cancelUrl.href },
     }, `create-${id}`);
   }
   order(id: string): Promise<ProviderOrder> { return this.request(`/v2/checkout/orders/${encodeURIComponent(id)}`); }
